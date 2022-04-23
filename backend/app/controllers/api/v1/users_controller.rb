@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :current_user_params
 
+  # ユーザー取得 テスト用
+  def index
+    user = User.all
+    render json: { user: user }
+  end
+
   # ユーザー情報の取得
   def show
     render json: {
