@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :current_user_params
 
   # ユーザー取得 テスト用
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   # ユーザー情報の削除
   def destroy
     if @user.destroy
-      head: no_content
+      head :no_content
     else
       render json: { 
         message: '削除ができませんでした' 

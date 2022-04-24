@@ -210,3 +210,664 @@ FOREIGN KEY ("household_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-04-23 10:26:13 +0900
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 36.2ms | Allocations: 458)
+Completed 200 OK in 63ms (Views: 48.1ms | ActiveRecord: 0.0ms | Allocations: 2640)
+
+
+Started GET "/favicon.ico" for ::1 at 2022-04-23 10:26:13 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2022-04-23 10:56:16 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.6ms | Allocations: 181)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms | Allocations: 880)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:56:32 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 297)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:56:32 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:57:02 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:15 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:19 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:21 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:23 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:25 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:25 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:27 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:27 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:35 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:38 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:58:38 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:59:08 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 10:59:09 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:00:45 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:00:48 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:01:51 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:02:04 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:02:39 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:02:42 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:07:28 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:07:39 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:07:43 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:09:20 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:09:23 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:10:35 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:11:53 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/test" for ::1 at 2022-04-23 11:12:08 +0900
+Processing by Api::V1::TestController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:12 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:19 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:22 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:24 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:31 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:12:33 +0900
+  
+SyntaxError (/Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+      head: no_content
+          ^
+):
+  
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+app/controllers/api/v1/users_controller.rb:34: syntax error, unexpected ':', expecting `end'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:15:47 +0900
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb to define constant Api::V1::UsersController, but didn't):
+  
+zeitwerk (2.5.4) lib/zeitwerk/loader/callbacks.rb:25:in `on_file_autoloaded'
+zeitwerk (2.5.4) lib/zeitwerk/kernel.rb:28:in `require'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `const_get'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `block in constantize'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.4.7) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:89:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:100:in `binary_params_for?'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:91:in `set_binary_encoding'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:69:in `path_parameters='
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:47:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2022-04-23 11:15:55 +0900
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/taiki/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/railties-6.0.4.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.7ms | Allocations: 185)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 1136)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:16:05 +0900
+  
+ActionController::RoutingError (uninitialized constant Api::V1::UsersController):
+  
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:22:09 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (uninitialized constant Api::V1::UsersController):
+  
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/auth/sessions" for ::1 at 2022-04-23 11:22:10 +0900
+Processing by Api::V1::Auth::SessionsController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 364)
+
+
+Started GET "/api/v1/auth/sessions" for ::1 at 2022-04-23 11:22:14 +0900
+Processing by Api::V1::Auth::SessionsController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 217)
+
+
+Started GET "/api/v1/auth/sessions" for ::1 at 2022-04-23 11:53:00 +0900
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::Auth::SessionsController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 487)
+
+
+Started GET "/api/v1/auth/sessions" for ::1 at 2022-04-23 11:53:18 +0900
+Processing by Api::V1::Auth::SessionsController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 217)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:53:23 +0900
+  
+Zeitwerk::NameError (expected file /Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb to define constant Api::V1::UsersController, but didn't):
+  
+zeitwerk (2.5.4) lib/zeitwerk/loader/callbacks.rb:25:in `on_file_autoloaded'
+zeitwerk (2.5.4) lib/zeitwerk/kernel.rb:28:in `require'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `const_get'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `block in constantize'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.4.7) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:89:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:100:in `binary_params_for?'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:91:in `set_binary_encoding'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:69:in `path_parameters='
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:47:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 11:53:26 +0900
+  
+ActionController::RoutingError (uninitialized constant Api::V1::UsersController):
+  
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/api/v1/users" for ::1 at 2022-04-23 12:43:17 +0900
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 17:41:55 +0900
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/taiki/Desktop/household/backend/app/controllers/api/v1/users_controller.rb to define constant Api::V1::UsersController, but didn't):
+  
+zeitwerk (2.5.4) lib/zeitwerk/loader/callbacks.rb:25:in `on_file_autoloaded'
+zeitwerk (2.5.4) lib/zeitwerk/kernel.rb:28:in `require'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `const_get'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:284:in `block in constantize'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.4.7) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.4.7) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.4.7) lib/action_dispatch/http/request.rb:89:in `controller_class_for'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:100:in `binary_params_for?'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:91:in `set_binary_encoding'
+actionpack (6.0.4.7) lib/action_dispatch/http/parameters.rb:69:in `path_parameters='
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:47:in `block in serve'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.4.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.4.7) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.4.7) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.4.7) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4.7) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4.7) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4.7) lib/action_dispatch/middleware/host_authorization.rb:103:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.4.7) lib/rails/engine.rb:527:in `call'
+puma (4.3.12) lib/puma/configuration.rb:228:in `call'
+puma (4.3.12) lib/puma/server.rb:727:in `handle_request'
+puma (4.3.12) lib/puma/server.rb:476:in `process_client'
+puma (4.3.12) lib/puma/server.rb:332:in `block in run'
+puma (4.3.12) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-04-23 17:45:50 +0900
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `index'
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 1.0ms | Allocations: 12884)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-04-23 17:46:56 +0900
+  [1m[35m (7.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 12884)
+
+

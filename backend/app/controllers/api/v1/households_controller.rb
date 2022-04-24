@@ -1,4 +1,4 @@
-class HouseholdsController < ApplicationController
+class Api::V1::HouseholdsController < ApplicationController
   # before_action :authenticate_user!
   before_action :current_user_params
   before_action :set_household, only: %i[show update destroy]
