@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_04_21_070234) do
     t.string "household_id", null: false
     t.integer "user_id", null: false
     t.string "name"
-    t.date "refernce_at"
+    t.integer "refernce_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_households_on_user_id"
