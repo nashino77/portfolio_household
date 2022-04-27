@@ -8,7 +8,6 @@ import Home from './components/Layout/Home';
 
 // api
 import { getCurrentUser } from './api/auth';
-import { getTest } from './api/auth';
 
 // interface
 import { User } from './interface';
@@ -66,11 +65,6 @@ const App: React.FC = () => {
       return <></>
     };
   };
-
-  // const handleGetTest = async () => {
-  //   const res = await getTest();
-  //   console.log(res.data);
-  // };
 
   return (
     <Router>

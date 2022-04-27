@@ -5,7 +5,6 @@ import { AuthContext } from '../../App';
 
 // api
 import { signIn } from '../../api/auth';
-import { getTest } from '../../api/auth';
 
 // interface
 import { SignInParams } from '../../interface';
@@ -47,15 +46,6 @@ const SignIn: React.FC = () => {
     } catch (err: any) {
       alert("サインインできませんでした")
     };
-  };
-
-  const handleGetTest = async () => {
-    try {
-      const res = await getTest();
-      console.log(res.data);
-    } catch (err: any) {
-      console.log(err);
-    }
   };
 
 

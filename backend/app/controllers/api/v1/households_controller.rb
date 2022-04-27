@@ -1,26 +1,21 @@
 class Api::V1::HouseholdsController < ApplicationController
-  # before_action :authenticate_user!
   before_action :current_user_params
   before_action :set_household, only: %i[show update destroy]
 
   # 家計簿の一覧表示
   def index
-    households = user.households
-    render json: { 
-      households: households 
-    }, status: :ok
+    households = @user.households.all
+    render json: households, status: :ok
   end
 
   # 家計簿の新規登録
   def create
-    households = @user.households.new(household_params)
+    household = @user.households.new(household_params)
     if household.save
-      render json: { 
-        households: households 
-      }, status: :ok
+      render json: household, status: :ok
     else
       render json: { 
-        data: households.errors, 
+        data: household.errors, 
         message: '登録が正常に完了できませんでした', 
       }, status: 422
     end
@@ -28,17 +23,13 @@ class Api::V1::HouseholdsController < ApplicationController
 
   # 家計簿の詳細表示
   def show
-    render json: { 
-      household: @household
-    }, status: :ok
+    render json: @household, status: :ok
   end
 
   # 家計簿の内容更新
   def update
     if @household.update(household_params)
-      render json: {
-        household: @household
-      }
+      render json: @household
     else
       render json: {
         data: @households.errors,
@@ -61,16 +52,12 @@ class Api::V1::HouseholdsController < ApplicationController
   private
   # ログイン済みユーザーの情報取得
   def current_user_params
-    @user = current_api_v1_user
+    @user = User.find(params[:user_id])
   end
-
-  # def user_params
-  #   @user = User.find(params[:user_id])
-  # end
 
   # 選択した家計簿の情報取得
   def set_household
-    @household = @user.household.find(params[:id])
+    @household = @user.households.find(params[:id])
   end
 
   # 家計簿情報の指定

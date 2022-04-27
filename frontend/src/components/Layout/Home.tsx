@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../App';
+import Test from '../test/Test';
 
 const Home: React.FC = () => {
   const { isSignedIn, currentUser } = useContext(AuthContext);
 
   return (
     <>
-      {
+      {/* {
         isSignedIn && currentUser ? (
           <>
             <h1>サインイン成功しました</h1>
@@ -16,7 +17,8 @@ const Home: React.FC = () => {
         ) : (
           <h1>サインインしていません</h1>
         )
-      }
+      } */}
+      <Test />
     </>
   )
 }

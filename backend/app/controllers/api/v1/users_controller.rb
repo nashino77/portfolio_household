@@ -1,25 +1,23 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :current_user_params
+  # before_action :authenticate_api_v1_user!
+  before_action :current_user_params, only: %i[show]
 
   # ユーザー取得 テスト用
   def index
     user = User.all
-    render json: { user: user }
+    render json: user
   end
 
   # ユーザー情報の取得
   def show
-    render json: {
-      user: @user
-    }
+    p @user
+    render json: @user
   end
 
   # ユーザー情報の更新
   def update
     if @user.update(user_params)
-      render json: { 
-        user: @user 
-      }
+      render json: @user
     else
       render json: {
         data: @user.errors, 
@@ -42,6 +40,7 @@ class Api::V1::UsersController < ApplicationController
   private
   # ログイン済みユーザーの更新
   def current_user_params
+    # @user = User.find(params[:id]) 
     @user = current_api_v1_user
   end
 

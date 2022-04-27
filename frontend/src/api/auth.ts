@@ -3,7 +3,7 @@ import axios from 'axios';
 // interface
 import { SignUpParams, SignInParams } from '../interface';
 // url
-import { testUrl, AUTH, signInUser } from '../urls';
+import { AUTH, signInUser } from '../urls';
 
 // サインアップ
 export const signUp = (params: SignUpParams) => {
@@ -39,10 +39,3 @@ export const getCurrentUser = () => {
   });
 };
 
-export const getTest = () => {
-  return axios.get(testUrl)
-    // .then((res) => {
-    //   return res.data
-    // })
-    // .catch((e) => console.log(e));
-};
