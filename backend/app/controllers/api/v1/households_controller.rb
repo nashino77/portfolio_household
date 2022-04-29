@@ -1,16 +1,15 @@
 class Api::V1::HouseholdsController < ApplicationController
-  before_action :current_user_params
   before_action :set_household, only: %i[show update destroy]
 
   # 家計簿の一覧表示
   def index
-    households = @user.households.all
+    households = current_api_v1_user.households.all
     render json: households, status: :ok
   end
 
   # 家計簿の新規登録
   def create
-    household = @user.households.new(household_params)
+    household = current_api_v1_user.households.new(household_params)
     if household.save
       render json: household, status: :ok
     else
@@ -50,16 +49,6 @@ class Api::V1::HouseholdsController < ApplicationController
   end
 
   private
-  # ログイン済みユーザーの情報取得
-  def current_user_params
-    @user = User.find(params[:user_id])
-  end
-
-  # 選択した家計簿の情報取得
-  def set_household
-    @household = @user.households.find(params[:id])
-  end
-
   # 家計簿情報の指定
   def household_params
     params.require(:household).permit(:name, :reference_at)

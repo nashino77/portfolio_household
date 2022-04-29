@@ -12,6 +12,7 @@ import { getCurrentUser } from './api/auth';
 // interface
 import { User } from './interface';
 import Header from './components/Header/Header';
+import Calendar from './components/Calendar/Calendar';
 
 export const AuthContext = createContext(
   {} as {
@@ -67,27 +68,29 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
-      <AuthContext.Provider
-        value={{
-          loading,
-          setLoading,
-          isSignedIn,
-          setIsSignedIn,
-          currentUser,
-          setCurrentUser
-          }}
-        >
-        <Header />
-        <Switch>
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/signin" component={SignIn} />
-          <Private>
-            <Route exact path="/" component={Home} />
-          </Private>
-        </Switch>
-      </AuthContext.Provider>
-    </Router>
+    <>
+      <Router>
+        <AuthContext.Provider
+          value={{
+            loading,
+            setLoading,
+            isSignedIn,
+            setIsSignedIn,
+            currentUser,
+            setCurrentUser
+            }}
+          >
+          <Header />
+          <Switch>
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
+            <Private>
+              <Route exact path="/" component={Home} />
+            </Private>
+          </Switch>
+        </AuthContext.Provider>
+      </Router>
+    </>
   );
 }
 

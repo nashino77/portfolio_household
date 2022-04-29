@@ -4,6 +4,7 @@ import './index.css';
 import 'normalize.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Calendar from './components/Calendar/Calendar';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

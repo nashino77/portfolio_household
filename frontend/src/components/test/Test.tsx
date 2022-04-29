@@ -57,7 +57,13 @@ const Test: React.FC = () => {
 
   const handleGetHousehold = (id: any) => {
     if (currentUser) {
-      axios.get(`${householdIndex(currentUser.id)}/${id}`)
+      axios.get(`${householdIndex(currentUser.id)}/${id}`,{ 
+        headers: {
+          "access-token": Cookies.get("_access_token") || "",
+          "client": Cookies.get("_client") || "",
+          "uid": Cookies.get("_uid") || "",
+        },
+      })
         .then((res) => {
           console.log(res.data);
         })
@@ -66,7 +72,13 @@ const Test: React.FC = () => {
 
   useEffect(() => {
     if (currentUser) {
-      axios.get(householdIndex(currentUser.id))
+      axios.get(householdIndex(currentUser.id),{ 
+        headers: {
+          "access-token": Cookies.get("_access_token") || "",
+          "client": Cookies.get("_client") || "",
+          "uid": Cookies.get("_uid") || "",
+        },
+      })
         .then((res) => {
           console.log(res.data);
           setCurrentHouseholds(res.data);
