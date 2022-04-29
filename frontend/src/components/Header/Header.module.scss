@@ -1,0 +1,66 @@
+@import "../../Variables/variables";
+
+.header {
+  width: 100%;
+  height: 56px;
+  background-color: #0093AB;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  @media screen and (min-width: $mb) {
+    height: 96px;
+  }
+
+  h1 {
+    margin: 0;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 56px;
+    margin-left: 16px;
+
+    @media screen and (min-width: $mb) {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 96px;
+      margin-left: 56px;
+    }
+  }
+  
+  .mobilemenu {
+    width: 32px;
+    height: 32px;
+    line-height: 62px;
+    margin-right: 21px;
+
+    @media screen and (min-width: $mb) {
+      display: none;
+    }
+  }
+
+  .pcmenu {
+    display: none;
+
+    @media screen and (min-width: $mb) {
+      display: block;
+      font-size: 24px;
+      line-height: 48px;
+      margin-right: 56px;
+  
+      list-style: none;
+      display: flex;
+      li:first-child {
+        margin-right: 80px;
+      }
+    }
+  }
+}
+
+.modalback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

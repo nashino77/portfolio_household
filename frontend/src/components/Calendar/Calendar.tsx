@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { AuthContext } from '../../App';
+
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
@@ -9,6 +13,7 @@ import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
 import startOfMonth from 'date-fns/startOfMonth';
 import endOfMonth from 'date-fns/endOfMonth';
+import addDays from 'date-fns/addDays';
 
 import style from './Calendar.module.scss';
 
@@ -27,7 +32,7 @@ const getCalendarArray = (date: Date) => {
 const Calendar: React.FC = () => {
   const [targetDate, setTargetDate] = useState(new Date())
   const calendar = getCalendarArray(targetDate);
-
+  
   return (
     <div  style={{ width: '700px', margin: '0 auto', userSelect: 'none' }}>
       <div style={{ textAlign: 'center' }}>Calendar</div>
@@ -67,9 +72,9 @@ const Calendar: React.FC = () => {
                         }>
                           {getDate(date)}
                         </div>
-                        <div style={{ width: '100px', height: '50px' }} className={style.calendar}>
+                        {/* <div style={{ width: '100px', height: '50px' }} className={style.calendar}>
                           {getDate(date)}
-                        </div>
+                        </div> */}
                       </td>
                     ))
                   }

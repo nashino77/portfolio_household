@@ -1,0 +1,55 @@
+import React, { useContext } from 'react';
+import Cookies from 'js-cookie';
+import { Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../App';
+
+// component
+import { signOut } from '../../../api/auth';
+
+// css
+import style from './MobileModal.module.scss';
+
+
+const MobileModal: React.FC = () => {
+  const history = useHistory();
+  const { isSignedIn, setIsSignedIn, currentUser, modalOpen } = useContext(AuthContext); 
+
+  const handleSignout = async () => {
+    try {
+      const res = await signOut();
+  
+      if(res.data.success === true) {
+        Cookies.remove("_access_token");
+        Cookies.remove("_client");
+        Cookies.remove("_uid");
+  
+        setIsSignedIn(false);
+        history.push("/signin");
+  
+        console.log('サインアウトしました')
+      } else {
+        console.log('サインアウトに失敗しました')
+        alert('サインアウトできませんでした')
+      }
+    } catch (err: any) {
+      console.log(err);
+      alert('サインアウトできませんでした')
+    }
+    
+  };
+  
+
+
+  return (
+      <div className={`${style.mobilemodal} ${style.activemenu}`}>
+        <div className={style.inner}>
+          <div className={style.list}>
+            <p>家計簿を<br />選ぶ</p>
+            { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }
+          </div>
+        </div>
+      </div>
+  )
+}
+
+export default MobileModal

@@ -9,10 +9,7 @@ export const indexUser = `${REACT_APP_DEFAULT_URL}/users`;
 export const indexUserId = (userId: number) => `${REACT_APP_DEFAULT_URL}/users/${userId}`;
 
 export const householdIndex = (userId: number) =>  `${REACT_APP_DEFAULT_URL}/users/${userId}/households`;
-// export const householdIndexId = (userId: number, householdId: number) => `${REACT_APP_DEFAULT_URL}/users/${userId}/households/${householdId}`;
 export const householdIndexId = (householdId: number) => `${householdIndex}/${householdId}`;
 
 export const spendingIndex =  `${householdIndexId}/spendings`;
 export const spendingIndexId = (spendingIndexId: number) => `${spendingIndex}/${spendingIndexId}`;
-// export const spendingIndex = (userId: number, householdId: number) => `${REACT_APP_DEFAULT_URL}/users/${userId}/households/${householdId}/spendings`;
-// export const spendingIndexId = (userId: number, householdId: number, spendingIndexId: number) => `${REACT_APP_DEFAULT_URL}/users/${userId}/households/${householdId}/spendings/${spendingIndexId}`;
