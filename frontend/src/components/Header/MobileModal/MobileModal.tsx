@@ -41,7 +41,7 @@ const MobileModal: React.FC = () => {
 
 
   return (
-      <div className={`${style.mobilemodal} ${style.activemenu}`}>
+      <div className={style.mobilemodal}>
         <div className={style.inner}>
           <div className={style.list}>
             <p>家計簿を<br />選ぶ</p>
