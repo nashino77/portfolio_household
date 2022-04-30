@@ -57,6 +57,7 @@ const App: React.FC = () => {
   
   useEffect(() => {
     handleGetCurrentUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setCurrentUser]);
 
   // ユーザー認証済みの判定で表示ページの変更
@@ -68,7 +69,7 @@ const App: React.FC = () => {
         return <Redirect to="/signin" />
       }
     } else {
-      return <></>
+      return <Redirect to="/loading" />
     };
   };
 
@@ -91,6 +92,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/loading" component={Loading} />
             <Private>
               <Route exact path="/" component={HouseHold} />
             </Private>
