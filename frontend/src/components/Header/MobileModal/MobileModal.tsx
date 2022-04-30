@@ -41,6 +41,7 @@ const MobileModal: React.FC = () => {
 
 
   return (
+    <div>
       <div className={style.mobilemodal}>
         <div className={style.inner}>
           <div className={style.list}>
@@ -49,6 +50,7 @@ const MobileModal: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
   )
 }
 

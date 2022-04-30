@@ -9,6 +9,12 @@ import { signIn } from '../../api/auth';
 // interface
 import { SignInParams } from '../../interface';
 
+// image
+import SignButton from '../../image/sign_button.png';
+
+// css
+import style from './Sign.module.scss';
+
 const SignIn: React.FC = () => {
   const history = useHistory();
 
@@ -27,7 +33,6 @@ const SignIn: React.FC = () => {
 
     try {
       const res = await signIn(params);
-      console.log(res);
 
       if (res.status === 200) {
         Cookies.set("_access_token", res.headers["access-token"]);
@@ -50,38 +55,52 @@ const SignIn: React.FC = () => {
 
 
   return (
-    <>
-      <form>
-        <input 
-          name="email"
-          required
-          type="text"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input 
-          name="password"
-          required
-          type="text"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button
-          type="submit"
-          disabled={
-            !email || !password
-            ? true
-            : false
-          }
-          onClick={handleSubmit}
-        >
-          送信
-        </button>
-      </form>
-      <Link to="/signup">
-          未登録はこちら
-      </Link>
-    </>
+    <div className={style.sign}>
+      <h2>登録したメール・パスワードを入力</h2>
+      <div className={style.container}>
+        <form className={style.signform}>
+          <div className={style.input}>
+            <h3>メールアドレス</h3>
+            <input 
+              name="email"
+              required
+              type="email"
+              placeholder='メールアドレスを入力してください'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className={style.input}>
+            <h3>パスワード</h3>
+            <input 
+              name="password"
+              required
+              type="text"
+              placeholder='パスワードを入力してください'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            disabled={
+              !email || !password
+              ? true
+              : false
+            }
+            onClick={handleSubmit}
+          >
+            <img src={SignButton} alt="sign button" />
+            サインイン
+          </button>
+        </form>
+      </div>
+      <div className={style.changebutton}>
+        登録していない場合は
+        <Link to="/signup">
+            こちら
+        </Link>
+      </div>
+    </div>
   )
 }
 

@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 // component
 import SignUp from './components/Auth/SignUp';
 import SignIn from './components/Auth/SignIn';
-import Home from './components/Layout/Home';
 import Header from './components/Header/Header';
+import HouseHold from './components/Household/HouseHold';
+import Loading from './components/Loading/Loading';
 
 // api
 import { getCurrentUser } from './api/auth';
 
 // interface
 import { User } from './interface';
-import Calendar from './components/Calendar/Calendar';
 
 // css
 import style from './App.module.scss';
@@ -45,7 +45,6 @@ const App: React.FC = () => {
       if (res?.data.isLogin === true) {
         setIsSignedIn(true);
         setCurrentUser(res?.data.data);
-        // console.log(res?.data.data);
       } else {
         console.log("No current user");
       };
@@ -93,7 +92,7 @@ const App: React.FC = () => {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
             <Private>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={HouseHold} />
             </Private>
           </Switch>
         </AuthContext.Provider>

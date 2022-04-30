@@ -6,9 +6,15 @@ import { AuthContext } from '../../App';
 // api
 import { signUp } from '../../api/auth';
 
-
 // interface
 import { SignUpParams } from '../../interface';
+
+// image
+import SignButton from '../../image/sign_button.png';
+
+// css
+import style from './Sign.module.scss';
+
 
 
 const SignUp: React.FC = () => {
@@ -59,52 +65,74 @@ const SignUp: React.FC = () => {
   
 
   return (
-    <>
-      <form>
-        <input 
-          name="name"
-          required
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <input 
-          name="email"
-          required
-          type="text"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input 
-          name="password"
-          required
-          type="text"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <input 
-          name="passwordConfirmation"
-          required
-          type="text"
-          value={passwordConfirmation}
-          onChange={e => setPasswordConfirmation(e.target.value)}
-        />
-        <button
-          type="submit"
-          disabled={
-              !name || !email || !password || !passwordConfirmation 
-              ? true 
-              :false
+    <div className={style.sign}>
+      <h2>登録したメール・パスワードを入力</h2>
+      <div className={style.container}>
+        <form className={style.signform}>
+          <div className={style.input}>
+            <h3>名前</h3>
+            <input 
+             name="name"
+             required
+             type="text"
+             value={name}
+             placeholder='名前を入力してください'
+             onChange={e => setName(e.target.value)}
+            />
+          </div>
+          <div className={style.input}>
+            <h3>メールアドレス</h3>
+            <input 
+              name="email"
+              required
+              type="email"
+              placeholder='メールアドレスを入力してください'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className={style.input}>
+            <h3>パスワード</h3>
+            <input 
+              name="password"
+              required
+              type="text"
+              placeholder='パスワードを入力してください'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <div className={style.input}>
+            <h3>パスワード(確認)</h3>
+            <input 
+              name="passwordConfirmation"
+              required
+              type="text"
+              placeholder='パスワードもう1度を入力してください'
+              value={passwordConfirmation}
+              onChange={e => setPasswordConfirmation(e.target.value)}
+            />
+          </div>
+          <button
+            disabled={
+              !email || !password
+              ? true
+              : false
             }
-          onClick={handleSubmit}
-        >
-          送信
-        </button>
-      </form>
-      <Link to="/signin">
-        アカウント登録済みはこちら
-      </Link>
-    </>
+            onClick={handleSubmit}
+          >
+            <img src={SignButton} alt="sign button" />
+            サインイン
+          </button>
+        </form>
+      </div>
+      <div className={style.changebutton}>
+        登録していない場合は
+        <Link to="/signin">
+            こちら
+        </Link>
+      </div>
+    </div>
   )
 }
 
