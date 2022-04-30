@@ -40,11 +40,11 @@ const App: React.FC = () => {
   const handleGetCurrentUser = async () => {
     try {
       const res = await getCurrentUser();
-      console.log(res);
 
       if (res?.data.isLogin === true) {
         setIsSignedIn(true);
         setCurrentUser(res?.data.data);
+        console.log(currentUser);
       } else {
         console.log("No current user");
       };
@@ -85,8 +85,8 @@ const App: React.FC = () => {
             setCurrentUser,
             modalOpen,
             setModalOpen,
-            }}
-          >
+          }}
+        >
           <Header />
           <Switch>
             <Route exact path="/signup" component={SignUp} />

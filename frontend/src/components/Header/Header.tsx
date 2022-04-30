@@ -1,4 +1,4 @@
-import React, {  useState, useEffect, useContext } from 'react';
+import React, {  useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../App';
@@ -20,14 +20,13 @@ const Header: React.FC = () => {
   const { 
     isSignedIn, 
     setIsSignedIn, 
-    currentUser, 
     modalOpen, 
-    setModalOpen 
+    setModalOpen,
+    loading,
   } = useContext(AuthContext);
 
   const handleModal = () => {
     setModalOpen(!modalOpen);
-    console.log(modalOpen);
   };
 
   const handleSignout = async () => {
