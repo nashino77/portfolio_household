@@ -2,13 +2,14 @@
 
 .mobilemodal {
   position: fixed;
-  z-index: 99;
+  z-index: 98;
   top: 0;
-  right: -96px;
+  right: 0;
   width: 96px;
   height: 100%;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(96px);
   background-color: rgba(0,175,193,0.5);
-  animation: activemenu 0.3s forwards;
 
   .inner {
     display: flex;
@@ -36,25 +37,6 @@
   }
 }
 
-.modalactive {
-  display: none;
-}
-
 .openmodal {
-  animation: activemenu 0.3s forwards;
+  transform: translateX(0);
 }
-@keyframes activemenu {
-  to {
-    transform: translateX(-96px);
-  }
-}
-
-.closemodal {
-  animation: closemenu 0.3s forwards;
-}
-@keyframes closemenu {
-  to {
-    transform: translateX(96px);
-  }
-}
-

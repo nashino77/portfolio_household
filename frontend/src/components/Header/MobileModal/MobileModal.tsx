@@ -42,10 +42,12 @@ const MobileModal: React.FC = () => {
 
   return (
     <div>
-      <div className={style.mobilemodal}>
+      <div className={`${style.mobilemodal} ${ modalOpen ? style.openmodal : '' }`}>
         <div className={style.inner}>
           <div className={style.list}>
-            <p>家計簿を<br />選ぶ</p>
+            <p>
+              <Link to='/'>家計簿を<br />選ぶ</Link>
+            </p>
             { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }
           </div>
         </div>

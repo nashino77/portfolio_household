@@ -29,7 +29,7 @@ export const signOut = () => {
 // 認証済みユーザーの取得
 
 export const getCurrentUser = () => {
-  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return
+  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
   return axios.get(signInUser, {
     headers: {
       "access-token": Cookies.get("_access_token") || "",

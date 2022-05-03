@@ -1,0 +1,76 @@
+@import '../../Variables/variables';
+
+.household {
+  width: 340px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .monthMove {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 16px;
+
+    span:first-child {
+      margin-right: 40px;
+    }
+    span:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .householdMap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .householdBook {
+      width: 80px;
+      height: 126px;
+      display: flex;
+      flex-flow: column;
+  
+      .householdName {
+        font-size: 12px;
+        font-weight: normal;
+      }
+    
+      img {
+        width: 80px;
+        height: 80px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    
+      .amount {
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .button {
+    margin: 32px auto 0;
+    width: 240px;
+    height: 48px;
+    background-color: #FFD124;
+    border-radius: 8px;
+    line-height: 48px;
+  }
+}

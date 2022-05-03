@@ -1,18 +1,19 @@
 import React, {  useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../App';
 
 // component
 import { signOut } from '../../api/auth';
+import MobileModal from './MobileModal/MobileModal';
 
 //css
 import style from './Header.module.scss';
 
 // image
 import MobileMenuButton from '../../image/mobileMenu.png';
-import MobileModal from './MobileModal/MobileModal';
-import { Link } from 'react-router-dom';
+import MobileMenuCrossButton from '../../image/mobilemenu_crossmark.png';
+
 
 const Header: React.FC = () => {
   const history = useHistory();
@@ -22,7 +23,6 @@ const Header: React.FC = () => {
     setIsSignedIn, 
     modalOpen, 
     setModalOpen,
-    loading,
   } = useContext(AuthContext);
 
   const handleModal = () => {
@@ -55,9 +55,14 @@ const Header: React.FC = () => {
   return (
     <>
       <div className={style.header}>
-        <h1>わたしのクレジットカード</h1>
+        <h1>わたしの家計簿</h1>
         <div className={style.mobilemenu}>
-          <img onClick={handleModal} src={MobileMenuButton} alt='header menu' />
+          <img 
+            onClick={handleModal} 
+            className={modalOpen ? style.crossmark : style.mobilemenuBack }
+            src={ modalOpen ? MobileMenuCrossButton : MobileMenuButton } 
+            alt='header menu' 
+          />
         </div>
 
         <ul className={style.pcmenu}>
@@ -69,10 +74,10 @@ const Header: React.FC = () => {
         modalOpen && (
           <>
             <div className={style.modalback} onClick={handleModal}></div>
-            <MobileModal/>
           </>
         )
       }
+      <MobileModal/>
     </>
   )
 }

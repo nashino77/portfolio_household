@@ -50,6 +50,7 @@ const SignIn: React.FC = () => {
       }
     } catch (err: any) {
       alert("サインインできませんでした")
+      console.log(err);
     };
   };
 

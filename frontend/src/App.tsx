@@ -2,11 +2,12 @@ import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 // component
+import Loading from './components/Loading/Loading';
 import SignUp from './components/Auth/SignUp';
 import SignIn from './components/Auth/SignIn';
 import Header from './components/Header/Header';
 import HouseHold from './components/Household/HouseHold';
-import Loading from './components/Loading/Loading';
+import AddHousehold from './components/Household/AddHouseHold/AddHousehold';
 
 // api
 import { getCurrentUser } from './api/auth';
@@ -61,10 +62,10 @@ const App: React.FC = () => {
   }, [setCurrentUser]);
 
   // ユーザー認証済みの判定で表示ページの変更
-  const Private = ({ children } : { children: React.ReactElement }) => {
+  const Private = ({ children } :{ children: React.ReactElement } ) => {
     if (!loading) {
       if (isSignedIn) {
-        return children
+        return ( children )
       } else {
         return <Redirect to="/signin" />
       }
@@ -72,6 +73,7 @@ const App: React.FC = () => {
       return <Redirect to="/loading" />
     };
   };
+
 
   return (
     <div className={style.body}>
@@ -93,9 +95,12 @@ const App: React.FC = () => {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/loading" component={Loading} />
-            <Private>
-              <Route exact path="/" component={HouseHold} />
-            </Private>
+              <Private>
+                <Switch>
+                  <Route exact path="/" component={HouseHold} />
+                  <Route exact path="/addhousehold" component={AddHousehold} />
+                </Switch>
+              </Private>
           </Switch>
         </AuthContext.Provider>
       </Router>

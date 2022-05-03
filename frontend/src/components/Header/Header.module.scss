@@ -1,6 +1,7 @@
 @import "../../Variables/variables";
 
 .header {
+  position: relative;
   width: 100%;
   height: 56px;
   background-color: #0093AB;
@@ -29,10 +30,29 @@
   }
   
   .mobilemenu {
+    position: absolute;
     width: 32px;
     height: 32px;
     line-height: 62px;
-    margin-right: 21px;
+    right: 21px;
+    z-index: 99;
+
+    .crossmark {
+      width: 20px;
+      height: 20px;
+      animation: open 1s forwards;
+    
+      @keyframes open {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+
+    }
 
     @media screen and (min-width: $mb) {
       display: none;
@@ -70,4 +90,5 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 97;
 }
