@@ -1,0 +1,24 @@
+@import '../../../Variables/variables';
+
+.addhousehold {
+  width: 360px;
+  margin: 0 auto;
+
+  .input {
+    width: 322px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    input {
+      width: 200px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      &::placeholder {
+        color: white;
+        text-align: left;
+      }
+    }
+  }
+}

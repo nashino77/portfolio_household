@@ -10,7 +10,7 @@ import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
 
 // api
-import { getAllHousehold } from '../../api/household';
+import { getAllHousehold, getHousehold } from '../../api/household';
 
 // url
 import { 
@@ -27,7 +27,6 @@ import style from './HouseHold.module.scss';
 
 // image
 import HouseholdBook from '../../image/householdBook.png';
-import fi from 'date-fns/esm/locale/fi/index.js';
 
 interface Household {
   id: number;
@@ -42,6 +41,7 @@ interface Household {
 const HouseHold: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([]);
+  const [household, setHousehold] = useState([]);
   const [targetDate, setTargetDate] = useState(new Date())
 
 
@@ -60,50 +60,41 @@ const HouseHold: React.FC = () => {
     };
   };
 
-  const handleGetHousehold = (id: any) => {
-    if (currentUser) {
-      axios.get(`${householdIndex(currentUser.id)}/${id}`,{ 
-        headers: {
-          "access-token": Cookies.get("_access_token") || "",
-          "client": Cookies.get("_client") || "",
-          "uid": Cookies.get("_uid") || "",
-        },
-      })
-        .then((res) => {
-          console.log(res.data);
-        })
-    }
-  }
-
+  
   const handleGetAllHousehold = async () => {
-    if(currentUser) {
-      const res = await getAllHousehold(currentUser.id);
-      try {
-          if(res?.status === 200) {
-            setHouseholds(res.data);
-          }
-      } catch (err: any) {
-        // alert('情報が取得できませんでした');
-        console.log(err);
-      }
+    if(!currentUser) return;
+    const res = await getAllHousehold(currentUser.id);
+    if(res?.status === 200) {
+      setHouseholds(res.data);
     };
   };
-
+  
   // const handleGetAllHousehold = useCallback(async () => {
-  //   if(currentUser) {
-  //     const res = await getAllHousehold(currentUser.id);
-  //     console.log(res);
-  //     try {
-  //       if(res?.status === 200) {
-  //       setHouseholds(res.data);
-  //       } else {
-  //         alert('情報が取得できませんでした');
-  //       }
-  //     } catch (err: any) {
-  //       console.log(err);
-  //     }
-  //   };
-  // }, [])
+    //   if(currentUser) {
+      //     const res = await getAllHousehold(currentUser.id);
+      //     console.log(res);
+      //     try {
+        //       if(res?.status === 200) {
+          //       setHouseholds(res.data);
+          //       } else {
+            //         alert('情報が取得できませんでした');
+            //       }
+            //     } catch (err: any) {
+              //       console.log(err);
+              //     }
+              //   };
+              // }, [])
+
+
+  const handleGetHousehold = async (id: number) => {
+    if (!currentUser) return;
+    const res = await getHousehold(currentUser.id, id);
+    if (res?.data) {
+      setHousehold(res.data);
+    }
+    console.log('res', res);
+    console.log('res.data', res?.data);
+  };
 
   useEffect(() => {
       handleGetAllHousehold();
