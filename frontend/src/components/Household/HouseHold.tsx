@@ -27,6 +27,7 @@ import style from './HouseHold.module.scss';
 
 // image
 import HouseholdBook from '../../image/householdBook.png';
+import AddHousehold from './AddHouseHold/AddHousehold';
 
 interface Household {
   id: number;
@@ -42,7 +43,31 @@ const HouseHold: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([]);
   const [household, setHousehold] = useState([]);
-  const [targetDate, setTargetDate] = useState(new Date())
+  const [targetDate, setTargetDate] = useState(new Date());
+  const [openPcHouseholdModal, setOpenHouseholdModal] = useState(false);
+
+  const useWindowDimensions = () => {
+    const getWindowDimensions = () => {
+      const { innerWidth: width } = window;
+      return width;
+    };
+
+    const [width, setWidth] = useState(getWindowDimensions());
+    useEffect(() => {
+      const onResize = () => {
+        setWidth(getWindowDimensions());
+      };
+      window.addEventListener('resize', onResize);
+      return () => window.removeEventListener('resize', onResize);
+    }, []);
+    return width;
+  };
+
+  const width = useWindowDimensions();
+
+  const handleChangePcModal = () => {
+    setOpenHouseholdModal(true);
+  };
 
 
   const handleGetUser = () => {
@@ -69,23 +94,6 @@ const HouseHold: React.FC = () => {
     };
   };
   
-  // const handleGetAllHousehold = useCallback(async () => {
-    //   if(currentUser) {
-      //     const res = await getAllHousehold(currentUser.id);
-      //     console.log(res);
-      //     try {
-        //       if(res?.status === 200) {
-          //       setHouseholds(res.data);
-          //       } else {
-            //         alert('情報が取得できませんでした');
-            //       }
-            //     } catch (err: any) {
-              //       console.log(err);
-              //     }
-              //   };
-              // }, [])
-
-
   const handleGetHousehold = async (id: number) => {
     if (!currentUser) return;
     const res = await getHousehold(currentUser.id, id);
@@ -98,7 +106,9 @@ const HouseHold: React.FC = () => {
 
   useEffect(() => {
       handleGetAllHousehold();
-  }, [setHouseholds])
+  }, [setHouseholds]);
+
+
 
   return (
     <div className={style.household}>
@@ -124,10 +134,23 @@ const HouseHold: React.FC = () => {
         }
       </div>
       <div className={style.button}>
-        <Link to='/addhousehold'>
-          あたらしい家計簿をつくる
-        </Link>
+        { width < 1100
+          ? (
+            <Link to='/addhousehold'>
+              あたらしい家計簿をつくる
+            </Link>
+          ) : (
+            <div onClick={handleChangePcModal}>あたらしい家計簿をつくる</div>
+          )
+        }
       </div>
+      {openPcHouseholdModal
+        ? (
+          <AddHousehold
+            setOpenHouseholdModal={setOpenHouseholdModal}
+          />
+        ) : ''
+      }
     </div>
   )
 }
