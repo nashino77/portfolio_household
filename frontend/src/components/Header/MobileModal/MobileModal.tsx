@@ -10,9 +10,23 @@ import { signOut } from '../../../api/auth';
 import style from './MobileModal.module.scss';
 
 
-const MobileModal: React.FC = () => {
+type Props = {
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const MobileModal: React.FC<Props> = (props) => {
+  const {
+    modalOpen,
+    setModalOpen
+  } = props;
+
   const history = useHistory();
-  const { isSignedIn, setIsSignedIn, currentUser, modalOpen } = useContext(AuthContext); 
+  const { isSignedIn, setIsSignedIn} = useContext(AuthContext);
+
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   const handleSignout = async () => {
     try {
@@ -35,9 +49,7 @@ const MobileModal: React.FC = () => {
       console.log(err);
       alert('サインアウトできませんでした')
     }
-    
   };
-  
 
 
   return (
@@ -51,6 +63,11 @@ const MobileModal: React.FC = () => {
             { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }
           </div>
         </div>
+      </div>
+      <div 
+        className={`${style.modalback} ${ modalOpen ? style.modalback_open : '' }`} 
+        onClick={handleModal}
+      >
       </div>
     </div>
   )

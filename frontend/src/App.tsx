@@ -8,6 +8,7 @@ import SignIn from './components/Auth/SignIn';
 import Header from './components/Header/Header';
 import HouseHold from './components/Household/HouseHold';
 import AddHousehold from './components/Household/AddHouseHold/AddHousehold';
+import SpendingList from './components/Spending/SpendingList';
 
 // api
 import { getCurrentUser } from './api/auth';
@@ -26,8 +27,6 @@ export const AuthContext = createContext(
     setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>,
     currentUser: User | undefined,
     setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-    modalOpen: boolean,
-    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
   }
 );
 
@@ -35,7 +34,6 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<User | undefined>();
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   // 認証済みユーザー情報の取得関数
   const handleGetCurrentUser = async () => {
@@ -74,7 +72,6 @@ const App: React.FC = () => {
     };
   };
 
-
   return (
     <div className={style.body}>
       <Router>
@@ -86,8 +83,6 @@ const App: React.FC = () => {
             setIsSignedIn,
             currentUser,
             setCurrentUser,
-            modalOpen,
-            setModalOpen,
           }}
         >
           <Header />
@@ -99,6 +94,7 @@ const App: React.FC = () => {
                 <Switch>
                   <Route exact path="/" component={HouseHold} />
                   <Route exact path="/addhousehold" component={AddHousehold} />
+                  <Route exact path="/:household_id/spendings" component={SpendingList} />
                 </Switch>
               </Private>
           </Switch>

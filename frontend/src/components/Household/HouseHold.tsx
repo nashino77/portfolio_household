@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import React, { useContext, useState, useEffect, useCallback } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../App';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,12 @@ import format from 'date-fns/format';
 import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
 
+//component
+import AddHousehold from './AddHouseHold/AddHousehold';
+
+// function
+import { useWindowDimensions } from '../../function/window';
+
 // api
 import { getAllHousehold, getHousehold } from '../../api/household';
 
@@ -16,7 +22,6 @@ import { getAllHousehold, getHousehold } from '../../api/household';
 import { 
   indexUserId,
   householdIndex,
-  householdIndexId,
 } from '../../urls';
 
 // interface
@@ -27,7 +32,6 @@ import style from './HouseHold.module.scss';
 
 // image
 import HouseholdBook from '../../image/householdBook.png';
-import AddHousehold from './AddHouseHold/AddHousehold';
 
 interface Household {
   id: number;
@@ -46,46 +50,12 @@ const HouseHold: React.FC = () => {
   const [targetDate, setTargetDate] = useState(new Date());
   const [openPcHouseholdModal, setOpenHouseholdModal] = useState(false);
 
-  const useWindowDimensions = () => {
-    const getWindowDimensions = () => {
-      const { innerWidth: width } = window;
-      return width;
-    };
-
-    const [width, setWidth] = useState(getWindowDimensions());
-    useEffect(() => {
-      const onResize = () => {
-        setWidth(getWindowDimensions());
-      };
-      window.addEventListener('resize', onResize);
-      return () => window.removeEventListener('resize', onResize);
-    }, []);
-    return width;
-  };
-
   const width = useWindowDimensions();
 
   const handleChangePcModal = () => {
     setOpenHouseholdModal(true);
   };
-
-
-  const handleGetUser = () => {
-    if (currentUser) {
-      axios.get(`${indexUserId(currentUser.id)}`, { 
-          headers: {
-            "access-token": Cookies.get("_access_token") || "",
-            "client": Cookies.get("_client") || "",
-            "uid": Cookies.get("_uid") || "",
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-        });
-    };
-  };
-
-  
+ 
   const handleGetAllHousehold = async () => {
     if(!currentUser) return;
     const res = await getAllHousehold(currentUser.id);

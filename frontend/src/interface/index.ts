@@ -25,3 +25,9 @@ export interface User {
   created_at: Date;
   updated_au: Date;
 }
+
+// 家計簿
+export interface Household {
+  name: string;
+  referenceAt: number;
+}

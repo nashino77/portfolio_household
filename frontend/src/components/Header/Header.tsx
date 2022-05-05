@@ -1,4 +1,4 @@
-import React, {  useContext } from 'react';
+import React, { useState,  useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../App';
@@ -17,12 +17,13 @@ import MobileMenuCrossButton from '../../image/mobilemenu_crossmark.png';
 
 const Header: React.FC = () => {
   const history = useHistory();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const { 
     isSignedIn, 
     setIsSignedIn, 
-    modalOpen, 
-    setModalOpen,
+    // modalOpen, 
+    // setModalOpen,
   } = useContext(AuthContext);
 
   const handleModal = () => {
@@ -70,14 +71,7 @@ const Header: React.FC = () => {
           <li>{ isSignedIn ? <span onClick={handleSignout}>サインアウト</span> : <Link to='/signin'>サインイン</Link>}</li>
         </ul>
       </div>
-      {
-        modalOpen && (
-          <>
-            <div className={style.modalback} onClick={handleModal}></div>
-          </>
-        )
-      }
-      <MobileModal/>
+      <MobileModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </>
   )
 }
