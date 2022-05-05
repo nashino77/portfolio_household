@@ -38,7 +38,6 @@ const AddHousehold: React.FC<Props> = (props) => {
   const handleInputChange = (input: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     setNewHousehold({ ...newHousehold, [input]: target.value});
-    console.log(currentUser);
   };
 
   const handleCreateHousehold = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -47,6 +46,7 @@ const AddHousehold: React.FC<Props> = (props) => {
     const params: Household ={
       name: newHousehold.name,
       referenceAt: newHousehold.referenceAt,
+      // userId: currentUser?.id,
     }
 
     if(!currentUser) return;

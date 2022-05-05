@@ -8,7 +8,7 @@ import SignIn from './components/Auth/SignIn';
 import Header from './components/Header/Header';
 import HouseHold from './components/Household/HouseHold';
 import AddHousehold from './components/Household/AddHouseHold/AddHousehold';
-import SpendingList from './components/Spending/SpendingList';
+import Spending from './components/Spending/Spending';
 
 // api
 import { getCurrentUser } from './api/auth';
@@ -94,12 +94,13 @@ const App: React.FC = () => {
                 <Switch>
                   <Route exact path="/" component={HouseHold} />
                   <Route exact path="/addhousehold" component={AddHousehold} />
-                  <Route exact path="/:household_id/spendings" component={SpendingList} />
+                  <Route exact path="/:household_id/spendings" component={Spending} />
                 </Switch>
               </Private>
           </Switch>
         </AuthContext.Provider>
       </Router>
+      <Spending />
     </div>
   );
 }

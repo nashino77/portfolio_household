@@ -24,10 +24,18 @@ export interface User {
   allowPasswordChange: boolean;
   created_at: Date;
   updated_au: Date;
-}
+};
 
 // 家計簿
 export interface Household {
   name: string;
   referenceAt: number;
+  // userId: number | undefined ;
+};
+
+export interface Spending {
+  memo: string;
+  amount: number;
+  householdId: number;
+  amoutAt: Date;
 }

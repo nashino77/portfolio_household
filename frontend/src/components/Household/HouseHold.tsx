@@ -16,7 +16,12 @@ import AddHousehold from './AddHouseHold/AddHousehold';
 import { useWindowDimensions } from '../../function/window';
 
 // api
-import { getAllHousehold, getHousehold } from '../../api/household';
+import {
+  getAllHousehold,
+  getHousehold,
+} from '../../api/household';
+
+import { getAllSpending } from '../../api/spending';
 
 // url
 import { 
@@ -41,7 +46,7 @@ interface Household {
   user_id: number;
   created_at: Date;
   updated_at: Date;
-}
+};
 
 const HouseHold: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
@@ -74,6 +79,14 @@ const HouseHold: React.FC = () => {
     console.log('res.data', res?.data);
   };
 
+  const handleGetAllSpendings = async (userId: number) => {
+    if (!currentUser) return;
+    const res = await getAllSpending(currentUser.id, userId);
+    if (res?.data) {
+      console.log(res);
+    }
+  };
+
   useEffect(() => {
       handleGetAllHousehold();
   }, [setHouseholds]);
@@ -95,7 +108,7 @@ const HouseHold: React.FC = () => {
               <div className={style.householdName}>
                 {household.name}
               </div>
-              <div onClick={() => handleGetHousehold(household.id)}>
+              <div onClick={() => handleGetAllSpendings(household.id)}>
                 <img src={HouseholdBook} alt='household book' />
               </div>
               <p className={style.amount}>¥10,000</p>

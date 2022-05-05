@@ -8,7 +8,6 @@
 User.create(:name => 'test', :email => 'test@example.com', :password => 'testpassword', :password_confirmation => 'testpassword')
 
 Household.create(
-    :household_id => "test_1", 
     :user_id => 1,
     :name => "test名_1", 
     :refernce_at => 1
@@ -16,9 +15,8 @@ Household.create(
 
 3.times do |n|
   Spending.create(
-    :spending_id => "test_#{n}", 
     :household_id => 1, 
-    :used_at => "2022-04-0#{n + 1}", 
+    :used_at => "2022-05-0#{n + 1}", 
     :amount_used => 500, 
     :memo => "testtext_#{n}"
   )

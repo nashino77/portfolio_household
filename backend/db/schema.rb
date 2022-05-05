@@ -13,20 +13,18 @@
 ActiveRecord::Schema.define(version: 2022_04_21_070234) do
 
   create_table "households", force: :cascade do |t|
-    t.string "household_id", null: false
     t.integer "user_id", null: false
-    t.string "name"
-    t.integer "refernce_at"
+    t.string "name", null: false
+    t.integer "refernce_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_households_on_user_id"
   end
 
   create_table "spendings", force: :cascade do |t|
-    t.string "spending_id"
     t.integer "household_id", null: false
-    t.date "used_at"
-    t.integer "amount_used"
+    t.date "used_at", null: false
+    t.integer "amount_used", null: false
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

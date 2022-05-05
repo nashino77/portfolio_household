@@ -5,13 +5,13 @@ class Api::V1::SpendingsController < ApplicationController
 
   # 利用履歴の一覧取得
   def index
-    spendings = @household.spending.all
+    spendings = @household.spendings.all
     render json: spendings
   end
 
   # 利用履歴の新規登録
   def create
-    spending = @household.Spending.new(spending_params)
+    spending = @household.spending.new(spending_params)
     if spending.save
       render json: spending, status: :ok
     else

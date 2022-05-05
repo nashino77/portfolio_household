@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../../App';
 
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
@@ -28,22 +28,29 @@ const getCalendarArray = (date: Date) => {
   );
 };
 
+type Props = {
+  targetDate: Date;
+  setTargetDate: React.Dispatch<React.SetStateAction<Date>>;
+};
 
-const Calendar: React.FC = () => {
-  const [targetDate, setTargetDate] = useState(new Date())
+const Calendar: React.FC<Props> = (props) => {
+  const {
+    targetDate,
+    setTargetDate
+  } = props;
+
   const calendar = getCalendarArray(targetDate);
   
   return (
-    <div  style={{ width: '700px', margin: '0 auto', userSelect: 'none' }}>
-      <div style={{ textAlign: 'center' }}>Calendar</div>
+    <div>
       <div>
-        <div style={{ textAlign: 'center' }}>
-          <button onClick={() => setTargetDate(current => subMonths(current, 1))}>前の月</button>
-          <button onClick={() => setTargetDate(new Date())}>今月</button>
-          <button onClick={() => setTargetDate(current => addMonths(current, 1))}>次の月</button>
+        <div>
+          <div onClick={() => setTargetDate(current => subMonths(current, 1))}>前の月</div>
+          <div onClick={() => setTargetDate(new Date())}>今月</div>
+          <div onClick={() => setTargetDate(current => addMonths(current, 1))}>次の月</div>
         </div>
         {format(targetDate, 'y年M月')}
-        <table style={{ textAlign: 'center' }}>
+        <table>
           <thead>
             <tr>
               <th>日</th>

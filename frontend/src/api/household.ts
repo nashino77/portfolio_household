@@ -27,7 +27,7 @@ export const getAllHousehold = (id: number) => {
 // 家計簿の追加
 export const createHousehold = (id: number, params: Household) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
-  return axios.post(`${householdIndex(id)}`, {
+  return client.post(`${householdIndex(id)}`, {
     headers: {
       "access-token": Cookies.get("_access_token") || "",
       "client": Cookies.get("_client") || "",
@@ -38,9 +38,9 @@ export const createHousehold = (id: number, params: Household) => {
 };
 
 // 家計簿詳細の取得
-export const getHousehold = (userId: number, id: number) => {
+export const getHousehold = (userId: number, householdId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
-  return client.get(`${householdIndex(userId)}/${id}`,{ 
+  return client.get(`${householdIndex(userId)}/${householdId}`,{ 
     headers: {
       "access-token": Cookies.get("_access_token") || "",
       "client": Cookies.get("_client") || "",

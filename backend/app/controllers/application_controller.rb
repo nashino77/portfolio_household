@@ -9,11 +9,12 @@ class ApplicationController < ActionController::Base
         private
         # 選択家計簿の情報取得
         def set_household
-                @household = current_api_v1_user.households.find(params[:id])
+                p current_api_v1_user.households
+                @household = current_api_v1_user.households.find(params[:household_id])
         end
         
         # 選択利用履歴の情報取得
         def set_spending
-                @spending = @household.spending.find(params[:id])
+                @spending = @household.spendings.find(params[:id])
         end      
 end

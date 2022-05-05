@@ -53,5 +53,4 @@ class Api::V1::HouseholdsController < ApplicationController
   def household_params
     params.require(:household).permit(:name, :reference_at)
   end
-
 end
