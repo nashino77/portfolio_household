@@ -74,7 +74,7 @@ const App: React.FC = () => {
 
   return (
     <div className={style.body}>
-      <Router>
+      {/* <Router>
         <AuthContext.Provider
           value={{
             loading,
@@ -99,7 +99,7 @@ const App: React.FC = () => {
               </Private>
           </Switch>
         </AuthContext.Provider>
-      </Router>
+      </Router> */}
       <Spending />
     </div>
   );
