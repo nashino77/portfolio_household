@@ -48,7 +48,7 @@ const AddHousehold: React.FC<Props> = (props) => {
       referenceAt: newHousehold.referenceAt,
       // userId: currentUser?.id,
     }
-
+    console.log(params);
     if(!currentUser) return;
 
     try {

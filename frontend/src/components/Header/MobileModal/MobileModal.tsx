@@ -58,7 +58,11 @@ const MobileModal: React.FC<Props> = (props) => {
         <div className={style.inner}>
           <div className={style.list}>
             <p>
-              <Link to='/'>家計簿を<br />選ぶ</Link>
+              <Link to='/'>
+                <span onClick={() => setModalOpen(!modalOpen)}>
+                  家計簿を<br />選ぶ
+                </span>
+              </Link>
             </p>
             { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }
           </div>
