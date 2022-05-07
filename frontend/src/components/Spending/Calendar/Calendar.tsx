@@ -77,7 +77,7 @@ const Calendar: React.FC<Props> = (props) => {
             <th>土</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={style.calendar_main}>
           {
             calendar.map((weekRow, rowNum) => (
               <tr className={style.calendar_week} key={rowNum}>
