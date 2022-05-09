@@ -7,6 +7,7 @@ import { AuthContext } from '../../../App';
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
+import getMonth from 'date-fns/getMonth';
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
 import endOfWeek from 'date-fns/endOfWeek';
 import eachWeekOfInterval from 'date-fns/eachWeekOfInterval';
@@ -15,36 +16,49 @@ import subMonths from 'date-fns/subMonths';
 import startOfMonth from 'date-fns/startOfMonth';
 import endOfMonth from 'date-fns/endOfMonth';
 import addDays from 'date-fns/addDays';
+import { parse } from 'date-fns';
 
 // css
 import style from './Calendar.module.scss';
-
-// const getCalendarArray = (date: Date) => {
-//   const sundays = eachWeekOfInterval({
-//     start: startOfMonth(date),
-//     end: endOfMonth(date),
-//   });
-
-//   return sundays.map((sunday) => 
-//     eachDayOfInterval({ start: sunday, end: endOfWeek(sunday) })
-//   );
-// };
 
 type Props = {
   targetDate: Date;
   setTargetDate: React.Dispatch<React.SetStateAction<Date>>;
   calendar: Date[][];
+  spendings: Spending[];
+};
+
+interface Spending {
+  amountUsed: number;
+  createdAt: Date;
+  householdId: number;
+  id: number;
+  memo: string;
+  updatedAt: Date;
+  usedAt: string;
 };
 
 const Calendar: React.FC<Props> = (props) => {
   const {
-    targetDate,
     setTargetDate,
-    calendar
+    calendar,
+    spendings,
   } = props;
+
+  const handleDate = () => {
+    const changeStringDate = parse(spendings[0].usedAt, 'yyyy-mm-dd', new Date());
+    const usedDate = format(changeStringDate, 'yyyy-mm-dd');
+    const calendarDate = format(new Date(), 'yyyy-mm-dd');
+
+    console.log(calendar[0][0]);
+    console.log(spendings[0].usedAt);
+    console.log(usedDate);
+    console.log(calendarDate);
+  };
 
   return (
     <div className={style.calendar}>
+      <button onClick={handleDate}>test</button>
       <div className={style.select_month}>
         <div 
           className={style.selectbutton_month} 
@@ -98,7 +112,20 @@ const Calendar: React.FC<Props> = (props) => {
                         {getDate(date)}
                       </div>
                       <div className={style.date_amount}>
-                        ¥,1200
+                        {
+                          spendings
+                          .filter(val => {
+                            const changeStringDate = parse(val.usedAt, 'yyyy-MM-dd', new Date());
+                            const usedDate = format(changeStringDate, 'yyyy-MM-dd');
+                            const calendarDate = format(date, 'yyyy-MM-dd');
+                            if (usedDate === calendarDate) return val;
+                          })
+                          .map((spending) => (
+                            <div key={spending.id}>
+                              {spending.amountUsed}
+                            </div>
+                          ))
+                        }
                       </div>
                     </td>
                   ))

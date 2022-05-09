@@ -48,7 +48,9 @@ const MobileModal: React.FC<Props> = (props) => {
     } catch (err: any) {
       console.log(err);
       alert('サインアウトできませんでした')
-    }
+    };
+
+    setModalOpen(false);
   };
 
 
@@ -59,7 +61,7 @@ const MobileModal: React.FC<Props> = (props) => {
           <div className={style.list}>
             <p>
               <Link to='/'>
-                <span onClick={() => setModalOpen(!modalOpen)}>
+                <span onClick={() => setModalOpen(false)}>
                   家計簿を<br />選ぶ
                 </span>
               </Link>

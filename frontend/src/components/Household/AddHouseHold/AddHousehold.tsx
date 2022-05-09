@@ -18,12 +18,14 @@ import { Household } from '../../../interface';
 
 type Props = {
   setOpenHouseholdModal: React.Dispatch<React.SetStateAction<boolean>>;
+  width: number;
 };
 
 const AddHousehold: React.FC<Props> = (props) => {
   const history = useHistory();
   const {
-    setOpenHouseholdModal
+    setOpenHouseholdModal,
+    width,
   } = props;
   const { currentUser } = useContext(AuthContext);
 
@@ -33,7 +35,6 @@ const AddHousehold: React.FC<Props> = (props) => {
   };
   const [newHousehold, setNewHousehold] = useState(initialState);
 
-  const width = useWindowDimensions();
 
   const handleInputChange = (input: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
@@ -46,7 +47,6 @@ const AddHousehold: React.FC<Props> = (props) => {
     const params: Household ={
       name: newHousehold.name,
       referenceAt: newHousehold.referenceAt,
-      // userId: currentUser?.id,
     }
     console.log(params);
     if(!currentUser) return;
@@ -55,11 +55,14 @@ const AddHousehold: React.FC<Props> = (props) => {
       const res = await createHousehold(currentUser.id, params);
       if (res?.status === 200) {
         console.log(res);
+        if(width >= 1100) window.location.reload();
         history.push('/');
       }
     } catch (err :any) {
       console.log(err)
     };
+
+    if (width >= 1100) setOpenHouseholdModal(false);
   };
 
   return (

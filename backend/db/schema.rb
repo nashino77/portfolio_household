@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_04_21_070234) do
   create_table "households", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", null: false
-    t.integer "refernce_at", null: false
+    t.integer "reference_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_households_on_user_id"

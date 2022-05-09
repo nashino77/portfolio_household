@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { AuthContext } from '../../App';
 
 // calendar
 import format from 'date-fns/format';
@@ -19,23 +20,59 @@ import addDays from 'date-fns/addDays';
 import Calendar from './Calendar/Calendar';
 import SpendingList from './SpendingList/SpendingList';
 
+// api
+import { getAllSpending } from '../../api/spending';
+
 // function
 import { useWindowDimensions } from '../../function/window';
 import { getCalendarArray } from '../../function/calendar';
 
 // css
 import style from './Spending.module.scss';
+import { RouteComponentProps } from 'react-router-dom';
+
 
 const Spending: React.FC = () => {
+  const { currentUser } = useContext(AuthContext);
+  const urlParams = useParams<{householdId: string}>();
   const [targetDate, setTargetDate] = useState(new Date());
+
+  const initialSpendings = {
+    amountUsed: 0,
+    createdAt: null,
+    householdId: 0,
+    id: 0,
+    memo: "",
+    updatedAt: null,
+    usedAt: null,
+  };
+
+  const [spendings, setSpendings] = useState([]);
 
   const calendar  = getCalendarArray(targetDate);
 
   const width = useWindowDimensions();
 
+  const handleGetSpendings = async () => {
+    if(!currentUser) return
+    const res = await getAllSpending(currentUser?.id, Number(urlParams.householdId));
+    console.log(res);
 
-  const handleCalendar = () => {
-    console.log(calendar);
+    try {
+      if (res?.status !== 200) return;
+      setSpendings(res.data);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    handleGetSpendings();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handleSpendings = () => {
+    console.log(spendings);
   };
 
   return (
@@ -50,21 +87,14 @@ const Spending: React.FC = () => {
           targetDate={targetDate}
           setTargetDate={setTargetDate}
           calendar={calendar}
+          spendings={spendings}
         />
         { width < 1100 ? (
           <div className={style.button}>
             <div className={style.amount_save}>
-              使った金額を記録する
-              {/* { width < 1100 ? (
-                  <Link to='/addspending'>
-                    使った金額を記録する
-                  </Link>
-                ): (
-                  <Link to='/addspending'>
-                    使った金額を記録する
-                  </Link>
-                ) 
-              } */}
+              <Link to={`/${urlParams.householdId}/spendings/addspending`}>
+                使った金額を記録する
+              </Link>
             </div>
             <div className={style.household_delete}>家計簿を削除</div>
           </div>
@@ -77,17 +107,9 @@ const Spending: React.FC = () => {
       {width >= 1100 ? (
         <div className={style.button_pc}>
           <div className={style.amount_save}>
-            使った金額を記録する
-            {/* { width < 1100 ? (
-                <Link to='/addspending'>
-                  使った金額を記録する
-                </Link>
-              ): (
-                <Link to='/addspending'>
-                  使った金額を記録する
-                </Link>
-              ) 
-            } */}
+            <Link to={`/${urlParams.householdId}/spendings/addspending`}>
+              使った金額を記録する
+            </Link>
           </div>
           <div className={style.household_delete}>家計簿を削除</div>
         </div>

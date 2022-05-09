@@ -21,8 +21,6 @@ import {
   getHousehold,
 } from '../../api/household';
 
-import { getAllSpending } from '../../api/spending';
-
 // url
 import { 
   indexUserId,
@@ -51,7 +49,6 @@ interface Household {
 const HouseHold: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([]);
-  const [household, setHousehold] = useState([]);
   const [targetDate, setTargetDate] = useState(new Date());
   const [openPcHouseholdModal, setOpenHouseholdModal] = useState(false);
 
@@ -60,31 +57,13 @@ const HouseHold: React.FC = () => {
   const handleChangePcModal = () => {
     setOpenHouseholdModal(true);
   };
- 
+
   const handleGetAllHousehold = async () => {
     if(!currentUser) return;
     const res = await getAllHousehold(currentUser.id);
     if(res?.status === 200) {
       setHouseholds(res.data);
     };
-  };
-  
-  const handleGetHousehold = async (id: number) => {
-    if (!currentUser) return;
-    const res = await getHousehold(currentUser.id, id);
-    if (res?.data) {
-      setHousehold(res.data);
-    }
-    console.log('res', res);
-    console.log('res.data', res?.data);
-  };
-
-  const handleGetAllSpendings = async (userId: number) => {
-    if (!currentUser) return;
-    const res = await getAllSpending(currentUser.id, userId);
-    if (res?.data) {
-      console.log(res);
-    }
   };
 
   useEffect(() => {
@@ -108,8 +87,10 @@ const HouseHold: React.FC = () => {
               <div className={style.householdName}>
                 {household.name}
               </div>
-              <div onClick={() => handleGetAllSpendings(household.id)}>
-                <img src={HouseholdBook} alt='household book' />
+              <div>
+                <Link to={`/${household.id}/spendings`}>
+                  <img src={HouseholdBook} alt='household book' />
+                </Link>
               </div>
               <p className={style.amount}>¥10,000</p>
             </div>
@@ -131,6 +112,7 @@ const HouseHold: React.FC = () => {
         ? (
           <AddHousehold
             setOpenHouseholdModal={setOpenHouseholdModal}
+            width={width}
           />
         ) : ''
       }

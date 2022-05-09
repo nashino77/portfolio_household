@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
         private
         # 選択家計簿の情報取得
         def set_household
-                p current_api_v1_user.households
                 @household = current_api_v1_user.households.find(params[:household_id])
         end
         

@@ -10,13 +10,13 @@ User.create(:name => 'test', :email => 'test@example.com', :password => 'testpas
 Household.create(
     :user_id => 1,
     :name => "test名_1", 
-    :refernce_at => 1
+    :reference_at => 1
   )
 
 3.times do |n|
   Spending.create(
     :household_id => 1, 
-    :used_at => "2022-05-0#{n + 1}", 
+    :used_at => "Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", 
     :amount_used => 500, 
     :memo => "testtext_#{n}"
   )

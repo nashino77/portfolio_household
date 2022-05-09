@@ -9,8 +9,8 @@ class Api::V1::HouseholdsController < ApplicationController
 
   # 家計簿の新規登録
   def create
-    binding.pry
-    household = current_api_v1_user.households.new(household_params)
+    household = current_api_v1_user.households.create(household_params)
+    p current_api_v1_user
     if household.save
       render json: household, status: :ok
     else
@@ -52,7 +52,6 @@ class Api::V1::HouseholdsController < ApplicationController
   private
   # 家計簿情報の指定
   def household_params
-    # params.require(:household).permit(:name, :reference_at)
-    params.permit(:name, :reference_at)
+    params.require(:household).permit(:name, :reference_at, :user_id)
   end
 end
