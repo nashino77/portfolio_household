@@ -102,6 +102,7 @@ const Spending: React.FC = () => {
         <SpendingList
           targetDate={targetDate}
           calendar={calendar}
+          spendings={spendings}
         />
       </div>
       {width >= 1100 ? (

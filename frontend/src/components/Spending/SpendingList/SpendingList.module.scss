@@ -1,0 +1,48 @@
+@import '../../../Variables/variables';
+
+.spending_list {
+  width: 100%;
+  max-height: 156px;
+  overflow-y: scroll;
+
+  // バー非表示
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display:none;
+  }
+  
+
+  .spending_box {
+    margin-bottom: 16px;
+
+    .spneding_date {
+      background-color: #0093AB;
+      height: 24px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  
+    .spending {
+      margin-top: 8px;
+
+      .spending_content {
+        width: 344px;
+        height: 15px;
+        border-bottom: 1px solid;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        font-size: 12px;
+        font-weight: normal;
+        padding-bottom: 8px;
+        margin: 0 auto 8px;
+        
+        .spending_amountUsed {
+          color: red;
+        }
+      }
+    }
+  }
+}

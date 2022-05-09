@@ -33,9 +33,20 @@ export interface Household {
   // userId: number | undefined ;
 };
 
+// 利用履歴
 export interface Spending {
   memo: string;
   amount: number;
   householdId: number;
   amoutAt: Date;
 }
+
+export interface GetSpending {
+  amountUsed: number;
+  createdAt: Date;
+  householdId: number;
+  id: number;
+  memo: string;
+  updatedAt: Date;
+  usedAt: string;
+};
