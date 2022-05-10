@@ -50,12 +50,12 @@ const HouseHold: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([]);
   const [targetDate, setTargetDate] = useState(new Date());
-  const [openPcHouseholdModal, setOpenHouseholdModal] = useState(false);
+  const [openPcHouseholdModal, setOpenPcHouseholdModal] = useState(false);
 
   const width = useWindowDimensions();
 
   const handleChangePcModal = () => {
-    setOpenHouseholdModal(true);
+    setOpenPcHouseholdModal(true);
   };
 
   const handleGetAllHousehold = async () => {
@@ -69,8 +69,6 @@ const HouseHold: React.FC = () => {
   useEffect(() => {
       handleGetAllHousehold();
   }, [setHouseholds]);
-
-
 
   return (
     <div className={style.household}>
@@ -111,8 +109,7 @@ const HouseHold: React.FC = () => {
       {openPcHouseholdModal
         ? (
           <AddHousehold
-            setOpenHouseholdModal={setOpenHouseholdModal}
-            width={width}
+            setOpenPcHouseholdModal={setOpenPcHouseholdModal}
           />
         ) : ''
       }

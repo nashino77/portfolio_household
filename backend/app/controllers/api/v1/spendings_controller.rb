@@ -1,6 +1,7 @@
 class Api::V1::SpendingsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_household
+  before_action :set_household_index, only: %i[index]
+  before_action :set_household, only: %i[show update destroy]
   before_action :set_spending, only: %i[show update destroy]
 
   # 利用履歴の一覧取得
@@ -11,7 +12,7 @@ class Api::V1::SpendingsController < ApplicationController
 
   # 利用履歴の新規登録
   def create
-    spending = @household.spending.new(spending_params)
+    spending = @household.spendings.new(spending_params)
     if spending.save
       render json: spending, status: :ok
     else
@@ -54,5 +55,17 @@ class Api::V1::SpendingsController < ApplicationController
   # 利用履歴の登録する値の指定
   def spending_params
     params.require(:spending).permit(:amount_used, :memo, :used_at)
+  end
+
+  def set_household_index
+    @household = current_api_v1_user.households.find(params[:household_id])
+  end
+
+  def set_household
+    @household = current_api_v1_user.households.find(params[:household_id])
+  end
+
+  def set_spending
+    @spending = @household.spendings.find(params[:id])
   end
 end

@@ -11,10 +11,20 @@
   &::-webkit-scrollbar {
     display:none;
   }
+
+  @media screen and (min-width: $mb) {
+    width: 240px;
+    max-height: 560px;
+    background-color: #00AFC1;
+  }
   
 
   .spending_box {
     margin-bottom: 16px;
+
+    @media screen and (min-width: $mb) {
+      margin-bottom: 18px;
+    }
 
     .spneding_date {
       background-color: #0093AB;
@@ -22,10 +32,21 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 24px;
+
+      @media screen and (min-width: $mb) {
+        height: 44px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 44px;
+      }
     }
   
     .spending {
       margin-top: 8px;
+
+      @media screen and (min-width: $mb) {
+        margin-top: 16px;
+      }
 
       .spending_content {
         width: 344px;
@@ -38,6 +59,16 @@
         font-weight: normal;
         padding-bottom: 8px;
         margin: 0 auto 8px;
+
+        @media screen and (min-width: $mb) {
+          width: 212px;
+          height: 29px;
+          justify-content: space-between;
+          font-size: 16px;
+          line-height: 29px;
+          padding-left: 6px;
+          padding-right: 6px;
+        }
         
         .spending_amountUsed {
           color: red;

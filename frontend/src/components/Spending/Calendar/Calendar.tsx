@@ -5,6 +5,7 @@ import { AuthContext } from '../../../App';
 
 // date-fns
 import format from 'date-fns/format';
+import getMonth from 'date-fns/getMonth';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
 import addMonths from 'date-fns/addMonths';
@@ -23,13 +24,16 @@ type Props = {
   setTargetDate: React.Dispatch<React.SetStateAction<Date>>;
   calendar: Date[][];
   spendings: GetSpending[];
+  urlParams: { householdId: string; };
 };
 
 const Calendar: React.FC<Props> = (props) => {
   const {
+    targetDate,
     setTargetDate,
     calendar,
     spendings,
+    urlParams
   } = props;
 
 
@@ -90,16 +94,16 @@ const Calendar: React.FC<Props> = (props) => {
                       <div className={style.date_amount}>
                         {
                           spendings
+                          // eslint-disable-next-line array-callback-return
                           .filter(val => {
                             const changeStringDate = parse(val.usedAt, 'yyyy-MM-dd', new Date());
                             const usedDate = format(changeStringDate, 'yyyy-MM-dd');
                             const calendarDate = format(date, 'yyyy-MM-dd');
                             if (usedDate === calendarDate) return val;
-                            return null;
                           })
                           .map((spending) => (
                             <div key={spending.id}>
-                              {spending.amountUsed}
+                              ¥{spending.amountUsed}
                             </div>
                           ))
                         }

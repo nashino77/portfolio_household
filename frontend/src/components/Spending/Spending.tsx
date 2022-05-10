@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../App';
 
 // calendar
@@ -21,6 +21,7 @@ import Calendar from './Calendar/Calendar';
 import SpendingList from './SpendingList/SpendingList';
 
 // api
+import { getHousehold, deleteHousehold } from '../../api/household';
 import { getAllSpending } from '../../api/spending';
 
 // function
@@ -31,63 +32,95 @@ import { getCalendarArray } from '../../function/calendar';
 import style from './Spending.module.scss';
 import { RouteComponentProps } from 'react-router-dom';
 
+// interface
+import { GetHousehold } from '../../interface';
+import AddSpending from './AddSpending/AddSpending';
+
 
 const Spending: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
+  const history = useHistory();
   const urlParams = useParams<{householdId: string}>();
   const [targetDate, setTargetDate] = useState(new Date());
-
-  const initialSpendings = {
-    amountUsed: 0,
-    createdAt: null,
-    householdId: 0,
-    id: 0,
-    memo: "",
-    updatedAt: null,
-    usedAt: null,
-  };
-
   const [spendings, setSpendings] = useState([]);
+  const [household, setHousehold] = useState<GetHousehold>();
+  const [openPcSpendingModal, setOpenPcSpendingModal] = useState(false);
 
   const calendar  = getCalendarArray(targetDate);
-
   const width = useWindowDimensions();
 
+  // 利用履歴一覧の取得処理
   const handleGetSpendings = async () => {
     if(!currentUser) return
-    const res = await getAllSpending(currentUser?.id, Number(urlParams.householdId));
-    console.log(res);
+    const id = Number(urlParams.householdId);
+    const res = await getAllSpending(currentUser?.id, id);
+    console.log('利用履歴一覧取得', res);
 
     try {
       if (res?.status !== 200) return;
       setSpendings(res.data);
     } catch (err: any) {
+      console.log('利用履歴一覧取得エラー', err);
+    }
+  };
+
+  // 家計簿の詳細取得
+  const handleGetHousehold = async () => {
+    if (!currentUser) return;
+    try {
+      const res = await getHousehold(currentUser.id, Number(urlParams.householdId));
+      setHousehold(res?.data);
+      console.log('家計簿詳細', res);
+    } catch (err: any) {
       console.log(err);
     }
   };
 
+  // 家計簿の削除処理
+  const handleDeleteHousehold = async () => {
+    const sure = window.confirm('削除してよろしいですか?');
+    if(!sure) return;
+
+    try {
+      if(!currentUser) return;
+      const res = await deleteHousehold(currentUser.id, Number(urlParams.householdId));
+      console.log('家計簿削除', res);
+      history.push('/');
+    } catch (err: any) {
+      console.log(err);
+      alert('削除ができませんでした')
+    };
+  };
+
+  // 利用履歴登録PCモーダルの表示判定切り替え
+  const handleChangePcModal = () => {
+    setOpenPcSpendingModal(true);
+  };
+
+
   useEffect(() => {
+    handleGetHousehold();
     handleGetSpendings();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleSpendings = () => {
-    console.log(spendings);
-  };
-
   return (
     <div className={style.spendings}>
       <div className={style.household_name}>
-        <h2>家計簿名</h2>
-        <p>基準日: 12</p>
+        <h2>{household?.name}</h2>
+        {width < 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
       </div>
-      <h3 className={style.month}>{format(targetDate, 'M月')}: ¥100,000</h3>
+      <div className={style.monthbox}>
+        <h3 className={style.month}>{format(targetDate, 'M月')}: ¥100,000</h3>
+        {width > 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
+      </div>
       <div className={style.household_main}>
         <Calendar
           targetDate={targetDate}
           setTargetDate={setTargetDate}
           calendar={calendar}
           spendings={spendings}
+          urlParams={urlParams}
         />
         { width < 1100 ? (
           <div className={style.button}>
@@ -96,25 +129,43 @@ const Spending: React.FC = () => {
                 使った金額を記録する
               </Link>
             </div>
-            <div className={style.household_delete}>家計簿を削除</div>
+            <div 
+              className={style.household_delete}
+              onClick={handleDeleteHousehold}
+            >
+              家計簿を削除
+            </div>
           </div>
         ) : '' }
         <SpendingList
           targetDate={targetDate}
           calendar={calendar}
           spendings={spendings}
+          urlParams={urlParams}
         />
       </div>
       {width >= 1100 ? (
         <div className={style.button_pc}>
           <div className={style.amount_save}>
-            <Link to={`/${urlParams.householdId}/spendings/addspending`}>
+            <div onClick={handleChangePcModal}>
               使った金額を記録する
-            </Link>
+            </div>
           </div>
-          <div className={style.household_delete}>家計簿を削除</div>
+          <div 
+            className={style.household_delete}
+            onClick={handleDeleteHousehold}
+          >
+            家計簿を削除
+          </div>
         </div>
       ) : '' }
+      {openPcSpendingModal
+        ? (
+          <AddSpending
+            setOpenPcSpendingModal={setOpenPcSpendingModal}
+          />
+        ) : ''
+      }
     </div>
   )
 }

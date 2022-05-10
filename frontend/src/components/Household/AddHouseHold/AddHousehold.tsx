@@ -14,20 +14,21 @@ import style from './AddHousehold.module.scss';
 // image
 import MemoMark from '../../../image/nameMark.png';
 import Date from '../../../image/calendar.png';
+
+// interface
 import { Household } from '../../../interface';
 
 type Props = {
-  setOpenHouseholdModal: React.Dispatch<React.SetStateAction<boolean>>;
-  width: number;
+  setOpenPcHouseholdModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AddHousehold: React.FC<Props> = (props) => {
   const history = useHistory();
   const {
-    setOpenHouseholdModal,
-    width,
+    setOpenPcHouseholdModal,
   } = props;
   const { currentUser } = useContext(AuthContext);
+  const width = useWindowDimensions();
 
   const initialState = {
     name: '',
@@ -35,12 +36,13 @@ const AddHousehold: React.FC<Props> = (props) => {
   };
   const [newHousehold, setNewHousehold] = useState(initialState);
 
-
+  // 入力値の取得
   const handleInputChange = (input: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     setNewHousehold({ ...newHousehold, [input]: target.value});
   };
 
+  // 家計簿の新規作成
   const handleCreateHousehold = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -62,7 +64,12 @@ const AddHousehold: React.FC<Props> = (props) => {
       console.log(err)
     };
 
-    if (width >= 1100) setOpenHouseholdModal(false);
+    if (width >= 1100) setOpenPcHouseholdModal(false);
+  };
+
+  // 家計簿新規作成モーダルの表示判定
+  const handleChangeOpenPcHouseholdModal = () => {
+    setOpenPcHouseholdModal(false);
   };
 
   return (
@@ -110,14 +117,14 @@ const AddHousehold: React.FC<Props> = (props) => {
                 キャンセル
               </Link>
             ) : (
-              <div onClick={() => setOpenHouseholdModal(false)} className={style.cancelButton}>
+              <div  onClick={handleChangeOpenPcHouseholdModal} className={style.cancelButton}>
                 キャンセル
               </div>
             ) }
           </div>
         </form>
       </div>
-      <div onClick={() => setOpenHouseholdModal(false)} className={style.pcmodal_back}></div>
+      <div onClick={handleChangeOpenPcHouseholdModal} className={style.pcmodal_back}></div>
     </>
   )
 }

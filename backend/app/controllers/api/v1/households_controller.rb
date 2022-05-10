@@ -49,9 +49,19 @@ class Api::V1::HouseholdsController < ApplicationController
     end
   end
 
+  def household_total
+    @total_amount = @household.spendings.where(created_at: search_date.in_time_zone.all_month).sum(:amount_used)
+    render json: @total_amount, status: :ok
+  end
+
+
   private
   # 家計簿情報の指定
   def household_params
     params.require(:household).permit(:name, :reference_at, :user_id)
+  end
+
+  def set_household
+    @household = current_api_v1_user.households.find(params[:id])
   end
 end
