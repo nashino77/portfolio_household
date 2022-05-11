@@ -159,13 +159,14 @@ const Spending: React.FC = () => {
           </div>
         </div>
       ) : '' }
-      {openPcSpendingModal
-        ? (
-          <AddSpending
-            setOpenPcSpendingModal={setOpenPcSpendingModal}
-          />
-        ) : ''
-      }
+
+      {width >= 1100 && openPcSpendingModal
+          ? (
+            <AddSpending
+              setOpenPcSpendingModal={setOpenPcSpendingModal}
+            />
+          ) : '' }
+      
     </div>
   )
 }

@@ -160,7 +160,9 @@ const AddSpending: React.FC<Props> = (props) => {
               </Link>
             ) : (
               <div onClick={() => setOpenPcSpendingModal(false)} className={style.cancelButton}>
+                <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.cancelButton}>
                 キャンセル
+              </Link>
               </div>
             ) }
           </div>
