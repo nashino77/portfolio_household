@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../../App';
@@ -102,9 +103,13 @@ const Calendar: React.FC<Props> = (props) => {
                             if (usedDate === calendarDate) return val;
                           })
                           .map((spending) => (
-                            <div key={spending.id}>
+                            <Link 
+                            key={spending.id} 
+                            to={`/${Number(urlParams.householdId)}/spendings/${spending.id}`}
+                            className={style.date_amount}
+                          >
                               ¥{spending.amountUsed}
-                            </div>
+                            </Link>
                           ))
                         }
                       </div>

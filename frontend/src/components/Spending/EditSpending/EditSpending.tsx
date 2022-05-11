@@ -9,10 +9,9 @@ import { useWindowDimensions } from '../../../function/window';
 import style from './EditSpending.module.scss';
 
 // api
-import { createSpending, getSpending } from '../../../api/spending';
+import { updateSpending, getSpending } from '../../../api/spending';
 
 // interface
-import { GetSpending } from '../../../interface';
 import { Spending } from '../../../interface';
 
 // image
@@ -20,18 +19,13 @@ import { Spending } from '../../../interface';
   import Date from '../../../image/calendar.png';
   import PriceMark from '../../../image/priceMark.png';
 
-  type Props = {
-    spendings: GetSpending[];
-    setOpenPcSpendingModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-
-const EditSpending: React.FC<Props> = (props) => {
+const EditSpending: React.FC = () => {
   const history = useHistory();
 
   const urlParams = useParams<{householdId: string; spendingId: string}>();
 
   const { currentUser } = useContext(AuthContext);
-  const width = useWindowDimensions();
+  // const width = useWindowDimensions();
 
   // 利用履歴初期値
   const initialSpending = {
@@ -39,34 +33,40 @@ const EditSpending: React.FC<Props> = (props) => {
     amountUsed: 0,
     usedAt: "",
   };
-  const [newSpending, setNewSpending] = useState(initialSpending);
+  const [currentSpending, setCurrentSpending] = useState(initialSpending);
 
   // 入力値の取得
   const handleInputChange = (input: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
-    setNewSpending({ ...newSpending, [input]: target.value});
+    setCurrentSpending({ ...currentSpending, [input]: target.value});
   };
 
-  // 利用履歴の新規作成
-  const handleCreateSpending = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  // 利用履歴の編集
+  const handleUpdateSpending = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     const params: Spending ={
-      memo: newSpending.memo,
-      amountUsed: newSpending.amountUsed,
-      usedAt: newSpending.usedAt,
+      memo: currentSpending.memo,
+      amountUsed: currentSpending.amountUsed,
+      usedAt: currentSpending.usedAt,
     }
     console.log(params);
     if(!currentUser) return;
 
     try {
-      const res = await createSpending(currentUser.id, Number(urlParams.householdId), params);
+      const res = await updateSpending(
+        currentUser.id,
+        Number(urlParams.householdId),
+        Number(urlParams.spendingId), 
+        params
+      );
+
       if (res?.status === 200) {
-        console.log('利用履歴登録', res);
+        console.log('利用履歴編集', res);
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
-      console.log('利用履歴登録', err)
+      console.log('利用履歴編集', err)
     };
 
   };
@@ -82,7 +82,7 @@ const EditSpending: React.FC<Props> = (props) => {
       );
 
       console.log('利用履歴詳細', res?.data);
-      setNewSpending(res?.data);
+      setCurrentSpending(res?.data);
     } catch (err :any) {
       console.log('利用履歴詳細', err)
     };
@@ -93,7 +93,7 @@ const EditSpending: React.FC<Props> = (props) => {
   }, []);
 
   const handleSpending = () => {
-    console.log(newSpending);
+    console.log(currentSpending);
   };
 
   return (
@@ -111,7 +111,7 @@ const EditSpending: React.FC<Props> = (props) => {
                 type='date'
                 name='usedAt'
                 required
-                value={newSpending.usedAt}
+                value={currentSpending.usedAt}
                 onChange={handleInputChange('usedAt')}
               />
             </div>
@@ -126,7 +126,7 @@ const EditSpending: React.FC<Props> = (props) => {
                 name='amountUsed'
                 min='0'
                 required
-                value={newSpending.amountUsed}
+                value={currentSpending.amountUsed}
                 onChange={handleInputChange('amountUsed')}
               />
             </div>
@@ -141,7 +141,7 @@ const EditSpending: React.FC<Props> = (props) => {
                 name='memo'
                 required
                 placeholder='例: 電車代'
-                value={newSpending.memo}
+                value={currentSpending.memo}
                 onChange={handleInputChange('memo')}
               />
             </div>
@@ -149,7 +149,7 @@ const EditSpending: React.FC<Props> = (props) => {
           <div className={style.buttonform}>
             <button 
               className={style.saveButton}
-              onClick={handleCreateSpending}
+              onClick={handleUpdateSpending}
             >
               保存
             </button>

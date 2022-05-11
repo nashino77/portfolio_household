@@ -73,26 +73,26 @@ const AddSpending: React.FC<Props> = (props) => {
     if (width >= 1100) setOpenPcSpendingModal(false);
   };
 
-  // 利用履歴詳細の取得
-  const handleGetSpending = async () => {
-    if (!currentUser) return;
-    try {
-      const res = await getSpending(
-        currentUser.id,
-        Number(urlParams.householdId),
-        Number(urlParams.spendingId)
-      );
+  // // 利用履歴詳細の取得
+  // const handleGetSpending = async () => {
+  //   if (!currentUser) return;
+  //   try {
+  //     const res = await getSpending(
+  //       currentUser.id,
+  //       Number(urlParams.householdId),
+  //       Number(urlParams.spendingId)
+  //     );
 
-      console.log('利用履歴詳細', res?.data);
-      setNewSpending(res?.data);
-    } catch (err :any) {
-      console.log('利用履歴詳細', err)
-    };
-  };
+  //     console.log('利用履歴詳細', res?.data);
+  //     setNewSpending(res?.data);
+  //   } catch (err :any) {
+  //     console.log('利用履歴詳細', err)
+  //   };
+  // };
 
-  useEffect(() => {
-    handleGetSpending();
-  }, []);
+  // useEffect(() => {
+  //   handleGetSpending();
+  // }, []);
 
   const handleSpending = () => {
     console.log(newSpending);
