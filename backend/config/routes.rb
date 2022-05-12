@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       
       resources :users do
         resources :households do
-          get '/household_total', to: 'households#household_total'
+          get '/index_total', to: 'households#index_total'
           resources :spendings
         end
       end
