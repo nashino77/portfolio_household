@@ -1,6 +1,7 @@
 class Api::V1::SpendingsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_household
+  before_action :set_household_index, only: %i[index index_total create]
+  before_action :set_household, only: %i[show update destroy]
   before_action :set_spending, only: %i[show update destroy]
 
   # 利用履歴の一覧取得

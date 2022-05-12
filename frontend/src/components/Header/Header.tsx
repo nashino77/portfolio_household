@@ -22,8 +22,6 @@ const Header: React.FC = () => {
   const { 
     isSignedIn, 
     setIsSignedIn, 
-    // modalOpen, 
-    // setModalOpen,
   } = useContext(AuthContext);
 
   const handleModal = () => {
@@ -56,7 +54,11 @@ const Header: React.FC = () => {
   return (
     <>
       <div className={style.header}>
-        <h1>わたしの家計簿</h1>
+        <h1>
+          <Link to='/'>
+            わたしの家計簿
+          </Link>
+        </h1>
         <div className={style.mobilemenu}>
           <img 
             onClick={handleModal} 

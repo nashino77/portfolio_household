@@ -49,14 +49,16 @@
       }
 
       .spending_content {
-        width: 344px;
+        width: 180px;
         height: 15px;
         border-bottom: 1px solid;
         list-style: none;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         font-size: 12px;
         font-weight: normal;
+        padding-left: 81px;
+        padding-right: 83px;
         padding-bottom: 8px;
         margin: 0 auto 8px;
 

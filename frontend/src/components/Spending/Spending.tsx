@@ -23,6 +23,7 @@ import SpendingList from './SpendingList/SpendingList';
 // api
 import { getHousehold, deleteHousehold } from '../../api/household';
 import { getAllSpending } from '../../api/spending';
+import { getSpendingTotal } from '../../api/spending';
 
 // function
 import { useWindowDimensions } from '../../function/window';
@@ -30,7 +31,6 @@ import { getCalendarArray } from '../../function/calendar';
 
 // css
 import style from './Spending.module.scss';
-import { RouteComponentProps } from 'react-router-dom';
 
 // interface
 import { GetHousehold } from '../../interface';
@@ -43,6 +43,7 @@ const Spending: React.FC = () => {
   const urlParams = useParams<{householdId: string}>();
   const [targetDate, setTargetDate] = useState(new Date());
   const [spendings, setSpendings] = useState([]);
+  const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
   const [household, setHousehold] = useState<GetHousehold>();
   const [openPcSpendingModal, setOpenPcSpendingModal] = useState(false);
 
@@ -52,8 +53,7 @@ const Spending: React.FC = () => {
   // 利用履歴一覧の取得処理
   const handleGetSpendings = async () => {
     if(!currentUser) return
-    const id = Number(urlParams.householdId);
-    const res = await getAllSpending(currentUser?.id, id);
+    const res = await getAllSpending(currentUser?.id, Number(urlParams.householdId));
     console.log('利用履歴一覧取得', res);
 
     try {
@@ -62,6 +62,19 @@ const Spending: React.FC = () => {
     } catch (err: any) {
       console.log('利用履歴一覧取得エラー', err);
     }
+  };
+
+  // 利用月別合計金額の合計
+  const handleGetSpendingsTotal = async () => {
+    if (!currentUser) return;
+
+    try {
+      const res = await getSpendingTotal(currentUser.id, Number(urlParams.householdId));
+      console.log('利用金額合計', res);
+      setCurrentTotalAmount(res?.data);
+    } catch (err: any) {
+      console.log('利用金額合計', err);
+    };
   };
 
   // 家計簿の詳細取得
@@ -101,6 +114,7 @@ const Spending: React.FC = () => {
   useEffect(() => {
     handleGetHousehold();
     handleGetSpendings();
+    handleGetSpendingsTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -111,7 +125,7 @@ const Spending: React.FC = () => {
         {width < 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
       </div>
       <div className={style.monthbox}>
-        <h3 className={style.month}>{format(targetDate, 'M月')}: ¥100,000</h3>
+        <h3 className={style.month}>{format(targetDate, 'M月')}: ¥{currentTotalAmount}</h3>
         {width > 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
       </div>
       <div className={style.household_main}>

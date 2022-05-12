@@ -18,6 +18,6 @@ Household.create(
     :household_id => 1, 
     :used_at => "Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", 
     :amount_used => 500, 
-    :memo => "testtext_#{n}"
+    :memo => "testtext_#{n}",
   )
 end

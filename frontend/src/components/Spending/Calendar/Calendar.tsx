@@ -37,7 +37,6 @@ const Calendar: React.FC<Props> = (props) => {
     urlParams
   } = props;
 
-
   return (
     <div className={style.calendar}>
       <div className={style.select_month}>
@@ -103,13 +102,12 @@ const Calendar: React.FC<Props> = (props) => {
                             if (usedDate === calendarDate) return val;
                           })
                           .map((spending) => (
-                            <Link 
-                            key={spending.id} 
-                            to={`/${Number(urlParams.householdId)}/spendings/${spending.id}`}
-                            className={style.date_amount}
-                          >
+                            <div
+                              key={spending.id} 
+                              className={style.date_amount}
+                            >
                               ¥{spending.amountUsed}
-                            </Link>
+                            </div>
                           ))
                         }
                       </div>

@@ -49,6 +49,7 @@ class Api::V1::HouseholdsController < ApplicationController
     end
   end
 
+  # 家計簿内の月別利用金額の合計
   def household_total
     @total_amount = @household.spendings.where(created_at: search_date.in_time_zone.all_month).sum(:amount_used)
     render json: @total_amount, status: :ok
