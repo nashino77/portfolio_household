@@ -1,6 +1,4 @@
 import Cookies from 'js-cookie';
-import axios from 'axios';
-
 import { client } from './client';
 
 
@@ -10,12 +8,25 @@ import {
  } from '../urls';
 
  // interface
- import { Household } from '../interface';
+ import { Household, TargetDate } from '../interface';
 
 // 家計簿一覧の取得
 export const getAllHousehold = (id: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
   return client.get(`${householdIndex(id)}`, { 
+      headers: {
+        "access-token": Cookies.get("_access_token") || "",
+        "client": Cookies.get("_client") || "",
+        "uid": Cookies.get("_uid") || "",
+      },
+    });
+};
+
+// 家計簿月別利用金額合計の取得
+export const getMonthSpendingTotal = (id: number, params: TargetDate) => {
+  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
+  return client.get(`${householdIndex(id)}/total`, {
+      params,
       headers: {
         "access-token": Cookies.get("_access_token") || "",
         "client": Cookies.get("_client") || "",

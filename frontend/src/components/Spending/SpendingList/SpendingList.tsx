@@ -1,20 +1,9 @@
-import React, { useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../../../App';
-
+import React from 'react';
 
 // date-fns
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
-import eachDayOfInterval from 'date-fns/eachDayOfInterval';
-import endOfWeek from 'date-fns/endOfWeek';
-import eachWeekOfInterval from 'date-fns/eachWeekOfInterval';
-import addMonths from 'date-fns/addMonths';
-import subMonths from 'date-fns/subMonths';
-import startOfMonth from 'date-fns/startOfMonth';
-import endOfMonth from 'date-fns/endOfMonth';
-import addDays from 'date-fns/addDays';
 import { parse } from 'date-fns';
 
 // css
@@ -48,14 +37,15 @@ const SpendingList: React.FC<Props> = (props) => {
             {
               weekRow.map((date) => (
                 <div
-                className={style.spending_box}
-                  key={getDay(date)} 
+                  className={style.spending_box}
+                  key={getDay(date)}
+                  id="overFlowScrollArea"
                 >
                   <div className={style.spneding_date}>
                     {format(date, 'M月')}{getDate(date)}日
                   </div>
                   <div className={style.spending}>
-                      {
+                      { spendings &&
                         spendings
                         // eslint-disable-next-line array-callback-return
                         .filter(val => {

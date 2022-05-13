@@ -4,16 +4,6 @@ import { AuthContext } from '../../App';
 
 // calendar
 import format from 'date-fns/format';
-import getDate from 'date-fns/getDate';
-import getDay from 'date-fns/getDay';
-import eachDayOfInterval from 'date-fns/eachDayOfInterval';
-import endOfWeek from 'date-fns/endOfWeek';
-import eachWeekOfInterval from 'date-fns/eachWeekOfInterval';
-import addMonths from 'date-fns/addMonths';
-import subMonths from 'date-fns/subMonths';
-import startOfMonth from 'date-fns/startOfMonth';
-import endOfMonth from 'date-fns/endOfMonth';
-import addDays from 'date-fns/addDays';
 
 
 // component
@@ -68,8 +58,12 @@ const Spending: React.FC = () => {
   const handleGetSpendingsTotal = async () => {
     if (!currentUser) return;
 
+    const params = {
+      targetDate: targetDate,
+    }
+
     try {
-      const res = await getSpendingTotal(currentUser.id, Number(urlParams.householdId));
+      const res = await getSpendingTotal(currentUser.id, Number(urlParams.householdId), params);
       console.log('利用金額合計', res);
       setCurrentTotalAmount(res?.data);
     } catch (err: any) {
@@ -114,9 +108,13 @@ const Spending: React.FC = () => {
   useEffect(() => {
     handleGetHousehold();
     handleGetSpendings();
-    handleGetSpendingsTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    handleGetSpendingsTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetDate])
 
   return (
     <div className={style.spendings}>

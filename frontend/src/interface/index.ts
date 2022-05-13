@@ -58,3 +58,8 @@ export interface GetSpending {
   updatedAt: Date;
   usedAt: string;
 };
+
+// 日付データ
+export interface TargetDate {
+  targetDate: Date;
+}

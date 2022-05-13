@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../App';
 import { Link } from 'react-router-dom';
 
@@ -14,11 +14,13 @@ import AddHousehold from './AddHouseHold/AddHousehold';
 import { useWindowDimensions } from '../../function/window';
 
 // api
-import { getAllHousehold } from '../../api/household';
-import { getSpendingTotal } from '../../api/spending';
+import { getAllHousehold, getMonthSpendingTotal } from '../../api/household';
 
 // css
 import style from './HouseHold.module.scss';
+
+// interface
+import { GetSpending } from '../../interface';
 
 // image
 import HouseholdBook from '../../image/householdBook.png';
@@ -37,8 +39,8 @@ const HouseHold: React.FC = () => {
   const initialHousehold = {
     id: 1,
     household_id: "",
-   name: "",
-   refernce_at: 1,
+    name: "",
+    refernce_at: 1,
     user_id: 0,
     created_at: new Date(),
     updated_at: new Date()
@@ -46,8 +48,8 @@ const HouseHold: React.FC = () => {
 
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([initialHousehold]);
-  const [spendingTotal, setSpendingTotal] = useState(0);
-  const [spendingTotals, setSpendingTotals] = useState([0]);
+  const [spendings, setSpendings] = useState([]);
+  const [allSpendingTotal, setAllSpendingTotal] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date());
   const [openPcHouseholdModal, setOpenPcHouseholdModal] = useState(false);
 
@@ -57,6 +59,7 @@ const HouseHold: React.FC = () => {
     setOpenPcHouseholdModal(true);
   };
 
+  // 家計簿一覧の取得
   const handleGetAllHousehold = async () => {
     if(!currentUser) return;
     try {
@@ -70,32 +73,57 @@ const HouseHold: React.FC = () => {
     }
   };
 
-  const handleGetSpendingTotal = async (householdId: number) => {
-    if (!currentUser) return;
+  // 全家計簿の月別利用合計の取得
+  const handleGetAllSpendingTotal = async () => {
+    const params = { 
+      targetDate: targetDate,
+    }
+
+    if (!currentUser)return;
     try {
-      const res = await getSpendingTotal(currentUser.id, householdId)
-      console.log('利用金額合計取得', res);
-      setSpendingTotal(res?.data);
+      const res = await getMonthSpendingTotal(currentUser.id, params);
+      console.log('月別全合計', res);
+      setAllSpendingTotal(res?.data.total);
+      setSpendings(res?.data.allSpending);
     } catch (err: any) {
-      console.log('利用金額合計取得', err);
+      console.log('月別全合計', err);
     };
   };
 
    useEffect(() => {
       handleGetAllHousehold();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    handleGetAllSpendingTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetDate])
 
   return (
     <div className={style.household}>
-      <h2>ユーザー名</h2>
-      <h3>{format(targetDate, 'M月')}: ¥{}</h3>
+      <h2>{currentUser?.name}</h2>
+      <h3>{format(targetDate, 'M月')}: ¥{allSpendingTotal}</h3>
       <div className={style.monthMove}>
-        <span onClick={() => setTargetDate(current => subMonths(current, 1))}>&lsaquo; 前の月</span>
-        <span onClick={() => setTargetDate(current => addMonths(current, 1))}>次の月 &rsaquo;</span>
+        <span 
+          onClick={() => setTargetDate(current => subMonths(current, 1))}
+        >
+          &lsaquo; 前の月
+        </span>
+        <span
+          onClick={() => setTargetDate(new Date())}
+        >
+          今月
+        </span>
+        <span 
+          onClick={() => setTargetDate(current => addMonths(current, 1))}
+        >
+          次の月 &rsaquo;
+        </span>
       </div>
       <div className={style.householdMap}>
-        {
-          households.map((household: Household) => {
+        { households &&
+            households.map((household: Household) => {
               return (
                 <div key={household.id} className={style.householdBook}>
                   <div className={style.householdName}>
@@ -106,11 +134,19 @@ const HouseHold: React.FC = () => {
                       <img src={HouseholdBook} alt='household book' />
                     </Link>
                   </div>
-                  <p className={style.amount}>¥{}</p>
+                  <p className={style.amount}>
+                    ¥
+                    { spendings &&
+                      // eslint-disable-next-line array-callback-return
+                      spendings.filter((spending: GetSpending) => {
+                        if (household.id === spending.householdId) return spending;
+                      })
+                      .reduce((sum, spending: GetSpending) => sum + spending.amountUsed, 0)
+                    }
+                  </p>
                 </div>
               )
-            }
-          )
+            })
         }
       </div>
       <div className={style.button}>

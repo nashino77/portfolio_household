@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       end
       
       resources :users do
+        get '/households/total', to: 'households#index_total'
         resources :households do
           get '/spendings/total', to: 'spendings#index_total'
           resources :spendings

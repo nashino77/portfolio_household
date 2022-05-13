@@ -3,8 +3,15 @@ class Api::V1::HouseholdsController < ApplicationController
 
   # 家計簿の一覧表示
   def index
-    households = current_api_v1_user.households.all
+    households = current_api_v1_user.households.order(created_at: :asc).all
     render json: households, status: :ok
+  end
+
+  # 全家計簿の月別利用金額合計の取得
+  def index_total
+    all_spending = current_api_v1_user.spendings.amount_month(params[:target_date])
+    total = current_api_v1_user.spendings.amount_month(params[:target_date]).sum(:amount_used)
+    render json: {total: total, all_spending: all_spending}
   end
 
   # 家計簿の新規登録
@@ -47,12 +54,6 @@ class Api::V1::HouseholdsController < ApplicationController
         message: '削除が完了できませんでした' 
       }, status: 422
     end
-  end
-
-  # 家計簿内の月別利用金額の合計
-  def household_total
-    @total_amount = @household.spendings.where(created_at: search_date.in_time_zone.all_month).sum(:amount_used)
-    render json: @total_amount, status: :ok
   end
 
 

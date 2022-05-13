@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   has_many :households, dependent: :destroy
+  has_many :spendings, through: :households
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

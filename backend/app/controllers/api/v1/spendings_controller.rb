@@ -6,13 +6,14 @@ class Api::V1::SpendingsController < ApplicationController
 
   # 利用履歴の一覧取得
   def index
-    spendings = @household.spendings.all
+    spendings = @household.spendings.order(used_at: :asc).all
     render json: spendings
   end
 
   # 利用金額の合計取得
   def index_total
-    spendings_total = @household.spendings.total_amount_month
+    date = params[:target_date]
+    spendings_total = @household.spendings.amount_month(date).sum(:amount_used)
     render json: spendings_total
   end
 

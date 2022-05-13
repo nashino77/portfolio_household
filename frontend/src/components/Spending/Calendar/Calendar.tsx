@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { AuthContext } from '../../../App';
+import React from 'react';
 
 // date-fns
 import format from 'date-fns/format';
-import getMonth from 'date-fns/getMonth';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
 import addMonths from 'date-fns/addMonths';
@@ -30,11 +25,9 @@ type Props = {
 
 const Calendar: React.FC<Props> = (props) => {
   const {
-    targetDate,
     setTargetDate,
     calendar,
     spendings,
-    urlParams
   } = props;
 
   return (
@@ -92,7 +85,8 @@ const Calendar: React.FC<Props> = (props) => {
                         {getDate(date)}
                       </div>
                       <div className={style.date_amount}>
-                        {
+                        ¥
+                        { 
                           spendings
                           // eslint-disable-next-line array-callback-return
                           .filter(val => {
@@ -101,15 +95,8 @@ const Calendar: React.FC<Props> = (props) => {
                             const calendarDate = format(date, 'yyyy-MM-dd');
                             if (usedDate === calendarDate) return val;
                           })
-                          .map((spending) => (
-                            <div
-                              key={spending.id} 
-                              className={style.date_amount}
-                            >
-                              ¥{spending.amountUsed}
-                            </div>
-                          ))
-                        }
+                          .reduce((sum, spending) => sum + spending.amountUsed, 0)
+                            }
                       </div>
                     </td>
                   ))

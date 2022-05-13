@@ -8,7 +8,7 @@ import {
  } from '../urls';
 
  // interface
- import { Spending } from '../interface';
+ import { Spending, TargetDate } from '../interface';
 
 // 利用履歴一覧の取得
 export const getAllSpending = (userId: number, householdId: number) => {
@@ -23,9 +23,10 @@ export const getAllSpending = (userId: number, householdId: number) => {
 };
 
 // 利用金額月合計の取得
-export const getSpendingTotal = (userId: number, householdId: number) => {
+export const getSpendingTotal = (userId: number, householdId: number, params: TargetDate) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
-  return client.get(`${householdIndex(userId)}/${householdId}/spendings/total`, { 
+  return client.get(`${householdIndex(userId)}/${householdId}/spendings/total`, {
+      params,
       headers: {
         "access-token": Cookies.get("_access_token") || "",
         "client": Cookies.get("_client") || "",
