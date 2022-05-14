@@ -147,31 +147,67 @@
       }
     }
 
-    .cancelButton {
-      width: 96px;
-      height: 24px;
-      background-color: #fff;
-      margin-top: 16px;
-      margin-left: 202px;
-      outline: none;
-      border: none;  
-      border-radius: 8px;
-      color: black;
-      font-size: 12px;
-      font-weight: normal;
-      text-align: center;
-      line-height: 24px;
-    
+    .button_cancels {
+      display: flex;
+      justify-content: space-between;
+      width: 246px;
+      margin: 0 auto;
+
       @media screen and (min-width: $mb) {
-        display: inline;
-        width: 240px;
-        height: 48px;
-        font-size: 32px;
-        font-weight: 600;
-        margin: 0;
-        line-height: 48px;
+        display: block;
+      }
+
+      .button_delete {
+        width: 96px;
+        height: 24px;
+        background-color: #fff;
+        margin-top: 16px;
+        outline: none;
+        border: none;  
+        border-radius: 8px;
+        color: black;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        line-height: 24px;
+      
+        @media screen and (min-width: $mb) {
+          display: inline;
+          width: 240px;
+          height: 48px;
+          font-size: 32px;
+          font-weight: 600;
+          margin: 0;
+          line-height: 48px;
+        }
+      }
+
+      .button_cancel {
+        width: 96px;
+        height: 24px;
+        background-color: #fff;
+        margin-top: 16px;
+        outline: none;
+        border: none;  
+        border-radius: 8px;
+        color: black;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        line-height: 24px;
+      
+        @media screen and (min-width: $mb) {
+          display: block;
+          width: 140px;
+          height: 24px;
+          font-size: 16px;
+          font-weight: 500;
+          margin: 16px 0 0 100px;
+          line-height: 24px;
+        }
       }
     }
+
   }
 }
 

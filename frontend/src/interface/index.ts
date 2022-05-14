@@ -29,14 +29,14 @@ export interface User {
 // 家計簿
 export interface Household {
   name: string;
-  referenceAt: number;
+  amountPlanned: number;
 };
 
 export interface GetHousehold {
     id: number;
     userId: number;
     name: string;
-    referenceAt: number;
+    amountPlanned: number;
     createdAt: Date;
     updatedAt: Date;
 };

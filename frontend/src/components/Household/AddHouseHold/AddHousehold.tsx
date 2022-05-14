@@ -13,7 +13,7 @@ import style from './AddHousehold.module.scss';
 
 // image
 import MemoMark from '../../../image/nameMark.png';
-import Date from '../../../image/calendar.png';
+import PriceMark from '../../../image/priceMark.png';
 
 // interface
 import { Household } from '../../../interface';
@@ -32,7 +32,7 @@ const AddHousehold: React.FC<Props> = (props) => {
 
   const initialState = {
     name: '',
-    referenceAt: 1,
+    amountPlanned: 0,
   };
   const [newHousehold, setNewHousehold] = useState(initialState);
 
@@ -48,11 +48,10 @@ const AddHousehold: React.FC<Props> = (props) => {
 
     const params: Household ={
       name: newHousehold.name,
-      referenceAt: newHousehold.referenceAt,
+      amountPlanned: newHousehold.amountPlanned,
     }
-    console.log(params);
-    if(!currentUser) return;
 
+    if(!currentUser) return;
     try {
       const res = await createHousehold(currentUser.id, params);
       if (res?.status === 200) {
@@ -61,7 +60,8 @@ const AddHousehold: React.FC<Props> = (props) => {
         history.push('/');
       }
     } catch (err :any) {
-      console.log(err)
+      console.log(err);
+      alert('登録ができませんでした')
     };
 
     if (width >= 1100) setOpenPcHouseholdModal(false);
@@ -84,7 +84,7 @@ const AddHousehold: React.FC<Props> = (props) => {
               </div>
               <input 
                 type='text'
-                name='名前'
+                name='name'
                 required
                 placeholder='例: 電車代'
                 value={newHousehold.name}
@@ -94,17 +94,17 @@ const AddHousehold: React.FC<Props> = (props) => {
             <hr />
             <div className={style.input}>
               <div className={style.inputname}>
-                <img src={Date} alt='input reference' />
-                <h4>基準日</h4>
+                <img src={PriceMark} alt='input reference' />
+                <h4>利用予定額</h4>
               </div>
               <input 
                 type='number'
-                name='名前'
-                min='1'
-                max='31'
+                name='plannedAmount'
+                min='0'
+                max='99999999'
                 required
-                value={newHousehold.referenceAt}
-                onChange={handleInputChange('referenceAt')}
+                value={newHousehold.amountPlanned}
+                onChange={handleInputChange('amountPlanned')}
               />
             </div>
           </div>

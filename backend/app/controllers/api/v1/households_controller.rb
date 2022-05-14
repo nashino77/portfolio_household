@@ -9,9 +9,10 @@ class Api::V1::HouseholdsController < ApplicationController
 
   # 全家計簿の月別利用金額合計の取得
   def index_total
+    all_amount_planned = current_api_v1_user.households.sum(:amount_planned)
     all_spending = current_api_v1_user.spendings.amount_month(params[:target_date])
     total = current_api_v1_user.spendings.amount_month(params[:target_date]).sum(:amount_used)
-    render json: {total: total, all_spending: all_spending}
+    render json: {total: total, all_spending: all_spending, all_amount_planned: all_amount_planned}
   end
 
   # 家計簿の新規登録
@@ -60,7 +61,7 @@ class Api::V1::HouseholdsController < ApplicationController
   private
   # 家計簿情報の指定
   def household_params
-    params.require(:household).permit(:name, :reference_at, :user_id)
+    params.require(:household).permit(:name, :amount_planned, :user_id)
   end
 
   def set_household

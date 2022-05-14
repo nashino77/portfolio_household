@@ -3,5 +3,5 @@ class Household < ApplicationRecord
   has_many :spendings, dependent: :destroy
 
   validates :name, presence: true
-  validates :reference_at, presence: true
+  validates :amount_planned, presence: true
 end

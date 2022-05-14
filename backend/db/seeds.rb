@@ -10,7 +10,7 @@ User.create(:name => 'test', :email => 'test@example.com', :password => 'testpas
 Household.create(
     :user_id => 1,
     :name => "test名_1", 
-    :reference_at => 1
+    :amount_planned => 10000
   )
 
 3.times do |n|

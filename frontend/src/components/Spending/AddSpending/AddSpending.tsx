@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useContext} from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../App';
 
@@ -9,7 +9,7 @@ import { useWindowDimensions } from '../../../function/window';
 import style from './AddSpending.module.scss';
 
 // api
-import { createSpending, getSpending } from '../../../api/spending';
+import { createSpending } from '../../../api/spending';
 
 // interface
 import { Spending } from '../../../interface';
@@ -68,34 +68,10 @@ const AddSpending: React.FC<Props> = (props) => {
       }
     } catch (err :any) {
       console.log('利用履歴登録', err)
+      alert('登録ができませんでした')
     };
 
     if (width >= 1100) setOpenPcSpendingModal(false);
-  };
-
-  // // 利用履歴詳細の取得
-  // const handleGetSpending = async () => {
-  //   if (!currentUser) return;
-  //   try {
-  //     const res = await getSpending(
-  //       currentUser.id,
-  //       Number(urlParams.householdId),
-  //       Number(urlParams.spendingId)
-  //     );
-
-  //     console.log('利用履歴詳細', res?.data);
-  //     setNewSpending(res?.data);
-  //   } catch (err :any) {
-  //     console.log('利用履歴詳細', err)
-  //   };
-  // };
-
-  // useEffect(() => {
-  //   handleGetSpending();
-  // }, []);
-
-  const handleSpending = () => {
-    console.log(newSpending);
   };
 
   return (

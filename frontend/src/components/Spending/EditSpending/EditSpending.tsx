@@ -9,7 +9,7 @@ import { useWindowDimensions } from '../../../function/window';
 import style from './EditSpending.module.scss';
 
 // api
-import { updateSpending, getSpending } from '../../../api/spending';
+import { updateSpending, getSpending, deleteSpending } from '../../../api/spending';
 
 // interface
 import { Spending } from '../../../interface';
@@ -21,9 +21,7 @@ import { Spending } from '../../../interface';
 
 const EditSpending: React.FC = () => {
   const history = useHistory();
-
   const urlParams = useParams<{householdId: string; spendingId: string}>();
-
   const { currentUser } = useContext(AuthContext);
   // const width = useWindowDimensions();
 
@@ -66,7 +64,8 @@ const EditSpending: React.FC = () => {
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
-      console.log('利用履歴編集', err)
+      console.log('利用履歴編集', err);
+      alert('登録ができませんでした');
     };
 
   };
@@ -88,13 +87,30 @@ const EditSpending: React.FC = () => {
     };
   };
 
+  // 利用履歴の削除
+  const handleDeleteSpending = async () => {
+    if (!currentUser) return;
+    const sure = window.confirm('削除してよろしいですか?')
+    if (!sure) return;
+    try {
+      const res = await deleteSpending(
+        currentUser.id,
+        Number(urlParams.householdId),
+        Number(urlParams.spendingId)
+      );
+      console.log('利用履歴削除', res);
+      history.push('/' + Number(urlParams.householdId) + 'spendings' + Number(urlParams.spendingId));
+    } catch (err: any) {
+      console.log(err);
+      alert('削除ができませんでした');
+    };
+  };
+
   useEffect(() => {
     handleGetSpending();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSpending = () => {
-    console.log(currentSpending);
-  };
 
   return (
     <>
@@ -153,9 +169,20 @@ const EditSpending: React.FC = () => {
             >
               保存
             </button>
-            <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.cancelButton}>
-              キャンセル
-            </Link>
+            <div className={style.button_cancels}>
+              <button 
+                className={style.button_delete}
+                onClick={handleDeleteSpending}
+              >
+                履歴を削除
+              </button>
+              <Link 
+                to={`/${Number(urlParams.householdId)}/spendings`} 
+                className={style.button_cancel}
+              >
+                キャンセル
+              </Link>
+            </div>
           </div>
         </form>
       </div>

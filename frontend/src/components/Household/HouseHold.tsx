@@ -27,32 +27,32 @@ import HouseholdBook from '../../image/householdBook.png';
 
 interface Household {
   id: number;
-  household_id: string;
   name: string;
-  refernce_at: number;
-  user_id: number;
-  created_at: Date;
-  updated_at: Date;
+  amountPlanned: number;
+  userId: number;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const HouseHold: React.FC = () => {
   const initialHousehold = {
     id: 1,
-    household_id: "",
     name: "",
-    refernce_at: 1,
-    user_id: 0,
-    created_at: new Date(),
-    updated_at: new Date()
+    amountPlanned: 1,
+    userId: 0,
+    createdAt: new Date(),
+    updatedAt: new Date()
   };
 
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([initialHousehold]);
   const [spendings, setSpendings] = useState([]);
   const [allSpendingTotal, setAllSpendingTotal] = useState(0);
+  const [allAmountPlanned, setAllAmountPlanned] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date());
   const [openPcHouseholdModal, setOpenPcHouseholdModal] = useState(false);
 
+  const balance = allAmountPlanned - allSpendingTotal;
   const width = useWindowDimensions();
 
   const handleChangePcModal = () => {
@@ -84,11 +84,13 @@ const HouseHold: React.FC = () => {
       const res = await getMonthSpendingTotal(currentUser.id, params);
       console.log('月別全合計', res);
       setAllSpendingTotal(res?.data.total);
+      setAllAmountPlanned(res?.data.allAmountPlanned)
       setSpendings(res?.data.allSpending);
     } catch (err: any) {
       console.log('月別全合計', err);
     };
   };
+
 
    useEffect(() => {
       handleGetAllHousehold();
@@ -103,7 +105,7 @@ const HouseHold: React.FC = () => {
   return (
     <div className={style.household}>
       <h2>{currentUser?.name}</h2>
-      <h3>{format(targetDate, 'M月')}: ¥{allSpendingTotal}</h3>
+      <h3>{format(targetDate, 'M月')}:  <span className={balance >= 0 ? style.balance_amount_blue : style.balance_amount_red }>¥{balance}</span></h3>
       <div className={style.monthMove}>
         <span 
           onClick={() => setTargetDate(current => subMonths(current, 1))}
@@ -136,13 +138,13 @@ const HouseHold: React.FC = () => {
                   </div>
                   <p className={style.amount}>
                     ¥
-                    { spendings &&
-                      // eslint-disable-next-line array-callback-return
-                      spendings.filter((spending: GetSpending) => {
-                        if (household.id === spending.householdId) return spending;
-                      })
-                      .reduce((sum, spending: GetSpending) => sum + spending.amountUsed, 0)
-                    }
+                      {spendings &&
+                        // eslint-disable-next-line array-callback-return
+                        spendings.filter((spending: GetSpending) => {
+                          if (household.id === spending.householdId) return spending;
+                        })
+                        .reduce((sum, spending: GetSpending) => sum + spending.amountUsed, 0)
+                      }
                   </p>
                 </div>
               )

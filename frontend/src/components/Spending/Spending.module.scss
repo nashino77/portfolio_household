@@ -47,9 +47,26 @@
       margin: 16px 0 8px;
 
       @media screen and (min-width: $mb) {
-        font-size: 48px;
+        font-size: 40px;
         font-weight: 600;
         margin: 0;
+      }
+
+      span {
+        margin-left: 8px;
+
+        @media screen and (min-widht: $mb) {
+          margin-left: 16px;
+          line-height: 40px;
+        }
+      }
+      
+      .balance_red {
+        color: $amount_red_large;
+      }
+  
+      .balance_blue {
+        color: $amount_blue_large;
       }
     }
 
@@ -64,6 +81,27 @@
         line-height: 56px;
         margin-left: 48px;
       }
+    }
+
+  }
+
+  .amount_planned {
+    color: $amount_blue;
+  }
+
+  .totalamount {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $mb) {
+      font-size:24px;
+      margin-bottom: 0;
+    }
+
+    .totalnumber {
+      color: $amount_red;
     }
   }
 
@@ -109,7 +147,7 @@
   .button_pc {
     display: flex;
     width: 1008px;
-    margin: 56px auto 24px;
+    margin: 56px auto 16px;
 
     .amount_save {
       width: 480px;

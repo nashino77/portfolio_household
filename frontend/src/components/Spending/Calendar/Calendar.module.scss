@@ -44,11 +44,11 @@
         font-weight: normal;
   
         &:first-child {
-          color: red;
+          color: $amount_red;
         }
   
         &:last-child {
-          color: blue;
+          color: $amount_blue;
         }
       }
     }
@@ -75,18 +75,18 @@
           }
   
           .sunday{
-            color: red;
+            color: $amount_red;
           }
         
           .saturday{
-            color: blue;
+            color: $amount_blue;
           }
   
           .date_amount {
             height: 16px;
             overflow-y: scroll;
             overflow-x: hidden;
-            color: red;
+            color: $amount_red;
             font-size: 8px;
             font-weight: normal;
             margin-bottom: 0;

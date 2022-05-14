@@ -34,8 +34,11 @@ const Spending: React.FC = () => {
   const [targetDate, setTargetDate] = useState(new Date());
   const [spendings, setSpendings] = useState([]);
   const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
+  const [amountPlanned, setAmountPlanned] = useState(0);
   const [household, setHousehold] = useState<GetHousehold>();
   const [openPcSpendingModal, setOpenPcSpendingModal] = useState(false);
+
+  const balance = amountPlanned - currentTotalAmount;
 
   const calendar  = getCalendarArray(targetDate);
   const width = useWindowDimensions();
@@ -77,6 +80,7 @@ const Spending: React.FC = () => {
     try {
       const res = await getHousehold(currentUser.id, Number(urlParams.householdId));
       setHousehold(res?.data);
+      setAmountPlanned(res?.data.amountPlanned);
       console.log('家計簿詳細', res);
     } catch (err: any) {
       console.log(err);
@@ -104,27 +108,48 @@ const Spending: React.FC = () => {
     setOpenPcSpendingModal(true);
   };
 
-
   useEffect(() => {
     handleGetHousehold();
     handleGetSpendings();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
     handleGetSpendingsTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetDate])
+  }, [targetDate]);
 
-  return (
+   return (
     <div className={style.spendings}>
       <div className={style.household_name}>
         <h2>{household?.name}</h2>
-        {width < 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
+        {width < 1100 ? (
+            <p>
+              利用予定:
+              <span
+                className={style.amount_planned}
+              >
+                ¥{household?.amountPlanned}
+              </span>
+            </p>
+          ) : '' }
       </div>
       <div className={style.monthbox}>
-        <h3 className={style.month}>{format(targetDate, 'M月')}: ¥{currentTotalAmount}</h3>
-        {width > 1100 ? ( <p>基準日: {household?.referenceAt}</p> ) : '' }
+        <h3 className={style.month}>
+          {format(targetDate, 'M月')}:
+          <span 
+            className={balance >= 0 ? style.balance_blue : style.balance_red }
+          >
+            ¥{balance}
+          </span>
+        </h3>
+        {width > 1100 ? ( 
+            <p>
+              利用予定: <span className={style.amount_planned}>{household?.amountPlanned}</span>
+            </p>
+          ) : '' }
+        <p className={style.totalamount}>
+          利用合計: <span className={style.totalnumber}>-{currentTotalAmount}</span>
+        </p>
       </div>
       <div className={style.household_main}>
         <Calendar

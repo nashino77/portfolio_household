@@ -31,6 +31,14 @@
       margin-top: 2px;
       margin-bottom: 32px;
     }
+
+    .balance_amount_red {
+      color: $amount_red_large;
+    }
+
+    .balance_amount_blue {
+      color: $amount_blue_large;
+    }
   }
 
   .monthMove {
@@ -120,6 +128,7 @@
       .amount {
         font-size: 12px;
         font-weight: normal;
+        color: $amount_red;
         margin: 0;
 
         @media screen and (min-width: $mb) {

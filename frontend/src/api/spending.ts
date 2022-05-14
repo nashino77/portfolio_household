@@ -65,7 +65,7 @@ export const updateSpending = (userId: number, householdId: number, spendingId: 
   );
 };
 
-// 利用履歴一覧の取得
+// 利用履歴詳細の取得
 export const getSpending = (userId: number, householdId: number, spendingId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
   return client.get(`${householdIndex(userId)}/${householdId}/spendings/${spendingId}`, { 
@@ -76,3 +76,16 @@ export const getSpending = (userId: number, householdId: number, spendingId: num
       },
     });
 };
+
+// 利用履歴の削除
+export const deleteSpending = (userId: number, householdId: number, spendingId: number) => {
+  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
+  return client.delete(`${householdIndex(userId)}/${householdId}/spendings/${spendingId}`, { 
+      headers: {
+        "access-token": Cookies.get("_access_token") || "",
+        "client": Cookies.get("_client") || "",
+        "uid": Cookies.get("_uid") || "",
+      },
+    });
+};
+
