@@ -111,7 +111,7 @@ const Spending: React.FC = () => {
   useEffect(() => {
     handleGetHousehold();
     handleGetSpendings();
-  }, []);
+  }, [setSpendings]);
 
   useEffect(() => {
     handleGetSpendingsTotal();
@@ -201,6 +201,8 @@ const Spending: React.FC = () => {
           ? (
             <AddSpending
               setOpenPcSpendingModal={setOpenPcSpendingModal}
+              spendings={spendings}
+              setSpendings={setSpendings}
             />
           ) : '' }
       

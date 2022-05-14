@@ -104,7 +104,6 @@ const App: React.FC = () => {
           </Switch>
         </AuthContext.Provider>
       </Router>
-      {/* <Spending /> */}
     </div>
   );
 }

@@ -12,7 +12,7 @@ import style from './AddSpending.module.scss';
 import { createSpending } from '../../../api/spending';
 
 // interface
-import { Spending } from '../../../interface';
+import { Spending, GetSpending } from '../../../interface';
 
 // image
   import MemoMark from '../../../image/nameMark.png';
@@ -20,6 +20,8 @@ import { Spending } from '../../../interface';
   import PriceMark from '../../../image/priceMark.png';
 
   type Props = {
+    spendings: GetSpending[];
+    setSpendings: React.Dispatch<React.SetStateAction<never[]>>;
     setOpenPcSpendingModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
 

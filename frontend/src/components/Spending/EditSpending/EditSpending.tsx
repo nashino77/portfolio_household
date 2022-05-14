@@ -99,7 +99,7 @@ const EditSpending: React.FC = () => {
         Number(urlParams.spendingId)
       );
       console.log('利用履歴削除', res);
-      history.push('/' + Number(urlParams.householdId) + 'spendings' + Number(urlParams.spendingId));
+      history.push(`/${Number(urlParams.householdId)}/spendings`);
     } catch (err: any) {
       console.log(err);
       alert('削除ができませんでした');
@@ -170,7 +170,8 @@ const EditSpending: React.FC = () => {
               保存
             </button>
             <div className={style.button_cancels}>
-              <button 
+              <button
+                type="button"
                 className={style.button_delete}
                 onClick={handleDeleteSpending}
               >

@@ -49,8 +49,11 @@ class Api::V1::SpendingsController < ApplicationController
 
   # 利用履歴の削除
   def destroy
-    if @spending.destroy
+    if @spending.destroy!
       head :no_content
+      # render json: {
+      #   message: '削除が完了しました'
+      # }, status: :ok
     else
       render json: { 
         message: '削除が完了できませんでした' 
