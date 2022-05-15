@@ -171,7 +171,7 @@ const EditSpending: React.FC = () => {
             </button>
             <div className={style.button_cancels}>
               <button
-                type="button"
+                // type="button"
                 className={style.button_delete}
                 onClick={handleDeleteSpending}
               >
