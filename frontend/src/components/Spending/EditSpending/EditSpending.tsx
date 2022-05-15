@@ -88,7 +88,9 @@ const EditSpending: React.FC = () => {
   };
 
   // 利用履歴の削除
-  const handleDeleteSpending = async () => {
+  const handleDeleteSpending = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     if (!currentUser) return;
     const sure = window.confirm('削除してよろしいですか?')
     if (!sure) return;
