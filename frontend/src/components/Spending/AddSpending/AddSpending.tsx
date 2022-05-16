@@ -21,7 +21,6 @@ import { Spending, GetSpending } from '../../../interface';
 
   type Props = {
     spendings: GetSpending[];
-    setSpendings: React.Dispatch<React.SetStateAction<never[]>>;
     setOpenPcSpendingModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
 

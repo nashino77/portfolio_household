@@ -8,6 +8,7 @@ import SignIn from './components/Auth/SignIn';
 import Header from './components/Header/Header';
 import HouseHold from './components/Household/HouseHold';
 import AddHousehold from './components/Household/AddHouseHold/AddHousehold';
+import EditHousehold from './components/Household/EditHousehold/EditHousehold';
 import Spending from './components/Spending/Spending';
 import AddSpending from './components/Spending/AddSpending/AddSpending';
 import EditSpending from './components/Spending/EditSpending/EditSpending';
@@ -96,6 +97,7 @@ const App: React.FC = () => {
                 <Switch>
                   <Route exact path="/" component={HouseHold} />
                   <Route exact path="/addhousehold" component={AddHousehold} />
+                  <Route exact path="/:householdId/edithousehold" component={EditHousehold} />
                   <Route exact path="/:householdId/spendings" component={Spending} />
                   <Route exact path="/:householdId/spendings/addspending" component={AddSpending} />
                   <Route exact path="/:householdId/spendings/:spendingId" component={EditSpending} />

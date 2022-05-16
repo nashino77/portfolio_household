@@ -11,7 +11,7 @@ import Calendar from './Calendar/Calendar';
 import SpendingList from './SpendingList/SpendingList';
 
 // api
-import { getHousehold, deleteHousehold } from '../../api/household';
+import { getHousehold, deleteHousehold, editHousehold } from '../../api/household';
 import { getAllSpending } from '../../api/spending';
 import { getSpendingTotal } from '../../api/spending';
 
@@ -121,7 +121,11 @@ const Spending: React.FC = () => {
    return (
     <div className={style.spendings}>
       <div className={style.household_name}>
-        <h2>{household?.name}</h2>
+        <h2>
+          <Link to={`/${Number(urlParams.householdId)}/edithousehold`}>
+            {household?.name}
+          </Link>
+        </h2>
         {width < 1100 ? (
             <p>
               利用予定:
@@ -202,7 +206,6 @@ const Spending: React.FC = () => {
             <AddSpending
               setOpenPcSpendingModal={setOpenPcSpendingModal}
               spendings={spendings}
-              setSpendings={setSpendings}
             />
           ) : '' }
       

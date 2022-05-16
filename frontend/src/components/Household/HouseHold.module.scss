@@ -19,27 +19,52 @@
       margin: 24px 0 0;
     }
   }
-
-  h3 {
-    font-size: 32px;
-    font-weight: 600;
-    margin-top: 16px;
-    margin-bottom: 8px;
-
+  
+  .month {
     @media screen and (min-width: $mb) {
-      font-size: 56px;
-      margin-top: 2px;
-      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
     }
 
-    .balance_amount_red {
-      color: $amount_red_large;
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-top: 16px;
+      margin-bottom: 8px;
+  
+      @media screen and (min-width: $mb) {
+        font-size: 56px;
+        margin-top: 2px;
+        margin-bottom: 32px;
+        margin-left: 40px;
+      }
+  
+      .balance_amount_red {
+        color: $amount_red_large;
+      }
+  
+      .balance_amount_blue {
+        color: $amount_blue_large;
+      }
     }
 
-    .balance_amount_blue {
-      color: $amount_blue_large;
+    .amount_total{
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 16px;
+
+      @media screen and (min-width: $mb) {
+        font-size: 32px;
+        line-height: 66px;
+        margin-left: 40px;
+      }
+
+      span {
+        color: $amount_red_large;
+      }
     }
   }
+
 
   .monthMove {
     font-size: 12px;

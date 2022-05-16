@@ -62,6 +62,21 @@ export const getHousehold = (userId: number, householdId: number) => {
   })
 };
 
+// 家計簿の編集
+export const editHousehold = (userId: number, householdId: number, params: Household) => {
+  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
+  return client.patch(`${householdIndex(userId)}/${householdId}`,
+    params,
+    { 
+      headers: {
+        "access-token": Cookies.get("_access_token") || "",
+        "client": Cookies.get("_client") || "",
+        "uid": Cookies.get("_uid") || "",
+      },
+    }
+  )
+};
+
 // 家計簿の削除
 export const deleteHousehold = (userId: number, householdId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
