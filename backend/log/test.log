@@ -1,0 +1,972 @@
+  [1m[35m (61.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_test"[0m
+  [1m[35m (1282.7ms)[0m  [1m[35mCREATE DATABASE "backend_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "households" CASCADE[0m
+  [1m[35m (14.8ms)[0m  [1m[35mCREATE TABLE "households" ("id" bigserial primary key, "user_id" bigint NOT NULL, "name" character varying NOT NULL, "amount_planned" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_households_on_user_id" ON "households"  ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "spendings" CASCADE[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "spendings" ("id" bigserial primary key, "household_id" bigint NOT NULL, "used_at" date NOT NULL, "amount_used" integer NOT NULL, "memo" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_spendings_on_household_id" ON "spendings"  ("household_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "provider" character varying DEFAULT 'email' NOT NULL, "uid" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "allow_password_change" boolean DEFAULT FALSE, "remember_created_at" timestamp, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "name" character varying, "nickname" character varying, "image" character varying, "email" character varying, "tokens" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_uid_and_provider" ON "users"  ("uid", "provider")[0m
+  [1m[35m (7.4ms)[0m  [1m[35mALTER TABLE "households" ADD CONSTRAINT "fk_rails_7fc65e0e01"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "spendings" ADD CONSTRAINT "fk_rails_bc5cd9ea5e"
+FOREIGN KEY ("household_id")
+  REFERENCES "households" ("id")
+[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220421070234)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20220421061828),
+(20220421064240);
+
+[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2022-05-18 01:42:54.057550"], ["updated_at", "2022-05-18 01:42:54.057550"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "9e50880b8c151564c4d3ac163268b1ebed61629d"], ["created_at", "2022-05-18 01:42:54.079778"], ["updated_at", "2022-05-18 01:42:54.079778"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000013774fe18>:0x000000013774f1e8>_ellen.murazik@parisian-wilkinson.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000013774fe18>:0x000000013774f1e8>_ellen.murazik@parisian-wilkinson.co"], ["encrypted_password", "$2a$04$W0S68dUqa999XlNAyajufeFb2LRTx.rCPxEIkEBqBwXEIfePuG8OS"], ["name", "木下 颯"], ["email", "#<#<class:0x000000013774fe18>:0x000000013774f1e8>_ellen.murazik@parisian-wilkinson.co"], ["created_at", "2022-05-18 02:34:30.141366"], ["updated_at", "2022-05-18 02:34:30.141366"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000107ea5e18>:0x0000000107ea50f8>_jenee@okeefe.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000107ea5e18>:0x0000000107ea50f8>_jenee@okeefe.org"], ["encrypted_password", "$2a$04$pl2c5yeYqE8ZGCFqBsG0ZugvVQb.Xz/SFP6.yFzlJBU2F79CRqrsa"], ["name", "今井 凛"], ["email", "#<#<class:0x0000000107ea5e18>:0x0000000107ea50f8>_jenee@okeefe.org"], ["created_at", "2022-05-18 02:37:29.888127"], ["updated_at", "2022-05-18 02:37:29.888127"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000107ea5e18>:0x0000000124899a48>_rhett_dubuque@kreiger.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001254d2f08>:0x00000001254d2288>_kenyetta.schowalter@fritsch-boehm.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001254d2f08>:0x00000001254d2288>_kenyetta.schowalter@fritsch-boehm.io"], ["encrypted_password", "$2a$04$nFa8bq3GTY2/sUvOUY4b.ej.z98FUvgJlAV0KmcffaE4i091.EQuq"], ["name", "佐藤 健"], ["email", "#<#<class:0x00000001254d2f08>:0x00000001254d2288>_kenyetta.schowalter@fritsch-boehm.io"], ["created_at", "2022-05-18 02:43:49.754108"], ["updated_at", "2022-05-18 02:43:49.754108"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001254d2f08>:0x00000001377c61d0>_randolph@yost-sporer.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (9.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (9.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000121f37c18>:0x0000000121f36cf0>_man@ryan-goodwin.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (8.0ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000121f37c18>:0x0000000121f36cf0>_man@ryan-goodwin.org"], ["encrypted_password", "$2a$04$V6TCnbXE4XrexC4QL1GazuAui4AL.K1U5imzFKwdov8r/8UweRYgC"], ["name", "橋本 隼人"], ["email", "#<#<class:0x0000000121f37c18>:0x0000000121f36cf0>_man@ryan-goodwin.org"], ["created_at", "2022-05-18 04:56:32.793789"], ["updated_at", "2022-05-18 04:56:32.793789"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000121f37c18>:0x0000000117090b88>_sonja@cruickshank-mertz.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000121f37c18>:0x0000000125e9fa40>_bonny_abshire@herman.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000121f37c18>:0x0000000125e9fa40>_bonny_abshire@herman.co"], ["encrypted_password", "$2a$04$dvB3MqNi9zCfPrrBC3U7ketDO46t/gmD2nzFqhxsPTl1QnuHjJJFG"], ["name", "木村 智子"], ["email", "#<#<class:0x0000000121f37c18>:0x0000000125e9fa40>_bonny_abshire@herman.co"], ["created_at", "2022-05-18 04:56:32.912343"], ["updated_at", "2022-05-18 04:56:32.912343"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000121f37c18>:0x0000000125e9fa40>_bonny_abshire@herman.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (6.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012340ed08>:0x000000012340dd40>_jules@schulist.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012340ed08>:0x000000012340dd40>_jules@schulist.io"], ["encrypted_password", "$2a$04$xpv4N/5HVRX.H6j4oBsIfuMxSt9ia84NzPTo5OKJ8F7U5FYlWSgH6"], ["name", "佐々木 翔太"], ["email", "#<#<class:0x000000012340ed08>:0x000000012340dd40>_jules@schulist.io"], ["created_at", "2022-05-18 05:00:15.417442"], ["updated_at", "2022-05-18 05:00:15.417442"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012340ed08>:0x00000001272c58a8>_naomi.fay@kreiger.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012340ed08>:0x00000001272ccd38>_emmett@schmeler-graham.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012340ed08>:0x00000001272ccd38>_emmett@schmeler-graham.biz"], ["encrypted_password", "$2a$04$AUyW11cS5ss1jUu7KZRK2.ynJAZUJiqOE4TTn/xaLTU.6r.BUIGJW"], ["name", "木下 駿"], ["email", "#<#<class:0x000000012340ed08>:0x00000001272ccd38>_emmett@schmeler-graham.biz"], ["created_at", "2022-05-18 05:00:15.517230"], ["updated_at", "2022-05-18 05:00:15.517230"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012340ed08>:0x00000001272ccd38>_emmett@schmeler-graham.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012efc7f68>:0x000000012efc7220>_norbert@thompson.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."password" = $1 LIMIT $2[0m  [["password", "4O58hKg7Sk6Dw0"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."password" = $1 LIMIT $2[0m  [["password", "Ox6W8rWnUn2T8lOl"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012efc7f68>:0x000000012d846970>_maud@runte-will.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."password" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012efc7f68>:0x000000011f8352f0>_judie@hand.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."password" = $1 LIMIT $2[0m  [["password", "3OzOu9QuXq0UaB"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000127016670>_barbara@oberbrunner-padberg.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000127016670>_barbara@oberbrunner-padberg.name"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001270177f0>:0x0000000127016670>_barbara@oberbrunner-padberg.name"], ["encrypted_password", "$2a$04$MtyWfZU4iUTVDmb9VDnLsOr55ReXIhCweWZ4sw9PKRMuSsAQr9rYO"], ["name", "小川 優花"], ["email", "#<#<class:0x00000001270177f0>:0x0000000127016670>_barbara@oberbrunner-padberg.name"], ["created_at", "2022-05-18 05:07:21.623383"], ["updated_at", "2022-05-18 05:07:21.623383"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000127016670>_barbara@oberbrunner-padberg.name"], ["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001270177f0>:0x00000001311c0688>_lakeshia@labadie.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001270177f0>:0x00000001311c0688>_lakeshia@labadie.name"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["encrypted_password", "$2a$04$YhqZNq6EFdlsVZHXaQ3acugC0O1CZ/NGsyX.eiSWol7ssiT8p1/Qa"], ["name", "吉田 凛"], ["email", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["created_at", "2022-05-18 05:07:21.670016"], ["updated_at", "2022-05-18 05:07:21.670016"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001270177f0>:0x0000000147b6f470>_tuyet_emard@hane-bins.info"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x0000000124f99488>_marshall@heidenreich.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x0000000124f99488>_marshall@heidenreich.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000124f9a4f0>:0x0000000124f99488>_marshall@heidenreich.org"], ["encrypted_password", "$2a$04$UpPEFAgSHkMi32WjXun7AOlr/fXFp5TLA5NYBawGULXA7CbaCbN/6"], ["name", "中島 陽子"], ["email", "#<#<class:0x0000000124f9a4f0>:0x0000000124f99488>_marshall@heidenreich.org"], ["created_at", "2022-05-18 05:20:24.944225"], ["updated_at", "2022-05-18 05:20:24.944225"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x0000000124f99488>_marshall@heidenreich.org"], ["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x0000000127471e18>_burton@murphy.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x0000000127471e18>_burton@murphy.net"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["encrypted_password", "$2a$04$nHdZED2.wpwr5ZtmtG0LRu0GpgapaU0KR13e4.03rx7YQM72jcEsq"], ["name", "山下 響"], ["email", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["created_at", "2022-05-18 05:20:24.993618"], ["updated_at", "2022-05-18 05:20:24.993618"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001278c0c80>_kasey_dicki@will-cormier.io"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:20:25 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"三浦 未来", "email"=>"#<#<Class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io"], ["encrypted_password", "$2a$04$4P3LHJCUE6d1FT2TM3f8YuhLtpvdk0Qs31vEGyM5.qEFpx2Prl6n6"], ["name", "三浦 未来"], ["email", "#<#<class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io"], ["created_at", "2022-05-18 05:20:25.104278"], ["updated_at", "2022-05-18 05:20:25.104278"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000124f9a4f0>:0x00000001274e5e80>_glinda_sipes@schmeler-becker.io"], ["id", 12], ["LIMIT", 1]]
+  [1m[36mUser Update (14.8ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"IsY0wBiTFlas3sMaXlubYQ\":{\"token\":\"$2a$04$0JS6kB1ZUmq6DtLZUqyRk.LNUMULLEPn/VKo3.mSYXJz6TsfhXyaW\",\"expiry\":1654060825}}"], ["updated_at", "2022-05-18 05:20:25.107707"], ["id", 12]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 15.5ms | Allocations: 4060)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x00000001330a78f8>_albertina.donnelly@fisher.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001330ac448>:0x00000001330a78f8>_albertina.donnelly@fisher.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001330ac448>:0x00000001330a78f8>_albertina.donnelly@fisher.net"], ["encrypted_password", "$2a$04$jtEBHE.UpdjXnTv.BRLhHOCF5quP7fY48Wi3CE8M.OT9vlQZhMcH6"], ["name", "上野 遥"], ["email", "#<#<class:0x00000001330ac448>:0x00000001330a78f8>_albertina.donnelly@fisher.net"], ["created_at", "2022-05-18 05:23:34.851757"], ["updated_at", "2022-05-18 05:23:34.851757"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x00000001330a78f8>_albertina.donnelly@fisher.net"], ["id", 13], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a52d20>_clay@lesch.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a52d20>_clay@lesch.info"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["encrypted_password", "$2a$04$pTGjwNopFLrDGe6/VQqefuQD8iYLOCGCZFrI2m3CgQ8I5luLe9tq."], ["name", "渡辺 綾乃"], ["email", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["created_at", "2022-05-18 05:23:34.890559"], ["updated_at", "2022-05-18 05:23:34.890559"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134a81be8>_sean@bergstrom.net"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:23:34 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"谷口 陸", "email"=>"#<#<Class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com"], ["encrypted_password", "$2a$04$FZDpaEAi/v0/pjt7DyE8qem4ci1mc0DfiGPfmbE4MGlKv8gdeKv22"], ["name", "谷口 陸"], ["email", "#<#<class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com"], ["created_at", "2022-05-18 05:23:34.922095"], ["updated_at", "2022-05-18 05:23:34.922095"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001330ac448>:0x0000000134ad0a40>_holley.thiel@koss.com"], ["id", 15], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"KgY0i12GSqIGyURzsoxi_g\":{\"token\":\"$2a$04$veNHGI.ufNgj7YHfXmVyjOfminfiV6iNQT64yqtTzodvWTQbwiS8m\",\"expiry\":1654061014}}"], ["updated_at", "2022-05-18 05:23:34.924438"], ["id", 15]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4057)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001168195e0>_raymond@haley-damore.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001168195e0>_raymond@haley-damore.info"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011681a530>:0x00000001168195e0>_raymond@haley-damore.info"], ["encrypted_password", "$2a$04$rfnSMnQjNLywMIsy/cWXmehk6g8rorX1707.cRjbdyWIRuRrgImhy"], ["name", "今井 舞"], ["email", "#<#<class:0x000000011681a530>:0x00000001168195e0>_raymond@haley-damore.info"], ["created_at", "2022-05-18 05:26:59.084235"], ["updated_at", "2022-05-18 05:26:59.084235"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001168195e0>_raymond@haley-damore.info"], ["id", 16], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x0000000126bb3768>_hilton_reilly@heaney.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000011681a530>:0x0000000126bb3768>_hilton_reilly@heaney.io"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["encrypted_password", "$2a$04$QSN/V5hEZjENGLvamwBzm.uW.gYp/TzXYNhkl5lYhO4HbZZRo275K"], ["name", "原 空"], ["email", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["created_at", "2022-05-18 05:26:59.121379"], ["updated_at", "2022-05-18 05:26:59.121379"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209a2b28>_boris_prosacco@macejkovic-balistreri.org"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:26:59 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"和田 誠", "email"=>"#<#<Class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz"], ["encrypted_password", "$2a$04$.3jszNPzLSyIj3xLfDMZ8ub3aUOSOFSSiNaAo9yrwpmqYeCCRvbrS"], ["name", "和田 誠"], ["email", "#<#<class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz"], ["created_at", "2022-05-18 05:26:59.152379"], ["updated_at", "2022-05-18 05:26:59.152379"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011681a530>:0x00000001209e9870>_tonja_schinner@monahan.biz"], ["id", 18], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"orNKOxgEeLqRqqaAXvZ9jA\":{\"token\":\"$2a$04$U4DAGemB2UC.4LPoXZ1s1O3BszYjmfZHBAQ7pFoaDzdIMnnXHqNJK\",\"expiry\":1654061219}}"], ["updated_at", "2022-05-18 05:26:59.154729"], ["id", 18]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4057)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (8.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x00000001311fee38>_jennette_goyette@ledner.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001311ffae0>:0x00000001311fee38>_jennette_goyette@ledner.name"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001311ffae0>:0x00000001311fee38>_jennette_goyette@ledner.name"], ["encrypted_password", "$2a$04$fyUISln3Qkn7ebSLF7VaXu2MmGbNTdv5xA1sJ51nCdAIgjaBrszUW"], ["name", "野口 芽衣"], ["email", "#<#<class:0x00000001311ffae0>:0x00000001311fee38>_jennette_goyette@ledner.name"], ["created_at", "2022-05-18 05:29:05.976190"], ["updated_at", "2022-05-18 05:29:05.976190"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x00000001311fee38>_jennette_goyette@ledner.name"], ["id", 19], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000152a82a98>_lawrence_leannon@orn.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000152a82a98>_lawrence_leannon@orn.org"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["encrypted_password", "$2a$04$BQTDbPZx5J1V6z1/pLaiHelU49hf1fbv0cmdsUFbdS4rx/bwUAxHK"], ["name", "山本 直樹"], ["email", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["created_at", "2022-05-18 05:29:06.015458"], ["updated_at", "2022-05-18 05:29:06.015458"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000132a19f18>_ulrike@conn.biz"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:29:06 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"工藤 真央", "email"=>"#<#<Class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org"], ["encrypted_password", "$2a$04$x1GEFaPi3UrijUAS3PmUoemOed8fHH6LTL1HBNSrUmjDDUcORQko."], ["name", "工藤 真央"], ["email", "#<#<class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org"], ["created_at", "2022-05-18 05:29:06.049119"], ["updated_at", "2022-05-18 05:29:06.049119"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001311ffae0>:0x0000000152a78e58>_ricardo@gusikowski.org"], ["id", 21], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"WLqo1bch8yWcGy-YudDn3Q\":{\"token\":\"$2a$04$FYuhMrFEZndiOu1axNHExOyQJCUsXfXc4C3lwBMYH/dmqicKiH2fO\",\"expiry\":1654061346}}"], ["updated_at", "2022-05-18 05:29:06.051395"], ["id", 21]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4059)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x0000000122a24a90>_sydney@stiedemann.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x0000000122a24a90>_sydney@stiedemann.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000122a25a08>:0x0000000122a24a90>_sydney@stiedemann.io"], ["encrypted_password", "$2a$04$M7JjkMLQoFm4vdgFyxarbuN4Pcn9Gmf0/zTvpFnKE7Qzhx7N8SU.y"], ["name", "佐藤 優衣"], ["email", "#<#<class:0x0000000122a25a08>:0x0000000122a24a90>_sydney@stiedemann.io"], ["created_at", "2022-05-18 05:32:54.601770"], ["updated_at", "2022-05-18 05:32:54.601770"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x0000000122a24a90>_sydney@stiedemann.io"], ["id", 22], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x00000001249796c0>_ted@hagenes.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x00000001249796c0>_ted@hagenes.name"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["encrypted_password", "$2a$04$WE20XElbeea4aVy04SbLtOhP/L99HzLJXVPRNq0dIzV8fRoVj82MG"], ["name", "佐野 太郎"], ["email", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["created_at", "2022-05-18 05:32:54.636083"], ["updated_at", "2022-05-18 05:32:54.636083"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000012499c5a8>_herschel.schoen@schowalter.net"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:32:54 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"坂本 陽子", "email"=>"#<#<Class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co"], ["encrypted_password", "$2a$04$rb1H/U3p0RcMRaHH5zdhuukv0E9LGgnWrpz8qaDSXq/uZuOx9Mk.q"], ["name", "坂本 陽子"], ["email", "#<#<class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co"], ["created_at", "2022-05-18 05:32:54.667643"], ["updated_at", "2022-05-18 05:32:54.667643"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000014626eb60>_jc.wilkinson@bergnaum-buckridge.co"], ["id", 24], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"y8ZnDk1tyJchvH_YqvYo1Q\":{\"token\":\"$2a$04$AcAvBMwYzzvG/v.zw1RgduWzMJp855y5y/IqMzQZPqNy3t5EMvF86\",\"expiry\":1654061574}}"], ["updated_at", "2022-05-18 05:32:54.669932"], ["id", 24]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4057)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:32:54 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"小野 蓮", "email"=>"#<#<Class:0x0000000122a25a08>:0x000000014628e1b8>_lorine@upton.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000014628e1b8>_lorine@upton.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000122a25a08>:0x000000014628e1b8>_lorine@upton.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2231)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012d9f41f0>_johnie.schimmel@pollich-emmerich.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012d9f41f0>_johnie.schimmel@pollich-emmerich.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012d9f5730>:0x000000012d9f41f0>_johnie.schimmel@pollich-emmerich.org"], ["encrypted_password", "$2a$04$IIZphW4OTvy/tV/L8Q.gmOIBhUT91cvNXED4/NTVyi6EnDhW8ZGee"], ["name", "山崎 仁"], ["email", "#<#<class:0x000000012d9f5730>:0x000000012d9f41f0>_johnie.schimmel@pollich-emmerich.org"], ["created_at", "2022-05-18 05:37:52.679129"], ["updated_at", "2022-05-18 05:37:52.679129"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012d9f41f0>_johnie.schimmel@pollich-emmerich.org"], ["id", 25], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2bd18>_britni@altenwerth.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2bd18>_britni@altenwerth.io"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["encrypted_password", "$2a$04$L1V0fY/Oz60dUEYSp.aMzeeB2Nx.ipWT6GBeNeOyLk615TU2b1j9K"], ["name", "近藤 陽斗"], ["email", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["created_at", "2022-05-18 05:37:52.712626"], ["updated_at", "2022-05-18 05:37:52.712626"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012f9ab1d8>_jade.vandervort@lind.org"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:37:52 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"中島 颯太", "email"=>"#<#<Class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co"], ["encrypted_password", "$2a$04$mBEG3hOC3n6bGkr4JBNZ9OWsnEv4Pms9A021MLxRhtuFXHE63/gXC"], ["name", "中島 颯太"], ["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co"], ["created_at", "2022-05-18 05:37:52.743366"], ["updated_at", "2022-05-18 05:37:52.743366"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000014dc2de10>_robbin@monahan.co"], ["id", 27], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"65lhe6-6SlhliikLpyIbcg\":{\"token\":\"$2a$04$56Yft4x7xRs0n57hA6kngeqOJkFJqJXAhQnIe7NxsK4dOSxW6BUDi\",\"expiry\":1654061872}}"], ["updated_at", "2022-05-18 05:37:52.745678"], ["id", 27]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4057)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:37:52 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"小林 結菜", "email"=>"#<#<Class:0x000000012d9f5730>:0x000000013d820e40>_loise@berge.biz", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000013d820e40>_loise@berge.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000013d820e40>_loise@berge.biz"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2231)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["encrypted_password", "$2a$04$mRDGzrW9uY26ERPpFAUXhO.A6ifDE7xX3w30hWksI2Po6Mv52pP0i"], ["name", "小島 海斗"], ["email", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["created_at", "2022-05-18 05:37:52.768559"], ["updated_at", "2022-05-18 05:37:52.768559"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:37:52 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x000000012d9f5730>:0x000000012fbdb7a0>_exie@morar.org"], ["id", 28], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2596)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000108135cc8>_edgar_deckow@koch.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000108135cc8>_edgar_deckow@koch.io"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001081442a0>:0x0000000108135cc8>_edgar_deckow@koch.io"], ["encrypted_password", "$2a$04$iznK95/9kFSBA6OCPMqSoe9/1VTMb6UbN8tnXsq4XtcBsFz9dj3tu"], ["name", "加藤 悠人"], ["email", "#<#<class:0x00000001081442a0>:0x0000000108135cc8>_edgar_deckow@koch.io"], ["created_at", "2022-05-18 05:38:43.553174"], ["updated_at", "2022-05-18 05:38:43.553174"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000108135cc8>_edgar_deckow@koch.io"], ["id", 29], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109980670>_angelo@willms-cole.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109980670>_angelo@willms-cole.biz"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["encrypted_password", "$2a$04$GmPAyy0XyufNUmYylu0EpugMnAsn867nXCd2IigLG.9GQtFo18YuG"], ["name", "田中 美穂"], ["email", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["created_at", "2022-05-18 05:38:43.591535"], ["updated_at", "2022-05-18 05:38:43.591535"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc0bb60>_kristin@funk-conroy.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:38:43 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"竹内 航", "email"=>"#<#<Class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz"], ["encrypted_password", "$2a$04$KcCnvs/tkY/1TooZ7KlyJeeeAeWPoCkEZsUNMINmHYSJiNBPdHzy2"], ["name", "竹内 航"], ["email", "#<#<class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz"], ["created_at", "2022-05-18 05:38:43.623527"], ["updated_at", "2022-05-18 05:38:43.623527"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x00000001099fa7b8>_kurtis@hahn.biz"], ["id", 31], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"3Ba9KQzj_nGG0FdOJDIotQ\":{\"token\":\"$2a$04$TKxWZPjPIdILVhCIPlh1GOHVXRt8HjX31q/cowvLBeZ9vPFCWkp62\",\"expiry\":1654061923}}"], ["updated_at", "2022-05-18 05:38:43.625816"], ["id", 31]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4058)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:38:43 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"小野 駿", "email"=>"#<#<Class:0x00000001081442a0>:0x000000012cc19a08>_phylicia_abbott@borer-kihn.biz", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc19a08>_phylicia_abbott@borer-kihn.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x000000012cc19a08>_phylicia_abbott@borer-kihn.biz"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2231)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["encrypted_password", "$2a$04$kZzsXRn2D/bxXvtoSKvKdu1PPiZkoEQJx5UnY.PsZQLhdhEtX23Iq"], ["name", "遠藤 杏奈"], ["email", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["created_at", "2022-05-18 05:38:43.651974"], ["updated_at", "2022-05-18 05:38:43.651974"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:38:43 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001081442a0>:0x0000000109be8a48>_sunday@swaniawski.co"], ["id", 32], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2596)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x0000000141854200>_adam.raynor@maggio.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x0000000141854200>_adam.raynor@maggio.biz"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000141855880>:0x0000000141854200>_adam.raynor@maggio.biz"], ["encrypted_password", "$2a$04$FoHWipIvRmthrTk0XGHEgOq2ZEW/UuCHsDfaFewmEq8M21OmEWe8S"], ["name", "柴田 光"], ["email", "#<#<class:0x0000000141855880>:0x0000000141854200>_adam.raynor@maggio.biz"], ["created_at", "2022-05-18 05:43:17.185072"], ["updated_at", "2022-05-18 05:43:17.185072"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x0000000141854200>_adam.raynor@maggio.biz"], ["id", 33], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001534e3e10>_joaquina.kunde@romaguera.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001534e3e10>_joaquina.kunde@romaguera.co"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["encrypted_password", "$2a$04$FYyNUeLmqLITN/ke5U9k9.Iph4fKgMiNNCZ9ec88RLwbMI1ajVSIO"], ["name", "酒井 芽衣"], ["email", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["created_at", "2022-05-18 05:43:17.222929"], ["updated_at", "2022-05-18 05:43:17.222929"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430ab308>_bryan_tillman@ankunding-zulauf.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:43:17 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"橋本 花音", "email"=>"#<#<Class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net"], ["encrypted_password", "$2a$04$v/LRHG7TDeOPkdNCqFW4JuE0P7yOLd04kUqJ/1cCeXigZXcrUmITu"], ["name", "橋本 花音"], ["email", "#<#<class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net"], ["created_at", "2022-05-18 05:43:17.254998"], ["updated_at", "2022-05-18 05:43:17.254998"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001430f1e20>_aleta_bailey@hirthe-legros.net"], ["id", 35], ["LIMIT", 1]]
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"smQLZzSOcckgQIhED0LPsw\":{\"token\":\"$2a$04$EEgmG2jAQXuiQZI7r1lFBevSImilN7iYUak04XrWbp6rK7BUFXLVq\",\"expiry\":1654062197}}"], ["updated_at", "2022-05-18 05:43:17.257324"], ["id", 35]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 4057)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:43:17 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"山崎 芽衣", "email"=>"#<#<Class:0x0000000141855880>:0x00000001432794c8>_pamelia_hagenes@schneider-brown.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432794c8>_pamelia_hagenes@schneider-brown.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432794c8>_pamelia_hagenes@schneider-brown.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2231)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["encrypted_password", "$2a$04$3AeYiy/rgGPP9Y8QeK.BDOiZvjB6yAmAQsEhkmNxM40Njtgc.Mo0C"], ["name", "太田 千尋"], ["email", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["created_at", "2022-05-18 05:43:17.282721"], ["updated_at", "2022-05-18 05:43:17.282721"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:43:17 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000141855880>:0x00000001432e8350>_ian_wyman@orn-deckow.co"], ["id", 36], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2596)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x0000000105f8a560>_gilberto@hahn.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010f40c490>:0x0000000105f8a560>_gilberto@hahn.info"], ["encrypted_password", "$2a$04$zJ.wUAIMBcZRNQ3k3d97gOhr4IyHvCYvmgPgAAOoUbrs3LFygJWXe"], ["name", "宮本 楓"], ["email", "#<#<class:0x000000010f40c490>:0x0000000105f8a560>_gilberto@hahn.info"], ["created_at", "2022-05-18 05:44:30.248986"], ["updated_at", "2022-05-18 05:44:30.248986"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x000000010f7cd228>_claretta_kertzmann@homenick.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x000000010f7dcd68>_robert@mcdermott.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010f40c490>:0x000000010f7dcd68>_robert@mcdermott.name"], ["encrypted_password", "$2a$04$y64kUxL2ife1jKhL/E/lIujmgNq0kMv8O3FMWCDnvfX24pj7likx6"], ["name", "井上 直樹"], ["email", "#<#<class:0x000000010f40c490>:0x000000010f7dcd68>_robert@mcdermott.name"], ["created_at", "2022-05-18 05:44:30.283743"], ["updated_at", "2022-05-18 05:44:30.283743"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x000000010f7dcd68>_robert@mcdermott.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:44:30 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"斉藤 美咲", "email"=>"#<#<Class:0x000000010f40c490>:0x00000001083f9e28>_ricardo@fritsch.info", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x00000001083f9e28>_ricardo@fritsch.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010f40c490>:0x00000001083f9e28>_ricardo@fritsch.info"], ["encrypted_password", "$2a$04$RGYJWMhlyugTRxEAdfYoB.s4xoqIQ2P4VcPlQGXaOnAoKUCbwkJQ."], ["name", "斉藤 美咲"], ["email", "#<#<class:0x000000010f40c490>:0x00000001083f9e28>_ricardo@fritsch.info"], ["created_at", "2022-05-18 05:44:30.315562"], ["updated_at", "2022-05-18 05:44:30.315562"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Uw_5UBvJ-VtF3SMJc4Cp7g\":{\"token\":\"$2a$04$Emif.thietFQqMzwTJRTHesqy7urgssl9Z6472Mvm/wulVNr5jkVC\",\"expiry\":1654062270}}"], ["updated_at", "2022-05-18 05:44:30.317562"], ["id", 39]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3648)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:44:30 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"松井 大和", "email"=>"#<#<Class:0x000000010f40c490>:0x00000001088916c0>_waltraud.medhurst@roberts-willms.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x00000001088916c0>_waltraud.medhurst@roberts-willms.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x000000010856a190>_shaquana@kertzmann-zboncak.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010f40c490>:0x000000010856a190>_shaquana@kertzmann-zboncak.com"], ["encrypted_password", "$2a$04$UTEGqrH.NQ1jCgJe7yr26.3UtQtadSLh2Sa7yMmWvPSE1JuyNIyt6"], ["name", "丸山 愛美"], ["email", "#<#<class:0x000000010f40c490>:0x000000010856a190>_shaquana@kertzmann-zboncak.com"], ["created_at", "2022-05-18 05:44:30.341311"], ["updated_at", "2022-05-18 05:44:30.341311"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:44:30 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000010f40c490>:0x000000010856a190>_shaquana@kertzmann-zboncak.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010f40c490>:0x000000010856a190>_shaquana@kertzmann-zboncak.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"9mzl_XEDoR6GX6g3ozFwUg\":{\"token\":\"$2a$04$gqnWiBUnqIFOPlOnmPssVuTVxKOm9MJ5Ib2zxOU0rGiKWTICjYToi\",\"expiry\":1654062270}}"], ["updated_at", "2022-05-18 05:44:30.355541"], ["id", 40]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2380)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011b2c3398>_lonna@weimann.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011b2c3fc8>:0x000000011b2c3398>_lonna@weimann.info"], ["encrypted_password", "$2a$04$frV8oz5lCDTNinm2rM/4UeMKngpVxbG0u0a3arGHtgwuUY9k9PMSm"], ["name", "丸山 優花"], ["email", "#<#<class:0x000000011b2c3fc8>:0x000000011b2c3398>_lonna@weimann.info"], ["created_at", "2022-05-18 05:50:42.052049"], ["updated_at", "2022-05-18 05:50:42.052049"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011ccd0330>_del_stehr@runolfsdottir.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011d0af7d0>_spencer@johnson.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011b2c3fc8>:0x000000011d0af7d0>_spencer@johnson.info"], ["encrypted_password", "$2a$04$RTuH.7f9ZL6Q8qehdnxqueH1udv3B.J0DgpnW8kzMBggfwFyV1SHG"], ["name", "田中 奈々"], ["email", "#<#<class:0x000000011b2c3fc8>:0x000000011d0af7d0>_spencer@johnson.info"], ["created_at", "2022-05-18 05:50:42.087048"], ["updated_at", "2022-05-18 05:50:42.087048"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011d0af7d0>_spencer@johnson.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:50:42 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"宮本 輝", "email"=>"#<#<Class:0x000000011b2c3fc8>:0x000000011cd28058>_harvey_murazik@vonrueden.name", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011cd28058>_harvey_murazik@vonrueden.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011b2c3fc8>:0x000000011cd28058>_harvey_murazik@vonrueden.name"], ["encrypted_password", "$2a$04$VpMa81JuxtP5tbQ2.WFqg.Ef9cYT.WrEtmTFXtr7mMr71Movn76gi"], ["name", "宮本 輝"], ["email", "#<#<class:0x000000011b2c3fc8>:0x000000011cd28058>_harvey_murazik@vonrueden.name"], ["created_at", "2022-05-18 05:50:42.117621"], ["updated_at", "2022-05-18 05:50:42.117621"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"llIn891hAY77Y3S548Wcsg\":{\"token\":\"$2a$04$F77LoJSfOyjtP2T56xisxOnt8BVXaNSeJBm1sWBK7zx6pI2XkXLE6\",\"expiry\":1654062642}}"], ["updated_at", "2022-05-18 05:50:42.119603"], ["id", 43]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3647)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:50:42 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"森田 太一", "email"=>"#<#<Class:0x000000011b2c3fc8>:0x000000011d14f168>_latashia.harber@dubuque.co", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011d14f168>_latashia.harber@dubuque.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011ce7f690>_lenny@howell.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011b2c3fc8>:0x000000011ce7f690>_lenny@howell.org"], ["encrypted_password", "$2a$04$D.xOz9MMCsf69bul1SfXV.lHtdQLo26Knln64nzXsRugWb.YVz8CS"], ["name", "斉藤 優奈"], ["email", "#<#<class:0x000000011b2c3fc8>:0x000000011ce7f690>_lenny@howell.org"], ["created_at", "2022-05-18 05:50:42.141617"], ["updated_at", "2022-05-18 05:50:42.141617"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:50:42 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000011b2c3fc8>:0x000000011ce7f690>_lenny@howell.org", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011ce7f690>_lenny@howell.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"7cVdR1Li2B-TxnYCiKGmGw\":{\"token\":\"$2a$04$3mfuCKtDKrVjQIT5NxosW.anmbYptFmasoT2V2Ia/We8FSvyEoDmK\",\"expiry\":1654062642}}"], ["updated_at", "2022-05-18 05:50:42.154322"], ["id", 44]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 44], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2380)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011b2c3fc8>:0x000000011cf0c8b0>_vernetta.howe@farrell-stroman.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011b2c3fc8>:0x000000011cf0c8b0>_vernetta.howe@farrell-stroman.co"], ["encrypted_password", "$2a$04$BIsUROlIbtTRUWtH65FaU.DqZowoBsXOHLDkDX9wj1QhX9D5c9u4K"], ["name", "松本 舞"], ["email", "#<#<class:0x000000011b2c3fc8>:0x000000011cf0c8b0>_vernetta.howe@farrell-stroman.co"], ["created_at", "2022-05-18 05:50:42.161472"], ["updated_at", "2022-05-18 05:50:42.161472"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:50:42 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "test@example.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 532)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011e2139e0>_miguelina_nolan@nicolas.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x000000011e2139e0>_miguelina_nolan@nicolas.com"], ["encrypted_password", "$2a$04$9Q9.vid67tqzRVddbPwE5uAaZkTQ9QyaoRbHT3mujiNKtfqWatmsO"], ["name", "千葉 優那"], ["email", "#<#<class:0x000000011e2185d0>:0x000000011e2139e0>_miguelina_nolan@nicolas.com"], ["created_at", "2022-05-18 05:53:13.366154"], ["updated_at", "2022-05-18 05:53:13.366154"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f4d28d8>_daniel_auer@walter.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f8aa398>_vern.kunze@lockman.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x000000011f8aa398>_vern.kunze@lockman.co"], ["encrypted_password", "$2a$04$MQ83ot2RwuU9S7wdnhmUKO0XLJNpk65TJg5TJqldNHMSk2WCGnxXu"], ["name", "近藤 仁"], ["email", "#<#<class:0x000000011e2185d0>:0x000000011f8aa398>_vern.kunze@lockman.co"], ["created_at", "2022-05-18 05:53:13.399260"], ["updated_at", "2022-05-18 05:53:13.399260"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f8aa398>_vern.kunze@lockman.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:53:13 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"佐野 樹", "email"=>"#<#<Class:0x000000011e2185d0>:0x000000011f52b2f8>_my.becker@goodwin.net", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f52b2f8>_my.becker@goodwin.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x000000011f52b2f8>_my.becker@goodwin.net"], ["encrypted_password", "$2a$04$ANEq6dAYdr968Fi.ge7ASOB.gafshVdwEjwTzr8JHhp/.6MHR36EC"], ["name", "佐野 樹"], ["email", "#<#<class:0x000000011e2185d0>:0x000000011f52b2f8>_my.becker@goodwin.net"], ["created_at", "2022-05-18 05:53:13.430149"], ["updated_at", "2022-05-18 05:53:13.430149"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"IdjmjHjgiCQ_nyhMivVLIw\":{\"token\":\"$2a$04$Gu87CY7dsJPn3KXvlw6hae8wNKhlqm4kbufifKB2anUCyBgvwu.va\",\"expiry\":1654062793}}"], ["updated_at", "2022-05-18 05:53:13.432152"], ["id", 48]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3647)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:53:13 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"今井 悠太", "email"=>"#<#<Class:0x000000011e2185d0>:0x000000011f6b2518>_margarito.stroman@bauch-wisoky.net", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f6b2518>_margarito.stroman@bauch-wisoky.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f72b030>_marlin@huel.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x000000011f72b030>_marlin@huel.name"], ["encrypted_password", "$2a$04$lwNB4LHHN6g9uBm5oqeoF./M6rmSvbilsqosNkCDF55jNGTnDBkEO"], ["name", "原 さくら"], ["email", "#<#<class:0x000000011e2185d0>:0x000000011f72b030>_marlin@huel.name"], ["created_at", "2022-05-18 05:53:13.455329"], ["updated_at", "2022-05-18 05:53:13.455329"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:53:13 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000011e2185d0>:0x000000011f72b030>_marlin@huel.name", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f72b030>_marlin@huel.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"NenX5orAOzTQqTJ3u7pTbQ\":{\"token\":\"$2a$04$hFzewQv4oX6paca/qJYmzuIT6YTqrf.e1amtZe0UHU3SbyyRqFkiK\",\"expiry\":1654062793}}"], ["updated_at", "2022-05-18 05:53:13.469535"], ["id", 49]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2380)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x000000011f7b3a20>_onie@aufderhar.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x000000011f7b3a20>_onie@aufderhar.io"], ["encrypted_password", "$2a$04$4IL87Y29ma28yAMF7UAkyuHrjPGf.VTEQVkekcy/rv3JzKjTCuWxK"], ["name", "前田 奏太"], ["email", "#<#<class:0x000000011e2185d0>:0x000000011f7b3a20>_onie@aufderhar.io"], ["created_at", "2022-05-18 05:53:13.477509"], ["updated_at", "2022-05-18 05:53:13.477509"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:53:13 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "test@example.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 532)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x00000001387f82b0>_harry_skiles@spinka.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000011e2185d0>:0x00000001387f82b0>_harry_skiles@spinka.com"], ["encrypted_password", "$2a$04$xWJ5O2B.wp7hc15iV3Tt.OP28UqHiIh9TmFOVmI8I8XPWrTpfH.DO"], ["name", "加藤 彩"], ["email", "#<#<class:0x000000011e2185d0>:0x00000001387f82b0>_harry_skiles@spinka.com"], ["created_at", "2022-05-18 05:53:13.492655"], ["updated_at", "2022-05-18 05:53:13.492655"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:53:13 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000011e2185d0>:0x00000001387f82b0>_harry_skiles@spinka.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000011e2185d0>:0x00000001387f82b0>_harry_skiles@spinka.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 692)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000010edd5838>_sam@runte.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x000000010edd5838>_sam@runte.org"], ["encrypted_password", "$2a$04$QVi3RzJDE6mYRGuHiDpfuO.xXwQ/O72seHrPmfFg4UkzJ.5BI4ZVK"], ["name", "上田 優奈"], ["email", "#<#<class:0x000000010edd66c0>:0x000000010edd5838>_sam@runte.org"], ["created_at", "2022-05-18 05:57:41.221773"], ["updated_at", "2022-05-18 05:57:41.221773"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000011de7ea00>_hans_lemke@sanford-greenfelder.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000011de86570>_latonya@kling.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x000000011de86570>_latonya@kling.biz"], ["encrypted_password", "$2a$04$rcD/2JKFZsL7CiMhKLw19eYQGQCyEJZk8l97esFabgvbBr3dWSwQO"], ["name", "田村 美咲"], ["email", "#<#<class:0x000000010edd66c0>:0x000000011de86570>_latonya@kling.biz"], ["created_at", "2022-05-18 05:57:41.263933"], ["updated_at", "2022-05-18 05:57:41.263933"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000011de86570>_latonya@kling.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"加藤 拓海", "email"=>"#<#<Class:0x000000010edd66c0>:0x000000011dea7388>_larissa@maggio.io", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000011dea7388>_larissa@maggio.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x000000011dea7388>_larissa@maggio.io"], ["encrypted_password", "$2a$04$vwLyVdFO8XsiaRqcC7LzNOwVVFWPIYBTbpd1htuku3iIleV/tYRki"], ["name", "加藤 拓海"], ["email", "#<#<class:0x000000010edd66c0>:0x000000011dea7388>_larissa@maggio.io"], ["created_at", "2022-05-18 05:57:41.296110"], ["updated_at", "2022-05-18 05:57:41.296110"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"ge6_lEGxryfcmnwcAlN7nw\":{\"token\":\"$2a$04$jTRtsBN5MCWmd2QjOTB2IuBiejTd/zFoUfVbjjbBub1HZecb1pKSq\",\"expiry\":1654063061}}"], ["updated_at", "2022-05-18 05:57:41.298104"], ["id", 54]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3648)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"菅原 碧", "email"=>"#<#<Class:0x000000010edd66c0>:0x000000011814aaf0>_carmelita.strosin@grimes.biz", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000011814aaf0>_carmelita.strosin@grimes.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x00000001181c3130>_george_yost@collier-rice.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x00000001181c3130>_george_yost@collier-rice.biz"], ["encrypted_password", "$2a$04$gjFhHShUcGywo73.JXSlnOELhT1ZUXwPfgcjTW232ZlvKmPGi8opm"], ["name", "西村 美穂"], ["email", "#<#<class:0x000000010edd66c0>:0x00000001181c3130>_george_yost@collier-rice.biz"], ["created_at", "2022-05-18 05:57:41.321412"], ["updated_at", "2022-05-18 05:57:41.321412"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000010edd66c0>:0x00000001181c3130>_george_yost@collier-rice.biz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x00000001181c3130>_george_yost@collier-rice.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"O16u0L_Qfr2-JWZgdNECUA\":{\"token\":\"$2a$04$OKyklNZQa5rrf0wVngE.X.evBzQHeyqOOc4FwPfi8PRB/g7wzs6ke\",\"expiry\":1654063061}}"], ["updated_at", "2022-05-18 05:57:41.335233"], ["id", 55]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2380)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x000000010eca4180>_dian@wilderman.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x000000010eca4180>_dian@wilderman.io"], ["encrypted_password", "$2a$04$XDV9ZWEL0EKjKpgtJ90QoevCWlZH538MTz7nsETbxI3ADdatpiRJO"], ["name", "佐々木 彩乃"], ["email", "#<#<class:0x000000010edd66c0>:0x000000010eca4180>_dian@wilderman.io"], ["created_at", "2022-05-18 05:57:41.342710"], ["updated_at", "2022-05-18 05:57:41.342710"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "test@example.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 532)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x00000001182909a0>_freddie_adams@skiles-grimes.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x00000001182909a0>_freddie_adams@skiles-grimes.info"], ["encrypted_password", "$2a$04$0LUwmndmc1i9eoVBYQgZQuY38WTtk6wUprkii0V32fISDgZEWDG.C"], ["name", "今井 結"], ["email", "#<#<class:0x000000010edd66c0>:0x00000001182909a0>_freddie_adams@skiles-grimes.info"], ["created_at", "2022-05-18 05:57:41.357923"], ["updated_at", "2022-05-18 05:57:41.357923"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x000000010edd66c0>:0x00000001182909a0>_freddie_adams@skiles-grimes.info", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x00000001182909a0>_freddie_adams@skiles-grimes.info"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 692)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x000000010edd66c0>:0x00000001182f25d8>_wiley.gislason@bailey-lowe.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x00000001182f25d8>_wiley.gislason@bailey-lowe.info"], ["encrypted_password", "$2a$04$xfvC.Dh9ot.dNY1p80WQxeu9SjQWnajoixQzN5pZ/SAjqDvlSjbAW"], ["name", "山田 美咲"], ["email", "#<#<class:0x000000010edd66c0>:0x00000001182f25d8>_wiley.gislason@bailey-lowe.info"], ["created_at", "2022-05-18 05:57:41.374828"], ["updated_at", "2022-05-18 05:57:41.374828"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"UGyRrs8iyKbmEwxJiMWeZA\":{\"token\":\"$2a$04$/TxfUQk6MhF0pt/lByNLW.wBKYylYxdxP76JTDY0HF83Kf.cyKF1a\",\"expiry\":1654063061,\"updated_at\":\"2022-05-18T05:57:41Z\"}}"], ["updated_at", "2022-05-18 05:57:41.376686"], ["id", 58]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/api/v1/auth/sign_out" for 127.0.0.1 at 2022-05-18 14:57:41 +0900
+Processing by DeviseTokenAuth::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x000000010edd66c0>:0x00000001182f25d8>_wiley.gislason@bailey-lowe.info"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", nil], ["updated_at", "2022-05-18 05:57:41.387697"], ["id", 58]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 16ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1409)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m

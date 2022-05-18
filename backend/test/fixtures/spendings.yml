@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spending_id: MyString
+  household: one
+  used_at: 2022-04-21
+  amount_used: 1
+  memo: MyText
+
+two:
+  spending_id: MyString
+  household: two
+  used_at: 2022-04-21
+  amount_used: 1
+  memo: MyText

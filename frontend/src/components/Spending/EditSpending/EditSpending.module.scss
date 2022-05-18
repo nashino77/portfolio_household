@@ -1,0 +1,212 @@
+@import '../../../Variables/variables';
+
+.addspending {
+  width: 360px;
+  margin: 0 auto;
+  
+  @media screen and (min-width: $mb) {
+    width: 680px;
+    height: 612px;
+    background-color: #00AFC1;
+    border-radius: 24px;
+    padding-top: 68px;
+    position: fixed;
+    top: 172px;
+    left: 30%;
+    z-index: 99;
+  }
+
+  .inputform {
+    width: 360px;
+    height: 196px;
+    background-color: #006778;
+    border-radius: 16px;
+    padding-top: 36px;
+    padding-bottom: 48px;
+    margin-top: 16px;
+
+    @media screen and (min-width: $mb) {
+      width: 560px;
+      height: 366px;
+      margin: 0 auto;
+      padding-top: 52px;
+      padding-bottom: 46px;
+    }
+
+  
+
+    .input {
+      width: 330px;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+
+      @media screen and (min-width: $mb) {
+        width: 536px;
+        height: 54px;
+      }
+
+      .inputname {
+        display: flex;
+
+        img {
+          width: 32px;
+          height: 32px;
+          margin-right: 12px;
+    
+          @media screen and (min-width: $mb) {
+            width: 52px;
+            height: 54px;
+            margin-right: 20px;
+          }
+        }
+    
+        h4 {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 32px;
+  
+          
+    
+          @media screen and (min-width: $mb) {
+            line-height: 54px;
+          }
+        }
+      }
+
+
+
+      input {
+        width: 200px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        text-align: right;
+
+        &::placeholder {
+          color: white;
+          text-align: right;
+          opacity: 0.7;
+
+        }
+
+        &[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          // -moz-appearance:textfield;
+        }
+
+        &[type="date"] {
+          
+        }
+      }
+    }
+
+    hr {
+      width: 328px;
+      margin-top: 28px;
+      margin-bottom: 24px;
+
+      @media screen and (min-width: $mb) {
+        width: 536px;
+        margin-top: 48px;
+        margin-bottom: 48px;
+      }
+
+    }
+  }
+
+  .buttonform {
+    display: flex;
+    flex-flow: column;
+    margin: 32px auto 0;
+
+    @media screen and (min-width: $mb) {
+      width: 528px;
+      justify-content: space-between;
+      flex-flow: nowrap;
+    }
+    .saveButton {
+      width: 240px;
+      height: 48px;
+      background-color: #FFD124;
+      outline: none;
+      border: none;
+      border-radius: 8px;
+      margin: 0 auto;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+    
+      @media screen and (min-width: $mb) {
+        font-size: 32px;
+        font-weight: 600;
+        margin: 0;
+        margin-right: 32px;
+      }
+    }
+
+    .button_cancels {
+      display: flex;
+      justify-content: space-between;
+      width: 246px;
+      margin: 0 auto;
+
+      @media screen and (min-width: $mb) {
+        display: block;
+      }
+
+      .button_delete {
+        width: 96px;
+        height: 24px;
+        background-color: #fff;
+        margin-top: 16px;
+        outline: none;
+        border: none;  
+        border-radius: 8px;
+        color: black;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        line-height: 24px;
+      
+        @media screen and (min-width: $mb) {
+          display: inline;
+          width: 240px;
+          height: 48px;
+          font-size: 32px;
+          font-weight: 600;
+          margin: 0;
+          line-height: 48px;
+        }
+      }
+
+      .button_cancel {
+        width: 96px;
+        height: 24px;
+        background-color: #fff;
+        margin-top: 16px;
+        outline: none;
+        border: none;  
+        border-radius: 8px;
+        color: black;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        line-height: 24px;
+      
+        @media screen and (min-width: $mb) {
+          display: block;
+          width: 140px;
+          height: 24px;
+          font-size: 16px;
+          font-weight: 500;
+          margin: 16px 0 0 100px;
+          line-height: 24px;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  household_id: MyString
+  user: one
+  name: MyString
+  refernce_at: 2022-04-21
+
+two:
+  household_id: MyString
+  user: two
+  name: MyString
+  refernce_at: 2022-04-21

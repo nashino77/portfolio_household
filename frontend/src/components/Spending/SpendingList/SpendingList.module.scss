@@ -1,0 +1,89 @@
+@import '../../../Variables/variables';
+
+.spending_list {
+  width: 100%;
+  max-height: 156px;
+  overflow-y: scroll;
+
+  // バー非表示
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display:none;
+  }
+
+  @media screen and (min-width: $mb) {
+    width: 240px;
+    max-height: 560px;
+    background-color: #00AFC1;
+  }
+  
+
+  .spending_box {
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $mb) {
+      margin-bottom: 18px;
+    }
+
+    .spneding_date {
+      background-color: #0093AB;
+      height: 24px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+
+      @media screen and (min-width: $mb) {
+        height: 44px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 44px;
+      }
+
+      span {
+        margin-left: 16px;
+      }
+    }
+
+    .spending {
+      margin-top: 8px;
+
+      @media screen and (min-width: $mb) {
+        margin-top: 16px;
+      }
+
+      .spending_content {
+        width: 180px;
+        height: 15px;
+        border-bottom: 1px solid;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: normal;
+        padding-left: 81px;
+        padding-right: 83px;
+        padding-bottom: 8px;
+        margin: 0 auto 8px;
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+        @media screen and (min-width: $mb) {
+          width: 212px;
+          height: 29px;
+          justify-content: space-between;
+          font-size: 16px;
+          line-height: 29px;
+          padding-left: 6px;
+          padding-right: 6px;
+        }
+        
+        .spending_amountUsed {
+          color: $amount_red;
+        }
+      }
+    }
+  }
+}
