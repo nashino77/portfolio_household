@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validates presence" do
+    let(:user) { create(:user) }
+    
     context "全カラムの値を指定しているとき" do
-      let(:user) { create(:user) }
 
       it "userのレコードが作成されるとき" do
         expect(user).to be_valid

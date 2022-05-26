@@ -18,7 +18,6 @@ class Api::V1::HouseholdsController < ApplicationController
   # 家計簿の新規登録
   def create
     household = current_api_v1_user.households.create(household_params)
-    p current_api_v1_user
     if household.save
       render json: household, status: :ok
     else
