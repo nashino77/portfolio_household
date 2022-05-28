@@ -69,7 +69,7 @@ const Header: React.FC = () => {
         </div>
 
         <ul className={style.pcmenu}>
-          <li ><Link to='/'>家計簿を選ぶ</Link></li>
+          { isSignedIn ? <li ><Link to='/'>家計簿を選ぶ</Link></li> : "" }
           <li className={style.sign}>{ isSignedIn ? <span onClick={handleSignout}>サインアウト</span> : <Link to='/signin'>サインイン</Link>}</li>
         </ul>
       </div>
