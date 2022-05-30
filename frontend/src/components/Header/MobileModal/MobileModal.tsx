@@ -22,7 +22,10 @@ const MobileModal: React.FC<Props> = (props) => {
   } = props;
 
   const history = useHistory();
-  const { isSignedIn, setIsSignedIn} = useContext(AuthContext);
+  const { 
+    isSignedIn, 
+    setIsSignedIn,
+  } = useContext(AuthContext);
 
   const handleModal = () => {
     setModalOpen(!modalOpen);
@@ -53,22 +56,21 @@ const MobileModal: React.FC<Props> = (props) => {
     setModalOpen(false);
   };
 
-
   return (
     <div>
       <div className={`${style.mobilemodal} ${ modalOpen ? style.openmodal : '' }`}>
         <div className={style.inner}>
           <div className={style.list}>
-            { isSignedIn 
+            { isSignedIn
               ?
-              <p>
-              <Link to='/'>
-                <span onClick={() => setModalOpen(false)}>
-                  家計簿を<br />選ぶ
-                </span>
-              </Link>
-            </p>
-              :
+                <p>
+                  <Link to='/'>
+                    <span onClick={() => setModalOpen(false)}>
+                      家計簿を<br />選ぶ
+                    </span>
+                  </Link>
+                </p>
+              : 
                 ""
             }
             { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }

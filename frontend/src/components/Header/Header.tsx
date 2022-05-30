@@ -1,4 +1,4 @@
-import React, { useState,  useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../App';
@@ -17,17 +17,18 @@ import MobileMenuCrossButton from '../../image/mobilemenu_crossmark.png';
 
 const Header: React.FC = () => {
   const history = useHistory();
+    const { 
+    isSignedIn, 
+    setIsSignedIn,
+  } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { 
-    isSignedIn, 
-    setIsSignedIn, 
-  } = useContext(AuthContext);
-
+  // モバイル用モーダルの開閉
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
 
+  // サインアウト
   const handleSignout = async () => {
     try {
       const res = await signOut();
@@ -69,7 +70,7 @@ const Header: React.FC = () => {
         </div>
 
         <ul className={style.pcmenu}>
-          { isSignedIn ? <li ><Link to='/'>家計簿を選ぶ</Link></li> : "" }
+          { isSignedIn  ? <li ><Link to='/'>家計簿を選ぶ</Link></li> : "" }
           <li className={style.sign}>{ isSignedIn ? <span onClick={handleSignout}>サインアウト</span> : <Link to='/signin'>サインイン</Link>}</li>
         </ul>
       </div>

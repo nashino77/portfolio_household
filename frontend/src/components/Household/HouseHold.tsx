@@ -7,12 +7,6 @@ import format from 'date-fns/format';
 import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
 
-//component
-import AddHousehold from './AddHouseHold/AddHousehold';
-
-// function
-import { useWindowDimensions } from '../../function/window';
-
 // api
 import { getAllHousehold, getMonthSpendingTotal } from '../../api/household';
 
@@ -50,14 +44,8 @@ const HouseHold: React.FC = () => {
   const [allSpendingTotal, setAllSpendingTotal] = useState(0);
   const [allAmountPlanned, setAllAmountPlanned] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date());
-  const [openPcHouseholdModal, setOpenPcHouseholdModal] = useState(false);
 
   const balance = allAmountPlanned - allSpendingTotal;
-  const width = useWindowDimensions();
-
-  const handleChangePcModal = () => {
-    setOpenPcHouseholdModal(true);
-  };
 
   // 家計簿一覧の取得
   const handleGetAllHousehold = async () => {
@@ -90,8 +78,8 @@ const HouseHold: React.FC = () => {
   };
 
 
-   useEffect(() => {
-      handleGetAllHousehold();
+  useEffect(() => {
+    handleGetAllHousehold();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -2,9 +2,6 @@ import React, { useState, useEffect, useContext} from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../App';
 
-// function
-import { useWindowDimensions } from '../../../function/window';
-
 // css
 import style from './EditSpending.module.scss';
 
@@ -23,7 +20,6 @@ const EditSpending: React.FC = () => {
   const history = useHistory();
   const urlParams = useParams<{householdId: string; spendingId: string}>();
   const { currentUser } = useContext(AuthContext);
-  // const width = useWindowDimensions();
 
   // 利用履歴初期値
   const initialSpending = {
@@ -112,7 +108,7 @@ const EditSpending: React.FC = () => {
   return (
     <>
       <div className={style.addspending}>
-
+        <h4>履歴詳細</h4>
         <form>
           <div className={style.inputform}>
             <div className={style.input}>

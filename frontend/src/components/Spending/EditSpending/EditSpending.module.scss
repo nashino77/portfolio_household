@@ -6,14 +6,26 @@
   
   @media screen and (min-width: $mb) {
     width: 680px;
-    height: 612px;
+    height: 652px;
     background-color: #00AFC1;
     border-radius: 24px;
-    padding-top: 68px;
+    padding-top: 20px;
     position: fixed;
     top: 172px;
     left: 30%;
     z-index: 99;
+  }
+
+  h4 {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 16px 0 8px;
+    text-align: center;
+
+    @media screen and (min-width: $mb) {
+      margin: 0 0 16px;
+      font-size: 32px;
+    }
   }
 
   .inputform {
