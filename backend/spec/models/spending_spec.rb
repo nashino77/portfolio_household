@@ -30,4 +30,13 @@ RSpec.describe Spending, type: :model do
     end
   end
 
+  context "amount_usedが0以下" do
+    let(:spending) { FactoryBot.build(:spending, amount_used: -100, household: household) }
+
+    it "エラーになる" do
+      spending.valid?
+      expect(spending.errors.messages[:amount_used]).to include "must be greater than or equal to 0"
+    end
+  end
+
 end

@@ -29,5 +29,14 @@ RSpec.describe Household, type: :model do
       end
     end
 
+    context "amount_plannedが0以下" do
+      let(:household) { FactoryBot.build(:household, amount_planned: -100, user: user) }
+
+      it "エラーになる" do
+        household.valid?
+        expect(household.errors.messages[:amount_planned]).to include "must be greater than or equal to 0"
+      end
+    end
+
   end
 end
