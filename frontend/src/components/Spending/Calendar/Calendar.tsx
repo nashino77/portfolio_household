@@ -1,5 +1,4 @@
 import React from 'react';
-
 // date-fns
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
@@ -7,13 +6,10 @@ import getDay from 'date-fns/getDay';
 import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
 import { parse } from 'date-fns';
-
 // css
 import style from './Calendar.module.scss';
-
 // interface
 import { GetSpending } from '../../../interface'
-
 
 type Props = {
   targetDate: Date;
@@ -24,29 +20,25 @@ type Props = {
 };
 
 const Calendar: React.FC<Props> = (props) => {
-  const {
-    setTargetDate,
-    calendar,
-    spendings,
-  } = props;
+  const { setTargetDate, calendar, spendings } = props;
 
   return (
     <div className={style.calendar}>
       <div className={style.select_month}>
-        <div 
-          className={style.selectbutton_month} 
+        <div
+          className={style.selectbutton_month}
           onClick={() => setTargetDate(current => subMonths(current, 1))}
         >
           &lsaquo; 前の月
         </div>
-        <div 
-          className={style.selectbutton_month} 
+        <div
+          className={style.selectbutton_month}
           onClick={() => setTargetDate(new Date())}
         >
           今月
         </div>
-        <div 
-          className={style.selectbutton_month} 
+        <div
+          className={style.selectbutton_month}
           onClick={() => setTargetDate(current => addMonths(current, 1))}
         >
           次の月 &rsaquo;
@@ -70,23 +62,23 @@ const Calendar: React.FC<Props> = (props) => {
               <tr className={style.calendar_week} key={rowNum}>
                 {
                   weekRow.map((date) => (
-                    <td 
+                    <td
                       key={getDay(date)}
                       className={style.calendar_date}
                     >
-                      <div 
+                      <div
                         className={`
                           ${style.date}
                           ${
-                            getDay(date) === 0 ? style.sunday : '' || 
-                            getDay(date) === 6 ? style.saturday : '' 
+                            getDay(date) === 0 ? style.sunday : '' ||
+                            getDay(date) === 6 ? style.saturday : ''
                           }`
                       }>
                         {getDate(date)}
                       </div>
                       <div className={style.date_amount}>
                         ¥
-                        { 
+                        {
                           spendings
                           // eslint-disable-next-line array-callback-return
                           .filter(val => {

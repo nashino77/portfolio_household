@@ -1,30 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../App';
-
 // calendar
 import format from 'date-fns/format';
-
-
 // component
 import Calendar from './Calendar/Calendar';
 import SpendingList from './SpendingList/SpendingList';
-
 // api
 import { getHousehold, deleteHousehold } from '../../api/household';
 import { getAllSpending } from '../../api/spending';
 import { getSpendingTotal } from '../../api/spending';
-
 // function
 import { useWindowDimensions } from '../../function/window';
 import { getCalendarArray } from '../../function/calendar';
-
 // css
 import style from './Spending.module.scss';
-
 // interface
 import { GetHousehold } from '../../interface';
-
 
 const Spending: React.FC = () => {
   const { currentUser } = useContext(AuthContext);
@@ -35,9 +27,7 @@ const Spending: React.FC = () => {
   const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
   const [amountPlanned, setAmountPlanned] = useState(0);
   const [household, setHousehold] = useState<GetHousehold>();
-
   const balance = amountPlanned - currentTotalAmount;
-
   const calendar  = getCalendarArray(targetDate);
   const width = useWindowDimensions();
 
@@ -49,26 +39,20 @@ const Spending: React.FC = () => {
       if (res?.status !== 200) return;
       setSpendings(res.data);
     } catch (err: any) {
-      console.log('利用履歴一覧取得エラー', err);
+      console.log('情報が取得できていません');
     }
   };
-
   // 利用月別合計金額の合計
   const handleGetSpendingsTotal = async () => {
     if (!currentUser) return;
-
-    const params = {
-      targetDate: targetDate,
-    }
-
+    const params = { targetDate: targetDate };
     try {
       const res = await getSpendingTotal(currentUser.id, Number(urlParams.householdId), params);
       setCurrentTotalAmount(res?.data);
     } catch (err: any) {
-      console.log('利用金額合計', err);
+      console.log('情報が取得できていません');
     };
   };
-
   // 家計簿の詳細取得
   const handleGetHousehold = async () => {
     if (!currentUser) return;
@@ -77,32 +61,28 @@ const Spending: React.FC = () => {
       setHousehold(res?.data);
       setAmountPlanned(res?.data.amountPlanned);
     } catch (err: any) {
-      console.log(err);
+      console.log('情報が取得できていません');
     }
   };
-
   // 家計簿の削除処理
   const handleDeleteHousehold = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-
     const sure = window.confirm('削除してよろしいですか?');
     if(!sure) return;
-
     try {
       if(!currentUser) return;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await deleteHousehold(currentUser.id, Number(urlParams.householdId));
       history.push('/');
     } catch (err: any) {
-      console.log(err);
       alert('削除ができませんでした')
     };
   };
-
   useEffect(() => {
     handleGetHousehold();
     handleGetSpendings();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSpendings]);
-
   useEffect(() => {
     handleGetSpendingsTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -130,13 +110,13 @@ const Spending: React.FC = () => {
       <div className={style.monthbox}>
         <h3 className={style.month}>
           {format(targetDate, 'M月')}:
-          <span 
+          <span
             className={balance >= 0 ? style.balance_blue : style.balance_red }
           >
             ¥{balance}
           </span>
         </h3>
-        {width > 1100 ? ( 
+        {width > 1100 ? (
             <p>
               利用予定: <span className={style.amount_planned}>{household?.amountPlanned}</span>
             </p>
@@ -160,7 +140,7 @@ const Spending: React.FC = () => {
                 使った金額を記録する
               </Link>
             </div>
-            <div 
+            <div
               className={style.household_delete}
               onClick={handleDeleteHousehold}
             >
@@ -182,7 +162,7 @@ const Spending: React.FC = () => {
                 使った金額を記録する
             </Link>
           </div>
-          <div 
+          <div
             className={style.household_delete}
             onClick={handleDeleteHousehold}
           >

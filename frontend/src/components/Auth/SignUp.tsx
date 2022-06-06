@@ -2,66 +2,50 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../App';
-
 // api
 import { signUp } from '../../api/auth';
-
 // interface
 import { SignUpParams } from '../../interface';
-
 // image
 import SignButton from '../../image/sign_button.png';
-
 // css
 import style from './Sign.module.scss';
 
-
-
 const SignUp: React.FC = () => {
   const history = useHistory();
-
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
-
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
-  
+
   // サインアップ用
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     const params: SignUpParams = {
       name: name,
       email: email,
       password: password,
       passwordConfirmation: passwordConfirmation,
     };
-
     try {
       const res = await signUp(params);
-
       if (res.status === 200) {
         // アカウント作成と同時にログイン処理
         Cookies.set("_access_token", res.headers["access-token"]);
         Cookies.set("_client", res.headers["client"]);
         Cookies.set("_uid", res.headers["uid"]);
-
         setIsSignedIn(true);
         setCurrentUser(res.data.data);
-
         history.push("/");
-
         console.log("サインアップしました");
       } else {
         alert('登録ができませんでした');
       };
     } catch (err: any) {
-      console.log(err);
       alert('登録ができませんでした');
     };
   };
-  
 
   return (
     <div className={style.sign}>
@@ -70,7 +54,7 @@ const SignUp: React.FC = () => {
         <form className={style.signform}>
           <div className={style.input}>
             <h3>名前</h3>
-            <input 
+            <input
              name="name"
              required
              type="text"
@@ -81,7 +65,7 @@ const SignUp: React.FC = () => {
           </div>
           <div className={style.input}>
             <h3>メールアドレス</h3>
-            <input 
+            <input
               name="email"
               required
               type="email"
@@ -92,7 +76,7 @@ const SignUp: React.FC = () => {
           </div>
           <div className={style.input}>
             <h3>パスワード</h3>
-            <input 
+            <input
               name="password"
               required
               type="text"
@@ -103,7 +87,7 @@ const SignUp: React.FC = () => {
           </div>
           <div className={style.input}>
             <h3>パスワード(確認)</h3>
-            <input 
+            <input
               name="passwordConfirmation"
               required
               type="text"
@@ -112,14 +96,7 @@ const SignUp: React.FC = () => {
               onChange={e => setPasswordConfirmation(e.target.value)}
             />
           </div>
-          <button
-            disabled={
-              !email || !password
-              ? true
-              : false
-            }
-            onClick={handleSubmit}
-          >
+          <button disabled={ !email || !password ? true : false } onClick={handleSubmit} >
             <img src={SignButton} alt="sign button" />
             新規登録
           </button>
@@ -127,9 +104,7 @@ const SignUp: React.FC = () => {
       </div>
       <div className={style.changebutton}>
         登録していない場合は
-        <Link to="/signin">
-            こちら
-        </Link>
+        <Link to="/signin">こちら</Link>
       </div>
     </div>
   )

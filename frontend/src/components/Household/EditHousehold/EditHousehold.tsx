@@ -1,20 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, Link, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../App';
-
 // api
 import { editHousehold, getHousehold } from '../../../api/household';
-
-// function
-import { useWindowDimensions } from '../../../function/window';
-
 // css
 import style from './EditHousehold.module.scss';
-
 // image
 import MemoMark from '../../../image/nameMark.png';
 import PriceMark from '../../../image/priceMark.png';
-
 // interface
 import { Household } from '../../../interface';
 
@@ -22,40 +15,33 @@ const EditHousehold: React.FC = () => {
   const history = useHistory();
   const { currentUser } = useContext(AuthContext);
   const urlParams = useParams<{householdId: string;}>();
-
   const initialState = {
     name: '',
     amountPlanned: 0,
   };
   const [currentHousehold, setCurrentHousehold] = useState(initialState);
-
   // 入力値の取得
   const handleInputChange = (input: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     setCurrentHousehold({ ...currentHousehold, [input]: target.value});
   };
-
-    // 家計簿の詳細取得
-    const handleGetHousehold = async () => {
-      if (!currentUser) return;
-      try {
-        const res = await getHousehold(currentUser.id, Number(urlParams.householdId));
-        setCurrentHousehold(res?.data);
-      } catch (err: any) {
-        console.log(err);
-      }
-    };
-  
-
+  // 家計簿の詳細取得
+  const handleGetHousehold = async () => {
+    if (!currentUser) return;
+    try {
+      const res = await getHousehold(currentUser.id, Number(urlParams.householdId));
+      setCurrentHousehold(res?.data);
+    } catch (err: any) {
+      console.log("情報が取得できていません");
+    }
+  };
   // 家計簿の編集
   const handleEditHousehold = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     const params: Household ={
       name: currentHousehold.name,
       amountPlanned: currentHousehold.amountPlanned,
     }
-
     if(!currentUser) return;
     try {
       const res = await editHousehold(currentUser.id, Number(urlParams.householdId), params);
@@ -63,11 +49,9 @@ const EditHousehold: React.FC = () => {
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
-      console.log(err);
       alert('登録ができませんでした')
     };
   };
-
   useEffect(() => {
     handleGetHousehold();
   }, [])
@@ -109,12 +93,8 @@ const EditHousehold: React.FC = () => {
             </div>
           </div>
           <div className={style.buttonform}>
-            <button className={style.saveButton} onClick={handleEditHousehold}>
-              保存
-            </button>
-            <Link to='/' className={style.cancelButton}>
-                キャンセル
-            </Link>
+            <button className={style.saveButton} onClick={handleEditHousehold}>保存</button>
+            <Link to='/' className={style.cancelButton}>キャンセル</Link>
           </div>
         </form>
       </div>

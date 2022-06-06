@@ -1,14 +1,11 @@
 import React from 'react';
-
 // date-fns
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getDay from 'date-fns/getDay';
 import { parse } from 'date-fns';
-
 // css
 import style from './SpendingList.module.scss';
-
 // interface
 import { GetSpending } from '../../../interface';
 import { Link } from 'react-router-dom';
@@ -20,14 +17,8 @@ type Props = {
   urlParams: { householdId: string; };
 };
 
-
 const SpendingList: React.FC<Props> = (props) => {
-  const {
-    calendar,
-    spendings,
-    urlParams,
-  } = props;
-
+  const { calendar, spendings, urlParams } = props;
 
   return (
     <div className={style.spending_list}>
@@ -55,8 +46,8 @@ const SpendingList: React.FC<Props> = (props) => {
                           if (usedDate === calendarDate) return val;
                         })
                         .map((spending) => (
-                          <Link 
-                            key={spending.id} 
+                          <Link
+                            key={spending.id}
                             to={`/${Number(urlParams.householdId)}/spendings/${spending.id}`}
                           >
                             <ul  className={style.spending_content}>

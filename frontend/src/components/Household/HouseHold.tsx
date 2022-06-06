@@ -1,21 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../App';
 import { Link } from 'react-router-dom';
-
 // calendar
 import format from 'date-fns/format';
 import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
-
 // api
 import { getAllHousehold, getMonthSpendingTotal } from '../../api/household';
-
 // css
 import style from './HouseHold.module.scss';
-
 // interface
 import { GetSpending } from '../../interface';
-
 // image
 import HouseholdBook from '../../image/householdBook.png';
 
@@ -37,16 +32,13 @@ const HouseHold: React.FC = () => {
     createdAt: new Date(),
     updatedAt: new Date()
   };
-
   const { currentUser } = useContext(AuthContext);
   const [households, setHouseholds] = useState([initialHousehold]);
   const [spendings, setSpendings] = useState([]);
   const [allSpendingTotal, setAllSpendingTotal] = useState(0);
   const [allAmountPlanned, setAllAmountPlanned] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date());
-
-  const balance = allAmountPlanned - allSpendingTotal;
-
+  const balance: number = allAmountPlanned - allSpendingTotal;
   // 家計簿一覧の取得
   const handleGetAllHousehold = async () => {
     if(!currentUser) return;
@@ -56,33 +48,26 @@ const HouseHold: React.FC = () => {
         setHouseholds(res.data);
       };
     } catch (err: any) {
-      console.log(err);
+      console.log("情報が取得できていません");
     }
   };
-
   // 全家計簿の月別利用合計の取得
   const handleGetAllSpendingTotal = async () => {
-    const params = { 
-      targetDate: targetDate,
-    }
-
-    if (!currentUser)return;
+    const params = { targetDate: targetDate }
+    if (!currentUser) return;
     try {
       const res = await getMonthSpendingTotal(currentUser.id, params);
       setAllSpendingTotal(res?.data.total);
       setAllAmountPlanned(res?.data.allAmountPlanned)
       setSpendings(res?.data.allSpending);
     } catch (err: any) {
-      console.log('月別全合計', err);
+      console.log("情報が取得できていません");
     };
   };
-
-
   useEffect(() => {
     handleGetAllHousehold();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   useEffect(() => {
     handleGetAllSpendingTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,19 +81,13 @@ const HouseHold: React.FC = () => {
         <h4 className={style.amount_total}>利用額: <span>-{allSpendingTotal}</span></h4>
       </div>
       <div className={style.monthMove}>
-        <span 
-          onClick={() => setTargetDate(current => subMonths(current, 1))}
-        >
+        <span onClick={() => setTargetDate(current => subMonths(current, 1))}>
           &lsaquo; 前の月
         </span>
-        <span
-          onClick={() => setTargetDate(new Date())}
-        >
+        <span onClick={() => setTargetDate(new Date())}>
           今月
         </span>
-        <span 
-          onClick={() => setTargetDate(current => addMonths(current, 1))}
-        >
+        <span onClick={() => setTargetDate(current => addMonths(current, 1))} >
           次の月 &rsaquo;
         </span>
       </div>
@@ -117,9 +96,7 @@ const HouseHold: React.FC = () => {
             households.map((household: Household) => {
               return (
                 <div key={household.id} className={style.householdBook}>
-                  <div className={style.householdName}>
-                    {household.name}
-                  </div>
+                  <div className={style.householdName}>{household.name}</div>
                   <div>
                     <Link to={`/${household.id}/spendings`}>
                       <img src={HouseholdBook} alt='household book' />
@@ -141,9 +118,7 @@ const HouseHold: React.FC = () => {
         }
       </div>
       <div className={style.button}>
-        <Link to='/addhousehold'>
-              あたらしい家計簿をつくる
-        </Link>
+        <Link to='/addhousehold'>あたらしい家計簿をつくる</Link>
       </div>
     </div>
   )

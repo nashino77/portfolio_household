@@ -5,14 +5,10 @@ import style from './Loading.module.scss';
 
 const Loading:React.FC = () => {
   const history = useHistory();
-  const {
-    loading,
-  } = useContext(AuthContext);
-
+  const { loading } = useContext(AuthContext);
   const redirect = useCallback(() => {
     return history.push('/');
   }, [history])
-
   useEffect(() => {
     if (loading) return;
     redirect();
@@ -22,7 +18,6 @@ const Loading:React.FC = () => {
     <div className={style.loading}>
       <div className={style.spinner}></div>
     </div>
-
   )
 }
 

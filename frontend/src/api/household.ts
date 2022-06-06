@@ -1,14 +1,9 @@
 import Cookies from 'js-cookie';
 import { client } from './client';
-
-
 // url
-import { 
-  householdIndex,
- } from '../urls';
-
+import { householdIndex } from '../urls';
  // interface
- import { Household, TargetDate } from '../interface';
+import { Household, TargetDate } from '../interface';
 
 // 家計簿一覧の取得
 export const getAllHousehold = (id: number) => {
@@ -21,7 +16,6 @@ export const getAllHousehold = (id: number) => {
       },
     });
 };
-
 // 家計簿月別利用金額合計の取得
 export const getMonthSpendingTotal = (id: number, params: TargetDate) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -34,7 +28,6 @@ export const getMonthSpendingTotal = (id: number, params: TargetDate) => {
       },
     });
 };
-
 // 家計簿の追加
 export const createHousehold = (id: number, params: Household) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -49,7 +42,6 @@ export const createHousehold = (id: number, params: Household) => {
     },
   );
 };
-
 // 家計簿詳細の取得
 export const getHousehold = (userId: number, householdId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -61,7 +53,6 @@ export const getHousehold = (userId: number, householdId: number) => {
     },
   })
 };
-
 // 家計簿の編集
 export const editHousehold = (userId: number, householdId: number, params: Household) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -76,7 +67,6 @@ export const editHousehold = (userId: number, householdId: number, params: House
     }
   )
 };
-
 // 家計簿の削除
 export const deleteHousehold = (userId: number, householdId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;

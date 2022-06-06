@@ -1,12 +1,7 @@
 import Cookies from 'js-cookie';
 import { client } from './client';
-
-
 // url
-import { 
-  householdIndex,
- } from '../urls';
-
+import { householdIndex } from '../urls';
  // interface
  import { Spending, TargetDate } from '../interface';
 
@@ -21,7 +16,6 @@ export const getAllSpending = (userId: number, householdId: number) => {
       },
     });
 };
-
 // 利用金額月合計の取得
 export const getSpendingTotal = (userId: number, householdId: number, params: TargetDate) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -34,7 +28,6 @@ export const getSpendingTotal = (userId: number, householdId: number, params: Ta
       },
     });
 };
-
 // 利用履歴の登録
 export const createSpending = (userId: number, householdId: number, params: Spending) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -49,7 +42,6 @@ export const createSpending = (userId: number, householdId: number, params: Spen
     },
   );
 };
-
 // 利用履歴の編集
 export const updateSpending = (userId: number, householdId: number, spendingId: number, params: Spending) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -64,7 +56,6 @@ export const updateSpending = (userId: number, householdId: number, spendingId: 
     },
   );
 };
-
 // 利用履歴詳細の取得
 export const getSpending = (userId: number, householdId: number, spendingId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
@@ -76,7 +67,6 @@ export const getSpending = (userId: number, householdId: number, spendingId: num
       },
     });
 };
-
 // 利用履歴の削除
 export const deleteSpending = (userId: number, householdId: number, spendingId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
