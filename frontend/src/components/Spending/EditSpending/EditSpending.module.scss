@@ -32,7 +32,6 @@
     padding-top: 36px;
     padding-bottom: 48px;
     margin-top: 16px;
-
     @media screen and (min-width: $mb) {
       width: 560px;
       height: 366px;
@@ -131,18 +130,16 @@
       justify-content: space-between;
       width: 246px;
       margin: 0 auto;
-
       @media screen and (min-width: $mb) {
         display: block;
       }
-
       .button_delete {
         width: 96px;
         height: 24px;
         background-color: #fff;
         margin-top: 16px;
         outline: none;
-        border: none;  
+        border: none;
         border-radius: 8px;
         color: black;
         font-size: 12px;
@@ -165,7 +162,7 @@
         background-color: #fff;
         margin-top: 16px;
         outline: none;
-        border: none;  
+        border: none;
         border-radius: 8px;
         color: black;
         font-size: 12px;

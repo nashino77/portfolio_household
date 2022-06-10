@@ -18,7 +18,6 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
-
   // サインアップ用
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -43,6 +42,7 @@ const SignUp: React.FC = () => {
         alert('登録ができませんでした');
       };
     } catch (err: any) {
+      console.log(err);
       alert('登録ができませんでした');
     };
   };
@@ -96,10 +96,11 @@ const SignUp: React.FC = () => {
               onChange={e => setPasswordConfirmation(e.target.value)}
             />
           </div>
-          <button disabled={ !email || !password ? true : false } onClick={handleSubmit} >
-            <img src={SignButton} alt="sign button" />
-            新規登録
-          </button>
+          <button
+            disabled={ !email || !password ? true : false }
+            onClick={handleSubmit}
+          >
+            <img src={SignButton} alt="sign button" />新規登録</button>
         </form>
       </div>
       <div className={style.changebutton}>

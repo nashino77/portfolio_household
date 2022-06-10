@@ -16,7 +16,6 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
-
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const params: SignInParams = {
@@ -38,6 +37,7 @@ const SignIn: React.FC = () => {
       }
     } catch (err: any) {
       alert("サインインできませんでした")
+      console.log(err);
     };
   };
 
@@ -68,7 +68,10 @@ const SignIn: React.FC = () => {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          <button disabled={ !email || !password ? true : false } onClick={handleSubmit} >
+          <button
+            disabled={ !email || !password ? true : false }
+            onClick={handleSubmit}
+          >
             <img src={SignButton} alt="sign button" />
             サインイン
           </button>

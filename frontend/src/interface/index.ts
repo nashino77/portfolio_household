@@ -5,13 +5,11 @@ export interface SignUpParams {
   password: string;
   passwordConfirmation: string;
 };
-
 //サインイン
 export interface SignInParams {
   email: string;
   password: string;
 };
-
 //ユーザー
 export interface User {
   id: number;
@@ -25,13 +23,11 @@ export interface User {
   created_at: Date;
   updated_au: Date;
 };
-
 // 家計簿
 export interface Household {
   name: string;
   amountPlanned: number;
 };
-
 export interface GetHousehold {
     id: number;
     userId: number;
@@ -40,15 +36,12 @@ export interface GetHousehold {
     createdAt: Date;
     updatedAt: Date;
 };
-
-
 // 利用履歴
 export interface Spending {
   memo: string;
   amountUsed: number;
   usedAt: Date | string;
 }
-
 export interface GetSpending {
   amountUsed: number;
   createdAt: Date;
@@ -58,7 +51,6 @@ export interface GetSpending {
   updatedAt: Date;
   usedAt: string;
 };
-
 // 日付データ
 export interface TargetDate {
   targetDate: Date;

@@ -3,7 +3,7 @@ import { client } from './client';
 // url
 import { householdIndex } from '../urls';
  // interface
-import { Household, TargetDate } from '../interface';
+ import { Household, TargetDate } from '../interface';
 
 // 家計簿一覧の取得
 export const getAllHousehold = (id: number) => {
@@ -31,8 +31,8 @@ export const getMonthSpendingTotal = (id: number, params: TargetDate) => {
 // 家計簿の追加
 export const createHousehold = (id: number, params: Household) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
-  return client.post(`${householdIndex(id)}`, 
-    params, 
+  return client.post(`${householdIndex(id)}`,
+    params,
     {
       headers: {
         "access-token": Cookies.get("_access_token") || "",
@@ -45,7 +45,7 @@ export const createHousehold = (id: number, params: Household) => {
 // 家計簿詳細の取得
 export const getHousehold = (userId: number, householdId: number) => {
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
-  return client.get(`${householdIndex(userId)}/${householdId}`,{ 
+  return client.get(`${householdIndex(userId)}/${householdId}`,{
     headers: {
       "access-token": Cookies.get("_access_token") || "",
       "client": Cookies.get("_client") || "",
@@ -58,7 +58,7 @@ export const editHousehold = (userId: number, householdId: number, params: House
   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid") ) return;
   return client.patch(`${householdIndex(userId)}/${householdId}`,
     params,
-    { 
+    {
       headers: {
         "access-token": Cookies.get("_access_token") || "",
         "client": Cookies.get("_client") || "",

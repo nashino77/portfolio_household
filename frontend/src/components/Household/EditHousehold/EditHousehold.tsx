@@ -32,7 +32,7 @@ const EditHousehold: React.FC = () => {
       const res = await getHousehold(currentUser.id, Number(urlParams.householdId));
       setCurrentHousehold(res?.data);
     } catch (err: any) {
-      console.log("情報が取得できていません");
+      console.log(err);
     }
   };
   // 家計簿の編集
@@ -49,11 +49,13 @@ const EditHousehold: React.FC = () => {
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
+      console.log(err);
       alert('登録ができませんでした')
     };
   };
   useEffect(() => {
     handleGetHousehold();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -66,7 +68,7 @@ const EditHousehold: React.FC = () => {
                 <img src={MemoMark} alt='input name' />
                 <h4>名前</h4>
               </div>
-              <input 
+              <input
                 type='text'
                 name='name'
                 required
@@ -81,7 +83,7 @@ const EditHousehold: React.FC = () => {
                 <img src={PriceMark} alt='input reference' />
                 <h4>利用予定額</h4>
               </div>
-              <input 
+              <input
                 type='number'
                 name='plannedAmount'
                 min='0'

@@ -5,7 +5,6 @@ export const useWindowDimensions = () => {
     const { innerWidth: width } = window;
     return width;
   };
-
   const [width, setWidth] = useState(getWindowDimensions());
   useEffect(() => {
     const onResize = () => {

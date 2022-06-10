@@ -38,6 +38,7 @@ const AddHousehold: React.FC = () => {
         history.push('/');
       }
     } catch (err :any) {
+      console.log(err);
       alert('登録ができませんでした')
     };
   };

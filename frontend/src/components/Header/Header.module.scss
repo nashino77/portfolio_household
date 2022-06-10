@@ -8,12 +8,10 @@
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-
   @media screen and (min-width: $mb) {
     height: 88px;
     width: 100%;
   }
-
   h1 {
     margin: 0;
     display: inline-block;
@@ -21,11 +19,9 @@
     font-weight: normal;
     line-height: 56px;
     margin-left: 16px;
-
     &:hover {
       opacity: 0.7;
     }
-
     @media screen and (min-width: $mb) {
       font-size: 40px;
       font-weight: bold;
@@ -33,7 +29,6 @@
       margin-left: 56px;
     }
   }
-  
   .mobilemenu {
     position: absolute;
     width: 32px;
@@ -41,12 +36,10 @@
     line-height: 62px;
     right: 21px;
     z-index: 99;
-
     .crossmark {
       width: 20px;
       height: 20px;
       animation: open 1s forwards;
-    
       @keyframes open {
         from {
           opacity: 0;
@@ -55,30 +48,23 @@
           opacity: 1;
         }
       }
-
-
     }
-
     @media screen and (min-width: $mb) {
       display: none;
     }
   }
-
   .pcmenu {
     display: none;
-
     @media screen and (min-width: $mb) {
       display: block;
       font-size: 24px;
       line-height: 40px;
       margin-right: 56px;
-  
       list-style: none;
       display: flex;
       li:first-child {
         margin-right: 80px;
       }
-
       a:hover {
         opacity: 0.7;
       }
@@ -86,13 +72,11 @@
         opacity: 0.7;
       }
     }
-
     .sign{
       cursor: pointer;
     }
   }
 }
-
 .modalback {
   position: fixed;
   top: 0;

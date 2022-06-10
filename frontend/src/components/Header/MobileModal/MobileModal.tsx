@@ -16,9 +16,9 @@ const MobileModal: React.FC<Props> = (props) => {
   const { modalOpen, setModalOpen } = props;
   const history = useHistory();
   const { isSignedIn, setIsSignedIn } = useContext(AuthContext);
-  // モーダル表示判定
+  // モーダルの表示判定の変更処理
   const handleModal = () => { setModalOpen(!modalOpen); };
-  // サインアウト
+  // サインアウト処理
   const handleSignout = async () => {
     try {
       const res = await signOut();
@@ -34,6 +34,7 @@ const MobileModal: React.FC<Props> = (props) => {
         alert('サインアウトできませんでした')
       }
     } catch (err: any) {
+      console.log(err);
       alert('サインアウトできませんでした')
     };
     setModalOpen(false);
@@ -45,12 +46,7 @@ const MobileModal: React.FC<Props> = (props) => {
         <div className={style.inner}>
           <div className={style.list}>
             { isSignedIn ?
-                <p>
-                  <Link to='/'>
-                    <span onClick={() => setModalOpen(false)}>家計簿を<br />選ぶ</span>
-                  </Link>
-                </p>
-              : ""
+              <p><Link to='/'><span onClick={() => setModalOpen(false)}>家計簿を<br />選ぶ</span> </Link></p> : ""
             }
             { isSignedIn ? <p onClick={handleSignout}>サイン<br />アウト</p> : <p><Link to='/singin'>サイン<br />イン</Link></p> }
           </div>

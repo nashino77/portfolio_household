@@ -38,7 +38,8 @@ const HouseHold: React.FC = () => {
   const [allSpendingTotal, setAllSpendingTotal] = useState(0);
   const [allAmountPlanned, setAllAmountPlanned] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date());
-  const balance: number = allAmountPlanned - allSpendingTotal;
+  // 利用予定額と利用額との差額
+  const balance = allAmountPlanned - allSpendingTotal;
   // 家計簿一覧の取得
   const handleGetAllHousehold = async () => {
     if(!currentUser) return;
@@ -48,20 +49,20 @@ const HouseHold: React.FC = () => {
         setHouseholds(res.data);
       };
     } catch (err: any) {
-      console.log("情報が取得できていません");
+      console.log(err);
     }
   };
   // 全家計簿の月別利用合計の取得
   const handleGetAllSpendingTotal = async () => {
-    const params = { targetDate: targetDate }
-    if (!currentUser) return;
+    const params = { targetDate: targetDate };
+    if (!currentUser)return;
     try {
       const res = await getMonthSpendingTotal(currentUser.id, params);
       setAllSpendingTotal(res?.data.total);
       setAllAmountPlanned(res?.data.allAmountPlanned)
       setSpendings(res?.data.allSpending);
     } catch (err: any) {
-      console.log("情報が取得できていません");
+      console.log('月別全合計', err);
     };
   };
   useEffect(() => {
@@ -87,7 +88,7 @@ const HouseHold: React.FC = () => {
         <span onClick={() => setTargetDate(new Date())}>
           今月
         </span>
-        <span onClick={() => setTargetDate(current => addMonths(current, 1))} >
+        <span onClick={() => setTargetDate(current => addMonths(current, 1))}>
           次の月 &rsaquo;
         </span>
       </div>
@@ -96,7 +97,9 @@ const HouseHold: React.FC = () => {
             households.map((household: Household) => {
               return (
                 <div key={household.id} className={style.householdBook}>
-                  <div className={style.householdName}>{household.name}</div>
+                  <div className={style.householdName}>
+                    {household.name}
+                  </div>
                   <div>
                     <Link to={`/${household.id}/spendings`}>
                       <img src={HouseholdBook} alt='household book' />

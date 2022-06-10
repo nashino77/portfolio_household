@@ -43,6 +43,7 @@ const AddSpending: React.FC = () => {
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
+      console.log('利用履歴登録', err)
       alert('登録ができませんでした')
     };
   };
@@ -98,7 +99,9 @@ const AddSpending: React.FC = () => {
           </div>
           <div className={style.buttonform}>
             <button className={style.saveButton} onClick={handleCreateSpending}>保存</button>
-            <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.cancelButton}>キャンセル</Link>
+            <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.cancelButton}>
+                キャンセル
+            </Link>
           </div>
         </form>
       </div>

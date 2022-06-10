@@ -8,9 +8,9 @@ import { updateSpending, getSpending, deleteSpending } from '../../../api/spendi
 // interface
 import { Spending } from '../../../interface';
 // image
-import MemoMark from '../../../image/nameMark.png';
-import Date from '../../../image/calendar.png';
-import PriceMark from '../../../image/priceMark.png';
+  import MemoMark from '../../../image/nameMark.png';
+  import Date from '../../../image/calendar.png';
+  import PriceMark from '../../../image/priceMark.png';
 
 const EditSpending: React.FC = () => {
   const history = useHistory();
@@ -48,6 +48,7 @@ const EditSpending: React.FC = () => {
         history.push(`/${Number(urlParams.householdId)}/spendings`);
       }
     } catch (err :any) {
+      console.log('利用履歴編集', err);
       alert('登録ができませんでした');
     };
   };
@@ -62,10 +63,9 @@ const EditSpending: React.FC = () => {
       );
       setCurrentSpending(res?.data);
     } catch (err :any) {
-      alert('情報が取得できませんでした');
+      console.log('利用履歴詳細', err)
     };
   };
-
   // 利用履歴の削除
   const handleDeleteSpending = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -73,7 +73,6 @@ const EditSpending: React.FC = () => {
     const sure = window.confirm('削除してよろしいですか?')
     if (!sure) return;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await deleteSpending(
         currentUser.id,
         Number(urlParams.householdId),
@@ -81,6 +80,7 @@ const EditSpending: React.FC = () => {
       );
       history.push(`/${Number(urlParams.householdId)}/spendings`);
     } catch (err: any) {
+      console.log(err);
       alert('削除ができませんでした');
     };
   };
@@ -88,7 +88,6 @@ const EditSpending: React.FC = () => {
     handleGetSpending();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   return (
     <>
@@ -154,12 +153,7 @@ const EditSpending: React.FC = () => {
               >
                 履歴を削除
               </button>
-              <Link
-                to={`/${Number(urlParams.householdId)}/spendings`}
-                className={style.button_cancel}
-              >
-                キャンセル
-              </Link>
+              <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.button_cancel}>キャンセル</Link>
             </div>
           </div>
         </form>

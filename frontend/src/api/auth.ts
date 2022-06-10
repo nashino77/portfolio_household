@@ -6,9 +6,13 @@ import { SignUpParams, SignInParams } from '../interface';
 import { AUTH, signInUser } from '../urls';
 
 // サインアップ
-export const signUp = (params: SignUpParams) => { return client.post(AUTH, params) };
+export const signUp = (params: SignUpParams) => {
+  return client.post(AUTH, params)
+};
 //サインイン
-export const signIn = (params: SignInParams) => { return client.post(`${AUTH}/sign_in`, params); };
+export const signIn = (params: SignInParams) => {
+  return client.post(`${AUTH}/sign_in`, params);
+};
 // サインアウト
 export const signOut = () => {
   return client.delete(`${AUTH}/sign_out`, { 
@@ -30,4 +34,3 @@ export const getCurrentUser = () => {
     },
   });
 };
-

@@ -13,15 +13,10 @@ import MobileMenuCrossButton from '../../image/mobilemenu_crossmark.png';
 
 const Header: React.FC = () => {
   const history = useHistory();
-    const {
-    isSignedIn,
-    setIsSignedIn,
-  } = useContext(AuthContext);
+  const { isSignedIn, setIsSignedIn } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   // モバイル用モーダルの開閉
-  const handleModal = () => {
-    setModalOpen(!modalOpen);
-  };
+  const handleModal = () => { setModalOpen(!modalOpen); };
   // サインアウト
   const handleSignout = async () => {
     try {
@@ -38,6 +33,7 @@ const Header: React.FC = () => {
         alert('サインアウトできませんでした')
       }
     } catch (err: any) {
+      console.log(err);
       alert('サインアウトできませんでした')
     }
   };
@@ -46,7 +42,9 @@ const Header: React.FC = () => {
     <>
       <div className={style.header}>
         <h1>
-          <Link to='/'>わたしの家計簿</Link>
+          <Link to='/'>
+            わたしの家計簿
+          </Link>
         </h1>
         <div className={style.mobilemenu}>
           <img
@@ -58,7 +56,9 @@ const Header: React.FC = () => {
         </div>
         <ul className={style.pcmenu}>
           { isSignedIn  ? <li ><Link to='/'>家計簿を選ぶ</Link></li> : "" }
-          <li className={style.sign}>{ isSignedIn ? <span onClick={handleSignout}>サインアウト</span> : <Link to='/signin'>サインイン</Link>}</li>
+          <li className={style.sign}>
+            { isSignedIn ? <span onClick={handleSignout}>サインアウト</span> : <Link to='/signin'>サインイン</Link>}
+          </li>
         </ul>
       </div>
       <MobileModal modalOpen={modalOpen} setModalOpen={setModalOpen} />

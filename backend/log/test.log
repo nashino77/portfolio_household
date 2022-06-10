@@ -22964,3 +22964,959 @@ Processing by Api::V1::SpendingsController#destroy as HTML
   [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1682], ["LIMIT", 1]]
 Completed 204 No Content in 2ms (ActiveRecord: 0.3ms | Allocations: 1484)
   [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (9.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (15.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001345ce8f8>_tommye_runolfsdottir@blick-hermann.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (18.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001345ce8f8>_tommye_runolfsdottir@blick-hermann.info"], ["encrypted_password", "$2a$04$g1i1IwuqLHe5Vf293qXEzONkq8gxOoXURa5UbetOAE/IdYSshCidS"], ["name", "近藤 美緒"], ["email", "#<#<class:0x00000001345cf460>:0x00000001345ce8f8>_tommye_runolfsdottir@blick-hermann.info"], ["created_at", "2022-06-10 00:57:55.458617"], ["updated_at", "2022-06-10 00:57:55.458617"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (17.8ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1683], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:55.512381"], ["updated_at", "2022-06-10 00:57:55.512381"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113971828>_bryanna@blanda.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113971828>_bryanna@blanda.co"], ["encrypted_password", "$2a$04$HOgzZvL2pVbw.KPn0NklSO0QE1UYSkMxipSlaifKTwhtpn..5fu/G"], ["name", "石田 翔太"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113971828>_bryanna@blanda.co"], ["created_at", "2022-06-10 00:57:55.684628"], ["updated_at", "2022-06-10 00:57:55.684628"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001349f7128>_rufus.koch@lowe.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001349f7128>_rufus.koch@lowe.name"], ["encrypted_password", "$2a$04$.CZGOqotouN0Zq8g5t0D9ObnUybjPPfhW0Oi5RPnZItJnAuZJqtTG"], ["name", "竹内 陽斗"], ["email", "#<#<class:0x00000001345cf460>:0x00000001349f7128>_rufus.koch@lowe.name"], ["created_at", "2022-06-10 00:57:55.711942"], ["updated_at", "2022-06-10 00:57:55.711942"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001349ffcb0>_katrina@renner.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001349ffcb0>_katrina@renner.org"], ["encrypted_password", "$2a$04$5xWleaEya2pyG/mUR86uqOgGU47e0RQZl.KIsni6ZLGAyOVkrRjOq"], ["name", "近藤 結"], ["email", "#<#<class:0x00000001345cf460>:0x00000001349ffcb0>_katrina@renner.org"], ["created_at", "2022-06-10 00:57:55.724142"], ["updated_at", "2022-06-10 00:57:55.724142"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113a1a630>_luke.legros@harris-weber.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113a1a630>_luke.legros@harris-weber.io"], ["encrypted_password", "$2a$04$mkasHGyqVgIT.dvhHL9PoOlEeDC3u3/yKLu6XPkpg36OyiZz5x7E."], ["name", "野村 楓"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113a1a630>_luke.legros@harris-weber.io"], ["created_at", "2022-06-10 00:57:55.734634"], ["updated_at", "2022-06-10 00:57:55.734634"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1687], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:55.735512"], ["updated_at", "2022-06-10 00:57:55.735512"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (19.5ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 460], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:57:55.743676"], ["updated_at", "2022-06-10 00:57:55.743676"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113abb878>_jerold@ohara-walker.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113abb878>_jerold@ohara-walker.info"], ["encrypted_password", "$2a$04$KLATWAv12q3i2x2g12owSOsFPBiq/bumdT5YNd.ivkuQMWoxZsQDq"], ["name", "渡辺 千尋"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113abb878>_jerold@ohara-walker.info"], ["created_at", "2022-06-10 00:57:55.772684"], ["updated_at", "2022-06-10 00:57:55.772684"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1688], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:55.773575"], ["updated_at", "2022-06-10 00:57:55.773575"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113ae8fa8>_lee_labadie@rohan.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113ae8fa8>_lee_labadie@rohan.io"], ["encrypted_password", "$2a$04$UFGrJ6DHjF.D7cjnmBcNcOGp4VODQnP1ouPRmE6Za93G8rejxlrgO"], ["name", "山本 駿"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113ae8fa8>_lee_labadie@rohan.io"], ["created_at", "2022-06-10 00:57:55.782388"], ["updated_at", "2022-06-10 00:57:55.782388"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1689], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:55.783009"], ["updated_at", "2022-06-10 00:57:55.783009"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113b3b3e8>_wiley@kuphal.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113b3b3e8>_wiley@kuphal.biz"], ["encrypted_password", "$2a$04$aAKokGVh1BEMd5OnQ6dOietQtYYXPiEnfzMc4nbKbhk3kHe5c0Vzu"], ["name", "谷口 真央"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113b3b3e8>_wiley@kuphal.biz"], ["created_at", "2022-06-10 00:57:55.791179"], ["updated_at", "2022-06-10 00:57:55.791179"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1690], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:55.791751"], ["updated_at", "2022-06-10 00:57:55.791751"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113b6b610>_floria@connelly-feeney.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113b6b610>_floria@connelly-feeney.name"], ["encrypted_password", "$2a$04$5l/llvajEshjUQRq2wdCve17c6E3AKJEHIhFZ7eBfPMbunZ62mM9y"], ["name", "加藤 恵"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113b6b610>_floria@connelly-feeney.name"], ["created_at", "2022-06-10 00:57:55.799460"], ["updated_at", "2022-06-10 00:57:55.799460"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113bb1b88>_glinda_parker@schaefer.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113bd1000>_phillis@rogahn.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113bd1000>_phillis@rogahn.co"], ["encrypted_password", "$2a$04$ZkIbM635h/zIuH2MxVfQnOk7PoTCMuhzkBIdie/b.fkulFUgCIO0a"], ["name", "村上 美優"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113bd1000>_phillis@rogahn.co"], ["created_at", "2022-06-10 00:57:55.815189"], ["updated_at", "2022-06-10 00:57:55.815189"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113bd1000>_phillis@rogahn.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-06-10 09:57:55 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"阿部 輝", "email"=>"#<#<Class:0x00000001345cf460>:0x0000000134a45e68>_lance@huels.org", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134a45e68>_lance@huels.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134a45e68>_lance@huels.org"], ["encrypted_password", "$2a$04$MYqC3d4WurmBqLFD0bSu/eCt1z/KS/IdyZEidfB6gS/FmGDf9rUou"], ["name", "阿部 輝"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134a45e68>_lance@huels.org"], ["created_at", "2022-06-10 00:57:55.933646"], ["updated_at", "2022-06-10 00:57:55.933646"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"sj8pTWzrbpPvfmn0_l4FAQ\":{\"token\":\"$2a$04$z9X1YV6ZhZHqFKkJxPFVQOML6DJqRG5ZFz5elzOMhCR7FXUoYQUma\",\"expiry\":1656032275}}"], ["updated_at", "2022-06-10 00:57:55.936959"], ["id", 1693]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1693], ["LIMIT", 1]]
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 3638)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-06-10 09:57:55 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"杉山 杏", "email"=>"#<#<Class:0x00000001345cf460>:0x0000000113d699d0>_odelia_hodkiewicz@waters-jacobson.name", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113d699d0>_odelia_hodkiewicz@waters-jacobson.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113dca690>_florentino.oreilly@wintheiser.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113dca690>_florentino.oreilly@wintheiser.net"], ["encrypted_password", "$2a$04$XTfJFdHCv0amu1AjXLHyw.5hZ32RJKSCKQs3T0RTKWE1pUj3u9yje"], ["name", "宮崎 航"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113dca690>_florentino.oreilly@wintheiser.net"], ["created_at", "2022-06-10 00:57:55.976495"], ["updated_at", "2022-06-10 00:57:55.976495"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:55 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000113dca690>_florentino.oreilly@wintheiser.net", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113dca690>_florentino.oreilly@wintheiser.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"zH6001Bf5q4MnnFsnXDFAg\":{\"token\":\"$2a$04$ragSxCEqMaxlTTdks76ovO5nW3EPDdZ/EaSZy1qQ/sB4QTEyfVbvi\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.002450"], ["id", 1694]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1694], ["LIMIT", 1]]
+Completed 200 OK in 14ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 2380)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113e23560>_tad@schoen.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113e23560>_tad@schoen.com"], ["encrypted_password", "$2a$04$J7BKQ5FvkQGxZnTyW31tAuAJ5uoGQGCTGU2ZF6AqOp7kP3JBSe6K6"], ["name", "井上 蓮"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113e23560>_tad@schoen.com"], ["created_at", "2022-06-10 00:57:56.014297"], ["updated_at", "2022-06-10 00:57:56.014297"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "test@example.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 532)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113e6bd88>_aaron_spinka@collins-wunsch.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113e6bd88>_aaron_spinka@collins-wunsch.info"], ["encrypted_password", "$2a$04$.pmDtnngocGjtYgmYfhJZ.IymMaZKoNL30DygNNoIW6vUnjV7v/9O"], ["name", "伊藤 真央"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113e6bd88>_aaron_spinka@collins-wunsch.info"], ["created_at", "2022-06-10 00:57:56.031372"], ["updated_at", "2022-06-10 00:57:56.031372"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000113e6bd88>_aaron_spinka@collins-wunsch.info", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113e6bd88>_aaron_spinka@collins-wunsch.info"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 692)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113eb9970>_isobel@hand-wilderman.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113eb9970>_isobel@hand-wilderman.biz"], ["encrypted_password", "$2a$04$ims/TlVkfZ5K4IAE96k6mewtoYaqKxrREXINhYa0lcH.Xl3MctW/i"], ["name", "今井 悠"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113eb9970>_isobel@hand-wilderman.biz"], ["created_at", "2022-06-10 00:57:56.048788"], ["updated_at", "2022-06-10 00:57:56.048788"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"KNmAHIl1hiaEwEFLOwpPMw\":{\"token\":\"$2a$04$74y/wWCAI3QTTL2O45ZDZu/cX0u2Uqngv4s/VTtCZvhwsj4WIdGXa\",\"expiry\":1656032276,\"updated_at\":\"2022-06-10T00:57:56Z\"}}"], ["updated_at", "2022-06-10 00:57:56.050656"], ["id", 1697]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/api/v1/auth/sign_out" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113eb9970>_isobel@hand-wilderman.biz"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", nil], ["updated_at", "2022-06-10 00:57:56.061543"], ["id", 1697]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1409)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1697], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co"], ["encrypted_password", "$2a$04$N7OOMeCT.R/0b0GOmria..LGN.Ayx5.2HpV.3lyBb1Hau.V2X.1Lq"], ["name", "竹内 葵"], ["email", "#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co"], ["created_at", "2022-06-10 00:57:56.074108"], ["updated_at", "2022-06-10 00:57:56.074108"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"My90w9ZWUg0-vmEINJ2xYg\":{\"token\":\"$2a$04$/1p1K//FVzRA2iwxbaNyzO5ASMVLff1bStn2cKLg8redLwbGRJeRm\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.086475"], ["id", 1698]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1698], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1927)
+Started GET "/api/v1/users/1698/households" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#index as HTML
+  Parameters: {"user_id"=>"1698"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000113f223f8>_enedina_welch@hickle.co"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.5ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 ORDER BY "households"."created_at" ASC[0m  [["user_id", 1698]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1698], ["LIMIT", 1]]
+Completed 200 OK in 42ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 2442)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co"], ["encrypted_password", "$2a$04$RMW9rxYDPAFKZ8KszMomeOhSozdbMN24kecOXNagcepSNpkJS9cG6"], ["name", "増田 愛"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co"], ["created_at", "2022-06-10 00:57:56.147421"], ["updated_at", "2022-06-10 00:57:56.147421"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"raQ3B5FpA5qIgdawy-6C1A\":{\"token\":\"$2a$04$DPZE7tUais0sAv7BpOyvRuTKTnwAloMjy.l.QO8.tszT1eHluz8re\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.160196"], ["id", 1699]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1699], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1927)
+Started GET "/api/v1/users/1699/households/total?target_date=2022-06-10+09%3A57%3A56+%2B0900" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#index_total as HTML
+  Parameters: {"target_date"=>"2022-06-10 09:57:56 +0900", "user_id"=>"1699"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134b0dfa8>_kevin@king-runte.co"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM("households"."amount_planned") FROM "households" WHERE "households"."user_id" = $1[0m  [["user_id", 1699]]
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT SUM("spendings"."amount_used") FROM "spendings" INNER JOIN "households" ON "spendings"."household_id" = "households"."id" WHERE "households"."user_id" = $1 AND "spendings"."used_at" BETWEEN $2 AND $3[0m  [["user_id", 1699], ["used_at", "2022-06-01"], ["used_at", "2022-06-30"]]
+  [1m[36mSpending Load (0.1ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" INNER JOIN "households" ON "spendings"."household_id" = "households"."id" WHERE "households"."user_id" = $1 AND "spendings"."used_at" BETWEEN $2 AND $3[0m  [["user_id", 1699], ["used_at", "2022-06-01"], ["used_at", "2022-06-30"]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1699], ["LIMIT", 1]]
+Completed 200 OK in 45ms (Views: 0.4ms | ActiveRecord: 6.3ms | Allocations: 3552)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info"], ["encrypted_password", "$2a$04$s0/piIQRzDJ.wmhR2MB1jua2VVRI91c1NhS2Cx7MU2gY1NreasMSq"], ["name", "菅原 裕子"], ["email", "#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info"], ["created_at", "2022-06-10 00:57:56.223414"], ["updated_at", "2022-06-10 00:57:56.223414"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"KJeHO4iGD_RplN19Nq20LQ\":{\"token\":\"$2a$04$10whg3U.GrtZw0dxx753PeK32nifDUYVrZaKKCSUQQs8Ym.CD6Hse\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.237357"], ["id", 1700]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1700], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1927)
+Started POST "/api/v1/users/1700/households" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#create as HTML
+  Parameters: {"household"=>{"name"=>"test", "amount_planned"=>"10000"}, "user_id"=>"1700"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001140a7ae8>_florinda.lehner@hickle.info"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1700], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.249238"], ["updated_at", "2022-06-10 00:57:56.249238"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1700], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1836)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net"], ["encrypted_password", "$2a$04$eAezcQ9HYH6kpfiJviTDFebmNpfENZBwTD08yfduOjKWXB3raxJ0C"], ["name", "松尾 陽"], ["email", "#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net"], ["created_at", "2022-06-10 00:57:56.256943"], ["updated_at", "2022-06-10 00:57:56.256943"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1701], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.257539"], ["updated_at", "2022-06-10 00:57:56.257539"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"903t3cPryp0UX_4Le3c7aA\":{\"token\":\"$2a$04$npBt/G7tW9gITnahv0Ej2Ox86KUt0UreFrRBU8bCfoxg1ZrcA3imW\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.270087"], ["id", 1701]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1701], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1701/households/465" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#show as HTML
+  Parameters: {"user_id"=>"1701", "id"=>"465"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001438193b0>_wayne_mitchell@prosacco.net"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1701], ["id", 465], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1701], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1160)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org"], ["encrypted_password", "$2a$04$Uhm1DZ9rCbefSgbX1h/7p.LtUbrDgPAO5h345fgt9P4a39MhkIewm"], ["name", "上田 智子"], ["email", "#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org"], ["created_at", "2022-06-10 00:57:56.287938"], ["updated_at", "2022-06-10 00:57:56.287938"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1702], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.288500"], ["updated_at", "2022-06-10 00:57:56.288500"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Vt7GLgEC6hrJwlPGmx0j_A\":{\"token\":\"$2a$04$i8XBoPVTiAZ02q/ykBn4zu9ZFpNDzJsgz1olucQfmBq/3EwvDpNf2\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.300899"], ["id", 1702]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1702], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started PATCH "/api/v1/users/1702/households/466" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#update as HTML
+  Parameters: {"household"=>{"name"=>"test", "amount_planned"=>"10000"}, "name"=>"test", "amount_planned"=>"500", "user_id"=>"1702", "id"=>"466"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001141ee078>_terese.kunze@koss.org"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1702], ["id", 466], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1702], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1439)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name"], ["encrypted_password", "$2a$04$Qw5RgmMbnD0UfjPqheXNB.5JKNJtlqFnCwquaQ2iGweptiDIDL8BC"], ["name", "小島 杏"], ["email", "#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name"], ["created_at", "2022-06-10 00:57:56.319419"], ["updated_at", "2022-06-10 00:57:56.319419"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1703], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.319929"], ["updated_at", "2022-06-10 00:57:56.319929"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"WMwS2nHv5Xhv6TiQBuWArA\":{\"token\":\"$2a$04$XqvxNkYvEPKtRUOxTJXOh.gUGpb0nZFcjNmySCayt2CmGmVcLBH2S\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.331829"], ["id", 1703]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1703], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started DELETE "/api/v1/users/1703/households/467" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::HouseholdsController#destroy as HTML
+  Parameters: {"user_id"=>"1703", "id"=>"467"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001142841e0>_brooks@little-jerde.name"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1703], ["id", 467], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1[0m  [["household_id", 467]]
+  [1m[36mHousehold Destroy (0.1ms)[0m  [1m[31mDELETE FROM "households" WHERE "households"."id" = $1[0m  [["id", 467]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1703], ["LIMIT", 1]]
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 1671)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134b96510>_colby.hilpert@mitchell.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134b96510>_colby.hilpert@mitchell.co"], ["encrypted_password", "$2a$04$Z91o/9ikTxdG1V0mi/4FGebytm.9rZmH6SiFKJUV7WcKzJeROvjYm"], ["name", "新井 彩花"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134b96510>_colby.hilpert@mitchell.co"], ["created_at", "2022-06-10 00:57:56.350592"], ["updated_at", "2022-06-10 00:57:56.350592"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1704], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.351174"], ["updated_at", "2022-06-10 00:57:56.351174"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134b96510>_colby.hilpert@mitchell.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134b96510>_colby.hilpert@mitchell.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"09FsDbifg5yb1h_2ZHEifw\":{\"token\":\"$2a$04$GqXFD3eXN9v2wI7z100qbONCIL75GrFgN8SmRm7qtTTxgMiISJi2S\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.363288"], ["id", 1704]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1704], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1704/households/468/spendings" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#index as HTML
+  Parameters: {"user_id"=>"1704", "household_id"=>"468"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 3997)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bb70f8>_cletus.blick@greenholt.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134bb70f8>_cletus.blick@greenholt.co"], ["encrypted_password", "$2a$04$13ZWOsb9hx9NV9TVeSWJC.ZhmU1/nSP..dALPcWvxOpxypSkIxJjm"], ["name", "小川 一輝"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134bb70f8>_cletus.blick@greenholt.co"], ["created_at", "2022-06-10 00:57:56.390549"], ["updated_at", "2022-06-10 00:57:56.390549"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1705], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.391133"], ["updated_at", "2022-06-10 00:57:56.391133"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134bb70f8>_cletus.blick@greenholt.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bb70f8>_cletus.blick@greenholt.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"f6XQ1Hq_SgmFa8kkt7fxoA\":{\"token\":\"$2a$04$TNZE5jmBygqMP0o13tIkW.iPfyMe6KxJAeuSOZAy63kuQPt/jdWna\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.403134"], ["id", 1705]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1705], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1705/households/469/spendings/total?target_date=2022-06-10+09%3A57%3A56+%2B0900" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#index_total as HTML
+  Parameters: {"target_date"=>"2022-06-10 09:57:56 +0900", "user_id"=>"1705", "household_id"=>"469"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 3855)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bbfdc0>_giovanni@hansen.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134bbfdc0>_giovanni@hansen.com"], ["encrypted_password", "$2a$04$LSO3nFqNMHAvJFSZqYboaeJ/PhTssvst.BIjnKylgY//UpvCOZXRe"], ["name", "柴田 未来"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134bbfdc0>_giovanni@hansen.com"], ["created_at", "2022-06-10 00:57:56.428135"], ["updated_at", "2022-06-10 00:57:56.428135"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1706], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.428728"], ["updated_at", "2022-06-10 00:57:56.428728"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134bbfdc0>_giovanni@hansen.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bbfdc0>_giovanni@hansen.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"DgaddSKyhNGjQKtOCEuV9g\":{\"token\":\"$2a$04$C0HtjB2qUqdloex28q8GiuD8ZLDIenz/Aqin3oEkcXyHu513NHzoG\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.441105"], ["id", 1706]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1706], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started POST "/api/v1/users/1706/households/470/spendings" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#create as HTML
+  Parameters: {"spending"=>{"used_at"=>"Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", "amount_used"=>"500", "memo"=>"test1"}, "user_id"=>"1706", "household_id"=>"470"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 3931)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io"], ["encrypted_password", "$2a$04$BG/LHQLTCVMVr0C4HnLkl.HWakzdXqUkjkHKWLCvW/1q7AgoDVkIq"], ["name", "村田 大地"], ["email", "#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io"], ["created_at", "2022-06-10 00:57:56.465842"], ["updated_at", "2022-06-10 00:57:56.465842"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1707], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.466443"], ["updated_at", "2022-06-10 00:57:56.466443"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 471], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:57:56.466953"], ["updated_at", "2022-06-10 00:57:56.466953"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"UYbc8HAGxKGCrB1-qdyWZg\":{\"token\":\"$2a$04$HfnpQJkA62Mdu25wlNIKo.srg98jqx/BEb3dPp80GgYkIKTQN1fFK\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.479330"], ["id", 1707]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1707], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1707/households/471/spendings/107" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#show as HTML
+  Parameters: {"user_id"=>"1707", "household_id"=>"471", "id"=>"107"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x00000001145f2700>_erick_schaden@trantow.io"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1707], ["id", 471], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 471], ["id", 107], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1707], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1566)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io"], ["encrypted_password", "$2a$04$/jGRz3TWGZLVOyevVH8d2./aeaDjjkq2x/Vdi/o7F304iNiirjRHu"], ["name", "山本 健太"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io"], ["created_at", "2022-06-10 00:57:56.497074"], ["updated_at", "2022-06-10 00:57:56.497074"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1708], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.497666"], ["updated_at", "2022-06-10 00:57:56.497666"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 472], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:57:56.498154"], ["updated_at", "2022-06-10 00:57:56.498154"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"QI-3nPvfIu-GqRR54F0AJA\":{\"token\":\"$2a$04$KFGaSLukj7P973osaRE07eUf.fQsjx12P7Ytpje/cIZNr74Jg0hOO\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.510459"], ["id", 1708]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1708], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started PATCH "/api/v1/users/1708/households/472/spendings/108" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#update as HTML
+  Parameters: {"spending"=>{"used_at"=>"Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", "amount_used"=>"500", "memo"=>"test1"}, "memo"=>"test", "amount_used"=>"500", "user_id"=>"1708", "household_id"=>"472", "id"=>"108"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134bd78f8>_eartha_kilback@balistreri.io"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1708], ["id", 472], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 472], ["id", 108], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1708], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1845)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io"], ["encrypted_password", "$2a$04$yMw.ER7Tb5YZeeSxeaqusufXgn47bwsvkThWaa..xozrzvuNg6BYq"], ["name", "石井 翼"], ["email", "#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io"], ["created_at", "2022-06-10 00:57:56.529450"], ["updated_at", "2022-06-10 00:57:56.529450"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1709], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:57:56.529978"], ["updated_at", "2022-06-10 00:57:56.529978"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 473], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:57:56.530446"], ["updated_at", "2022-06-10 00:57:56.530446"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"kId3_fqlgO2NnuOXO7bjtw\":{\"token\":\"$2a$04$mBi/UMUnYPYss9NlHe9kJOpXewXP9c0OgDierwnuZgp/pDVgB2e7q\",\"expiry\":1656032276}}"], ["updated_at", "2022-06-10 00:57:56.542409"], ["id", 1709]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1709], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started DELETE "/api/v1/users/1709/households/473/spendings/109" for 127.0.0.1 at 2022-06-10 09:57:56 +0900
+Processing by Api::V1::SpendingsController#destroy as HTML
+  Parameters: {"user_id"=>"1709", "household_id"=>"473", "id"=>"109"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x00000001345cf460>:0x0000000134c0dbb0>_alisa.halvorson@lind.io"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.0ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1709], ["id", 473], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 473], ["id", 109], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Destroy (0.0ms)[0m  [1m[31mDELETE FROM "spendings" WHERE "spendings"."id" = $1[0m  [["id", 109]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1709], ["LIMIT", 1]]
+Completed 204 No Content in 2ms (ActiveRecord: 0.3ms | Allocations: 1484)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000144d16510>_charley.batz@balistreri.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000144d16510>_charley.batz@balistreri.co"], ["encrypted_password", "$2a$04$v03nQEX8MUyiWRh56ZE6zOIbzUWFBiVs.GHL.5p/.yaEVjKw0AqDO"], ["name", "藤原 太郎"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000144d16510>_charley.batz@balistreri.co"], ["created_at", "2022-06-10 00:59:10.210321"], ["updated_at", "2022-06-10 00:59:10.210321"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.4ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1710], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.216106"], ["updated_at", "2022-06-10 00:59:10.216106"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013473d928>_loree@blick-steuber.co"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013473d928>_loree@blick-steuber.co"], ["encrypted_password", "$2a$04$5xkiMdKPY/qHxoB8sNT8oONKC4eUpMsIvZ8hx/xEzuofAVGdwCzmK"], ["name", "石川 明日香"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013473d928>_loree@blick-steuber.co"], ["created_at", "2022-06-10 00:59:10.232548"], ["updated_at", "2022-06-10 00:59:10.232548"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134747270>_bok_buckridge@nader.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134747270>_bok_buckridge@nader.info"], ["encrypted_password", "$2a$04$fKKbDXYtPIE7MYdvBhbcsuf.yHx4e7F5TY2BEP/viDVcLpYgQk0HW"], ["name", "小林 芽衣"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000134747270>_bok_buckridge@nader.info"], ["created_at", "2022-06-10 00:59:10.239678"], ["updated_at", "2022-06-10 00:59:10.239678"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013474c720>_ellan_hilll@dubuque-brekke.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013474c720>_ellan_hilll@dubuque-brekke.net"], ["encrypted_password", "$2a$04$clze3N8qCQhiKC7JrwMoju0HHpjq3jRGz9iEGfZbhk1dKvF/Z5CkC"], ["name", "大野 悠"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013474c720>_ellan_hilll@dubuque-brekke.net"], ["created_at", "2022-06-10 00:59:10.245614"], ["updated_at", "2022-06-10 00:59:10.245614"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000133f7b690>_herschel@zieme.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000133f7b690>_herschel@zieme.io"], ["encrypted_password", "$2a$04$tKLGWniYlj051qwPRx3r3u.eehXURD8RnBvZsNqV2VtS3k7WbM9uq"], ["name", "太田 優斗"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000133f7b690>_herschel@zieme.io"], ["created_at", "2022-06-10 00:59:10.250880"], ["updated_at", "2022-06-10 00:59:10.250880"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1714], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.251332"], ["updated_at", "2022-06-10 00:59:10.251332"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.6ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 475], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:59:10.255275"], ["updated_at", "2022-06-10 00:59:10.255275"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134814a68>_edgardo_feeney@jaskolski.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134814a68>_edgardo_feeney@jaskolski.com"], ["encrypted_password", "$2a$04$gq8iMKRotrnCYZ0mzSiUw.wTW/KSGy1HdmFXhADDrNGGZCHCPmEgW"], ["name", "山本 愛美"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000134814a68>_edgardo_feeney@jaskolski.com"], ["created_at", "2022-06-10 00:59:10.261625"], ["updated_at", "2022-06-10 00:59:10.261625"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1715], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.262180"], ["updated_at", "2022-06-10 00:59:10.262180"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001438121c8>_krista_littel@schuppe.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001438121c8>_krista_littel@schuppe.info"], ["encrypted_password", "$2a$04$bdCNUUuj8a5a/hBtYSYdTu9heYK2L5Fq5IAlllHNOqs5ieI.AXCOe"], ["name", "福田 太一"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001438121c8>_krista_littel@schuppe.info"], ["created_at", "2022-06-10 00:59:10.268587"], ["updated_at", "2022-06-10 00:59:10.268587"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1716], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.269081"], ["updated_at", "2022-06-10 00:59:10.269081"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013489c5d0>_ellis_schneider@kerluke-ullrich.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013489c5d0>_ellis_schneider@kerluke-ullrich.io"], ["encrypted_password", "$2a$04$DTTL10pZJk12kJLpLyJYUeOzX5Uq/RggZ6Aypyh0s.a5CNwd4WHSq"], ["name", "金子 杏"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013489c5d0>_ellis_schneider@kerluke-ullrich.io"], ["created_at", "2022-06-10 00:59:10.276007"], ["updated_at", "2022-06-10 00:59:10.276007"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1717], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.276470"], ["updated_at", "2022-06-10 00:59:10.276470"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001348e4538>_maia_keeling@pfeffer-reichert.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001348e4538>_maia_keeling@pfeffer-reichert.com"], ["encrypted_password", "$2a$04$3eqrQgSAtRfUzc2a0p7rzeTmxfMvWfb0.cV2gB3daE30qPNaOH.tu"], ["name", "山口 優花"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001348e4538>_maia_keeling@pfeffer-reichert.com"], ["created_at", "2022-06-10 00:59:10.283371"], ["updated_at", "2022-06-10 00:59:10.283371"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134936900>_sung@davis.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013495e6a8>_randy.jones@green.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013495e6a8>_randy.jones@green.net"], ["encrypted_password", "$2a$04$WTf7GVPo.uM3/GJhf2cki.RF0wGPtd.jC9DDjqiGTll3bwG/tT0Ea"], ["name", "久保 蒼"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013495e6a8>_randy.jones@green.net"], ["created_at", "2022-06-10 00:59:10.298363"], ["updated_at", "2022-06-10 00:59:10.298363"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013495e6a8>_randy.jones@green.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"千葉 蒼", "email"=>"#<#<Class:0x0000000144d16f38>:0x00000001349ab458>_pat@hudson-hirthe.biz", "password"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001349ab458>_pat@hudson-hirthe.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001349ab458>_pat@hudson-hirthe.biz"], ["encrypted_password", "$2a$04$EZuJr2TMSvm0Ztdgc1fqfu0gAzmWJLED9QC0yo9W660gt.z00HgjS"], ["name", "千葉 蒼"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001349ab458>_pat@hudson-hirthe.biz"], ["created_at", "2022-06-10 00:59:10.334372"], ["updated_at", "2022-06-10 00:59:10.334372"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"2hIewlp-aHeZe3lIzuoW3Q\":{\"token\":\"$2a$04$4KsvWEO6NxcCnDFhBmWr6.QYQTHvAltTEI1rQQ/RgsqSmV6nlF5xu\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.336382"], ["id", 1720]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1720], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3637)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/api/v1/auth" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"原 茜", "email"=>"#<#<Class:0x0000000144d16f38>:0x000000013477f3c8>_karl.swaniawski@huel.net", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013477f3c8>_karl.swaniawski@huel.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2045)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134b8bc28>_newton@dubuque.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134b8bc28>_newton@dubuque.org"], ["encrypted_password", "$2a$04$QGlMUyusZF0EJh1p1CJpuOwXEie46peDMATze8C1Rzty5htkfb41C"], ["name", "清水 悠斗"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000134b8bc28>_newton@dubuque.org"], ["created_at", "2022-06-10 00:59:10.361935"], ["updated_at", "2022-06-10 00:59:10.361935"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000134b8bc28>_newton@dubuque.org", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134b8bc28>_newton@dubuque.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"0Is2q4FSNML8ocNxhPS6ZQ\":{\"token\":\"$2a$04$14tnsY179D1gNfDKC7xODOloaaKcUAzZvd85m3KRQAz4e7kUgJwCK\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.376159"], ["id", 1721]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1721], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2380)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013479cd60>_daniel@kling.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013479cd60>_daniel@kling.io"], ["encrypted_password", "$2a$04$tjNczDxSU5CVhixtsCoPOOwR.W0JBkYXi6ORE5m.z0MFCv0Vknp2."], ["name", "藤原 亮太"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013479cd60>_daniel@kling.io"], ["created_at", "2022-06-10 00:59:10.383787"], ["updated_at", "2022-06-10 00:59:10.383787"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "test@example.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 532)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134c50d70>_kortney@donnelly.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134c50d70>_kortney@donnelly.com"], ["encrypted_password", "$2a$04$dQJcSaQJxYzMPFHdmnQl.e0..eNkCh5B51dTLIOakBX34x2UZYAKW"], ["name", "藤田 美咲"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000134c50d70>_kortney@donnelly.com"], ["created_at", "2022-06-10 00:59:10.398962"], ["updated_at", "2022-06-10 00:59:10.398962"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000134c50d70>_kortney@donnelly.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134c50d70>_kortney@donnelly.com"], ["provider", "email"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 692)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001347b6328>_wendell_mcdermott@hansen.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347b6328>_wendell_mcdermott@hansen.net"], ["encrypted_password", "$2a$04$WO8dOEhn5tbjNSxZnehbCu465DWHwVmVK8R7jgIVCPYy/3N3rR.I6"], ["name", "前田 光"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001347b6328>_wendell_mcdermott@hansen.net"], ["created_at", "2022-06-10 00:59:10.416166"], ["updated_at", "2022-06-10 00:59:10.416166"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"eO-p5eRRqbQeG2drttMIsA\":{\"token\":\"$2a$04$jVqZUz7LJtsICVFD/QxlXeLQmEL5A4/.2vjZ.2icoaFfRCNK./e96\",\"expiry\":1656032350,\"updated_at\":\"2022-06-10T00:59:10Z\"}}"], ["updated_at", "2022-06-10 00:59:10.418035"], ["id", 1724]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/api/v1/auth/sign_out" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347b6328>_wendell_mcdermott@hansen.net"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", nil], ["updated_at", "2022-06-10 00:59:10.428979"], ["id", 1724]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1409)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1724], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name"], ["encrypted_password", "$2a$04$HmfeUKiJX1D3XsNnqSO2aO9ETqxlhv3pFwHKXJVMKYHrhYQShCCUO"], ["name", "安藤 健"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name"], ["created_at", "2022-06-10 00:59:10.438345"], ["updated_at", "2022-06-10 00:59:10.438345"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"M0vCdEeUC_CUreclNvysSQ\":{\"token\":\"$2a$04$PX.u4F9PGqfZyrvGEf85DOSLO9QmWs7E0vOFnqyr3tGwGL9cOBcbq\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.450445"], ["id", 1725]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1725], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1927)
+Started GET "/api/v1/users/1725/households" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#index as HTML
+  Parameters: {"user_id"=>"1725"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347ced10>_chet@gusikowski.name"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 ORDER BY "households"."created_at" ASC[0m  [["user_id", 1725]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1725], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 2442)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info"], ["encrypted_password", "$2a$04$xYKiR8A7UifpXDxyuz4yO.coeTimUIxvh6sFFO1BcjguB2PH/DNjy"], ["name", "坂本 優"], ["email", "#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info"], ["created_at", "2022-06-10 00:59:10.471904"], ["updated_at", "2022-06-10 00:59:10.471904"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"KHMKrSQyk7gAo6OdD36OwA\":{\"token\":\"$2a$04$t42r22rqVHRM0HLg.r5J3um/y/NXn1k3v6f1orADR0Qad/OhYp9p6\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.483894"], ["id", 1726]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1726], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1927)
+Started GET "/api/v1/users/1726/households/total?target_date=2022-06-10+09%3A59%3A10+%2B0900" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#index_total as HTML
+  Parameters: {"target_date"=>"2022-06-10 09:59:10 +0900", "user_id"=>"1726"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000014281b3c8>_franklin@jenkins-wilkinson.info"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("households"."amount_planned") FROM "households" WHERE "households"."user_id" = $1[0m  [["user_id", 1726]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM("spendings"."amount_used") FROM "spendings" INNER JOIN "households" ON "spendings"."household_id" = "households"."id" WHERE "households"."user_id" = $1 AND "spendings"."used_at" BETWEEN $2 AND $3[0m  [["user_id", 1726], ["used_at", "2022-06-01"], ["used_at", "2022-06-30"]]
+  [1m[36mSpending Load (0.1ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" INNER JOIN "households" ON "spendings"."household_id" = "households"."id" WHERE "households"."user_id" = $1 AND "spendings"."used_at" BETWEEN $2 AND $3[0m  [["user_id", 1726], ["used_at", "2022-06-01"], ["used_at", "2022-06-30"]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1726], ["LIMIT", 1]]
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 3552)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net"], ["encrypted_password", "$2a$04$LplKOjo3IzclqPlCZG/ipel45WINUhNyfkNFnAHicVturOTI5Q60O"], ["name", "小川 空"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net"], ["created_at", "2022-06-10 00:59:10.506235"], ["updated_at", "2022-06-10 00:59:10.506235"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"r98P9mpOlHN7-vZqzKiNig\":{\"token\":\"$2a$04$jWnoiOBT4nOSnAR2cwUJ8ebNHUzOpN0Om..CQ/hF2JrIwDp3DWtKq\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.518919"], ["id", 1727]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1727], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started POST "/api/v1/users/1727/households" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#create as HTML
+  Parameters: {"household"=>{"name"=>"test", "amount_planned"=>"10000"}, "user_id"=>"1727"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001347f4ec0>_gary@marvin-muller.net"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1727], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.530182"], ["updated_at", "2022-06-10 00:59:10.530182"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1727], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1836)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz"], ["encrypted_password", "$2a$04$LnxOkZBubj67mC.N8i1BKOl6UTbQhJ3nj6zPUYKSX7zzLRxRWA.k2"], ["name", "藤井 彩花"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz"], ["created_at", "2022-06-10 00:59:10.536575"], ["updated_at", "2022-06-10 00:59:10.536575"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1728], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.537091"], ["updated_at", "2022-06-10 00:59:10.537091"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Dvvz1iIqTIY8ZsXpnjKwMg\":{\"token\":\"$2a$04$lloJLkNKxNMQb55Xi62eUuIVUT31IA22gr0h8jLqbMWblRLTn/2qG\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.548916"], ["id", 1728]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1728], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1728/households/480" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#show as HTML
+  Parameters: {"user_id"=>"1728", "id"=>"480"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000134f52eb0>_abe@mante-hirthe.biz"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.0ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1728], ["id", 480], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1728], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1160)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz"], ["encrypted_password", "$2a$04$7143thHDlYl1UuN8DhNbMOwmF39mNVF72Pg3vBryAIUn4DFHC8OVi"], ["name", "後藤 駿"], ["email", "#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz"], ["created_at", "2022-06-10 00:59:10.567790"], ["updated_at", "2022-06-10 00:59:10.567790"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1729], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.568363"], ["updated_at", "2022-06-10 00:59:10.568363"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"BewiAgaWjjBA_Z4Rwt2JDw\":{\"token\":\"$2a$04$QbmP9QZMpga5mkPT0LGLzeTxaBxggvhDI9oludEk9emLeZALJ/lZy\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.580585"], ["id", 1729]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1729], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started PATCH "/api/v1/users/1729/households/481" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#update as HTML
+  Parameters: {"household"=>{"name"=>"test", "amount_planned"=>"10000"}, "name"=>"test", "amount_planned"=>"500", "user_id"=>"1729", "id"=>"481"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x000000013500fc90>_peter@hills.biz"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1729], ["id", 481], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1729], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1439)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz"], ["encrypted_password", "$2a$04$2A0R9fsIRKyiYY6NnEKZKe2u7QAICB8NNwQm0qP8ftFDNuWq.E53."], ["name", "松本 匠"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz"], ["created_at", "2022-06-10 00:59:10.599260"], ["updated_at", "2022-06-10 00:59:10.599260"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1730], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.599794"], ["updated_at", "2022-06-10 00:59:10.599794"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"tCq0Ck4HPMfRFK8Hw6HgyA\":{\"token\":\"$2a$04$AbDa09uuMZXwxoGVTECe..0.S1gc1XcpuPgK2GcvIPE0EWtmbAPMW\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.610515"], ["id", 1730]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1730], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started DELETE "/api/v1/users/1730/households/482" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::HouseholdsController#destroy as HTML
+  Parameters: {"user_id"=>"1730", "id"=>"482"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135896008>_amalia_farrell@mraz-prohaska.biz"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1730], ["id", 482], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1[0m  [["household_id", 482]]
+  [1m[36mHousehold Destroy (0.1ms)[0m  [1m[31mDELETE FROM "households" WHERE "households"."id" = $1[0m  [["id", 482]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1730], ["LIMIT", 1]]
+Completed 204 No Content in 3ms (ActiveRecord: 0.3ms | Allocations: 1671)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org"], ["encrypted_password", "$2a$04$oBFcLnUySgrFuzwxDBUhxOSuXzrF6hnf7UF7XmCgCF6HA00xB892q"], ["name", "遠藤 大輔"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org"], ["created_at", "2022-06-10 00:59:10.628261"], ["updated_at", "2022-06-10 00:59:10.628261"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1731], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.628843"], ["updated_at", "2022-06-10 00:59:10.628843"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"FsPgF0g_i1aD32YxOMwZCw\":{\"token\":\"$2a$04$7JuEK/66m193AaF3D8az0.nYv7BnMQg4mGdKVsFXTI4lVcLsZk8Ju\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.640899"], ["id", 1731]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1731], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1731/households/483/spendings" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#index as HTML
+  Parameters: {"user_id"=>"1731", "household_id"=>"483"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135044210>_doug@ritchie.org"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1731], ["id", 483], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.1ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 ORDER BY "spendings"."used_at" ASC[0m  [["household_id", 483]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1731], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1480)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name"], ["encrypted_password", "$2a$04$XggYF.beQHdJ.FpCC9Ey3OtyJesbn8hmwpHkzuzGSeqo05WY/FUqy"], ["name", "吉田 千尋"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name"], ["created_at", "2022-06-10 00:59:10.661250"], ["updated_at", "2022-06-10 00:59:10.661250"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1732], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.661809"], ["updated_at", "2022-06-10 00:59:10.661809"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"25ZElecxSUNz61Rs_AWb1A\":{\"token\":\"$2a$04$EF6n9Wxc.QT1AkIVhThpiui0Z.hNJ1d/m6KveuqcA251GwxRiyXne\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.673432"], ["id", 1732]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1732], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1732/households/484/spendings/total?target_date=2022-06-10+09%3A59%3A10+%2B0900" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#index_total as HTML
+  Parameters: {"target_date"=>"2022-06-10 09:59:10 +0900", "user_id"=>"1732", "household_id"=>"484"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135054d18>_monique_mills@emmerich.name"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1732], ["id", 484], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("spendings"."amount_used") FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."used_at" BETWEEN $2 AND $3[0m  [["household_id", 484], ["used_at", "2022-06-01"], ["used_at", "2022-06-30"]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1732], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.0ms | ActiveRecord: 0.2ms | Allocations: 1536)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net"], ["encrypted_password", "$2a$04$164GE5InZlFjr1UWzPDZLuht01uZ4d8e9WUe0Wx8GSDTp6ru5wc7."], ["name", "太田 優奈"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net"], ["created_at", "2022-06-10 00:59:10.690406"], ["updated_at", "2022-06-10 00:59:10.690406"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1733], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.691012"], ["updated_at", "2022-06-10 00:59:10.691012"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"0JNljT4TQE7BbwHsF7401A\":{\"token\":\"$2a$04$uUnLiRdwupSQMPVQJai4DOUYTrmHz9whbeRV0pjMM95WqZVWAa0ja\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.702215"], ["id", 1733]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1733], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started POST "/api/v1/users/1733/households/485/spendings" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#create as HTML
+  Parameters: {"spending"=>{"used_at"=>"Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", "amount_used"=>"500", "memo"=>"test1"}, "user_id"=>"1733", "household_id"=>"485"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135adb278>_jacquelynn.jenkins@cartwright.net"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.1ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1733], ["id", 485], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 485], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:59:10.713814"], ["updated_at", "2022-06-10 00:59:10.713814"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1733], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1921)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net"], ["encrypted_password", "$2a$04$8reEL1HFKRunTiwrUSIcg.hUSyBm14rAkTniJ3hVnXlmJ4jBS8asO"], ["name", "斎藤 拓海"], ["email", "#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net"], ["created_at", "2022-06-10 00:59:10.720494"], ["updated_at", "2022-06-10 00:59:10.720494"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1734], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.721019"], ["updated_at", "2022-06-10 00:59:10.721019"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 486], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:59:10.721498"], ["updated_at", "2022-06-10 00:59:10.721498"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"Ake909IATA0u6OY9aNYXSg\":{\"token\":\"$2a$04$AGFeiKoahYh.LozN.JVKMOK6rIIP9TfXxQQSiFUDH32KAyvwIUoZu\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.733533"], ["id", 1734]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1734], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started GET "/api/v1/users/1734/households/486/spendings/112" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#show as HTML
+  Parameters: {"user_id"=>"1734", "household_id"=>"486", "id"=>"112"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x00000001350bfa50>_lionel@rosenbaum.net"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.0ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1734], ["id", 486], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.1ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 486], ["id", 112], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1734], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1533)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz"], ["encrypted_password", "$2a$04$PTARXH2rBb.hvXlTc4lCDeKP2c8bLfU/M4VX/kvu3uSH0eXCbVdrO"], ["name", "松尾 明日香"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz"], ["created_at", "2022-06-10 00:59:10.752351"], ["updated_at", "2022-06-10 00:59:10.752351"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1735], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.752937"], ["updated_at", "2022-06-10 00:59:10.752937"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 487], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:59:10.753431"], ["updated_at", "2022-06-10 00:59:10.753431"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"6tigiw54C894VrbqoyzQFQ\":{\"token\":\"$2a$04$G4tIUpOJHPKrWk05OOf2VuCVwu7dXhEdG4s5LqhfeYsMjIJAlB.rK\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.765821"], ["id", 1735]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1735], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started PATCH "/api/v1/users/1735/households/487/spendings/113" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#update as HTML
+  Parameters: {"spending"=>{"used_at"=>"Sun May 01 2022 00:00:00 GMT+0900 (日本標準時)", "amount_used"=>"500", "memo"=>"test1"}, "memo"=>"test", "amount_used"=>"500", "user_id"=>"1735", "household_id"=>"487", "id"=>"113"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135c19ab8>_tyrell_nicolas@lueilwitz.biz"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.0ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1735], ["id", 487], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.1ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 487], ["id", 113], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1735], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1835)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io"], ["encrypted_password", "$2a$04$OjrA3vbeC.UonVBSal68/.flfEzh1zmpL2WwPsgDm6RJHBuCfRjti"], ["name", "小山 茜"], ["email", "#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io"], ["created_at", "2022-06-10 00:59:10.784797"], ["updated_at", "2022-06-10 00:59:10.784797"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mHousehold Create (0.1ms)[0m  [1m[32mINSERT INTO "households" ("user_id", "name", "amount_planned", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1736], ["name", "test"], ["amount_planned", 10000], ["created_at", "2022-06-10 00:59:10.785331"], ["updated_at", "2022-06-10 00:59:10.785331"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Create (0.1ms)[0m  [1m[32mINSERT INTO "spendings" ("household_id", "used_at", "amount_used", "memo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["household_id", 488], ["used_at", "2022-05-01"], ["amount_used", 500], ["memo", "test1"], ["created_at", "2022-06-10 00:59:10.785802"], ["updated_at", "2022-06-10 00:59:10.785802"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "{\"N4iUWMekSd1wGjgqZgc4og\":{\"token\":\"$2a$04$Qvu74G/Ti9MCcv3TKnOdUe0j1WUFPp9YjOOzT6UphZb2MfmWnyBXa\",\"expiry\":1656032350}}"], ["updated_at", "2022-06-10 00:59:10.797754"], ["id", 1736]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1736], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1927)
+Started DELETE "/api/v1/users/1736/households/488/spendings/114" for 127.0.0.1 at 2022-06-10 09:59:10 +0900
+Processing by Api::V1::SpendingsController#destroy as HTML
+  Parameters: {"user_id"=>"1736", "household_id"=>"488", "id"=>"114"}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = $1 LIMIT $2[0m  [["uid", "#<#<class:0x0000000144d16f38>:0x0000000135cd76a8>_derick.nitzsche@bergnaum-cronin.io"], ["LIMIT", 1]]
+  [1m[36mHousehold Load (0.0ms)[0m  [1m[34mSELECT "households".* FROM "households" WHERE "households"."user_id" = $1 AND "households"."id" = $2 LIMIT $3[0m  [["user_id", 1736], ["id", 488], ["LIMIT", 1]]
+  [1m[36mSpending Load (0.0ms)[0m  [1m[34mSELECT "spendings".* FROM "spendings" WHERE "spendings"."household_id" = $1 AND "spendings"."id" = $2 LIMIT $3[0m  [["household_id", 488], ["id", 114], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mSpending Destroy (0.0ms)[0m  [1m[31mDELETE FROM "spendings" WHERE "spendings"."id" = $1[0m  [["id", 114]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1736], ["LIMIT", 1]]
+Completed 204 No Content in 2ms (ActiveRecord: 0.2ms | Allocations: 1484)
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m

@@ -27,10 +27,12 @@ const Spending: React.FC = () => {
   const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
   const [amountPlanned, setAmountPlanned] = useState(0);
   const [household, setHousehold] = useState<GetHousehold>();
+  // 利用予定額と利用額との差額
   const balance = amountPlanned - currentTotalAmount;
+  // カレンダーの月日情報
   const calendar  = getCalendarArray(targetDate);
+  // ブラウザのwidth情報取得
   const width = useWindowDimensions();
-
   // 利用履歴一覧の取得処理
   const handleGetSpendings = async () => {
     if(!currentUser) return
@@ -39,9 +41,10 @@ const Spending: React.FC = () => {
       if (res?.status !== 200) return;
       setSpendings(res.data);
     } catch (err: any) {
-      console.log('情報が取得できていません');
+      console.log('利用履歴一覧取得エラー', err);
     }
   };
+
   // 利用月別合計金額の合計
   const handleGetSpendingsTotal = async () => {
     if (!currentUser) return;
@@ -50,7 +53,7 @@ const Spending: React.FC = () => {
       const res = await getSpendingTotal(currentUser.id, Number(urlParams.householdId), params);
       setCurrentTotalAmount(res?.data);
     } catch (err: any) {
-      console.log('情報が取得できていません');
+      console.log('利用金額合計', err);
     };
   };
   // 家計簿の詳細取得
@@ -61,7 +64,7 @@ const Spending: React.FC = () => {
       setHousehold(res?.data);
       setAmountPlanned(res?.data.amountPlanned);
     } catch (err: any) {
-      console.log('情報が取得できていません');
+      console.log(err);
     }
   };
   // 家計簿の削除処理
@@ -71,10 +74,10 @@ const Spending: React.FC = () => {
     if(!sure) return;
     try {
       if(!currentUser) return;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await deleteHousehold(currentUser.id, Number(urlParams.householdId));
       history.push('/');
     } catch (err: any) {
+      console.log(err);
       alert('削除ができませんでした')
     };
   };
@@ -92,27 +95,19 @@ const Spending: React.FC = () => {
     <div className={style.spendings}>
       <div className={style.household_name}>
         <h2>
-          <Link to={`/${Number(urlParams.householdId)}/edithousehold`}>
-            {household?.name}
-          </Link>
+          <Link to={`/${Number(urlParams.householdId)}/edithousehold`}>{household?.name}</Link>
         </h2>
         {width < 1100 ? (
             <p>
               利用予定:
-              <span
-                className={style.amount_planned}
-              >
-                ¥{household?.amountPlanned}
-              </span>
+              <span className={style.amount_planned}>¥{household?.amountPlanned}</span>
             </p>
           ) : '' }
       </div>
       <div className={style.monthbox}>
         <h3 className={style.month}>
           {format(targetDate, 'M月')}:
-          <span
-            className={balance >= 0 ? style.balance_blue : style.balance_red }
-          >
+          <span className={balance >= 0 ? style.balance_blue : style.balance_red }>
             ¥{balance}
           </span>
         </h3>
@@ -140,10 +135,7 @@ const Spending: React.FC = () => {
                 使った金額を記録する
               </Link>
             </div>
-            <div
-              className={style.household_delete}
-              onClick={handleDeleteHousehold}
-            >
+            <div className={style.household_delete} onClick={handleDeleteHousehold}>
               家計簿を削除
             </div>
           </div>
@@ -158,14 +150,9 @@ const Spending: React.FC = () => {
       {width >= 1100 ? (
         <div className={style.button_pc}>
           <div className={style.amount_save}>
-            <Link to={`/${urlParams.householdId}/spendings/addspending`}>
-                使った金額を記録する
-            </Link>
+            <Link to={`/${urlParams.householdId}/spendings/addspending`}>使った金額を記録する</Link>
           </div>
-          <div
-            className={style.household_delete}
-            onClick={handleDeleteHousehold}
-          >
+          <div className={style.household_delete} onClick={handleDeleteHousehold}>
             家計簿を削除
           </div>
         </div>

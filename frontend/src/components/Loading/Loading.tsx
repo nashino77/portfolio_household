@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import { AuthContext } from '../../App';
 import { useHistory } from 'react-router-dom';
+// css
 import style from './Loading.module.scss';
 
 const Loading:React.FC = () => {

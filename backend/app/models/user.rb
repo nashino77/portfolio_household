@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class User < ActiveRecord::Base
   has_many :households, dependent: :destroy
   has_many :spendings, through: :households

@@ -25,22 +25,13 @@ const Calendar: React.FC<Props> = (props) => {
   return (
     <div className={style.calendar}>
       <div className={style.select_month}>
-        <div
-          className={style.selectbutton_month}
-          onClick={() => setTargetDate(current => subMonths(current, 1))}
-        >
+        <div className={style.selectbutton_month} onClick={() => setTargetDate(current => subMonths(current, 1))}>
           &lsaquo; 前の月
         </div>
-        <div
-          className={style.selectbutton_month}
-          onClick={() => setTargetDate(new Date())}
-        >
+        <div className={style.selectbutton_month} onClick={() => setTargetDate(new Date())}>
           今月
         </div>
-        <div
-          className={style.selectbutton_month}
-          onClick={() => setTargetDate(current => addMonths(current, 1))}
-        >
+        <div className={style.selectbutton_month} onClick={() => setTargetDate(current => addMonths(current, 1))}>
           次の月 &rsaquo;
         </div>
       </div>
@@ -62,10 +53,7 @@ const Calendar: React.FC<Props> = (props) => {
               <tr className={style.calendar_week} key={rowNum}>
                 {
                   weekRow.map((date) => (
-                    <td
-                      key={getDay(date)}
-                      className={style.calendar_date}
-                    >
+                    <td key={getDay(date)} className={style.calendar_date}>
                       <div
                         className={`
                           ${style.date}
