@@ -5,7 +5,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins /my-household-8a77e\.web\.app/
+    origins /localhost:3001/
     resource '*',
       headers: :any,
       expose: ["access-token", "expiry", "token-type", "uid", "client"],
