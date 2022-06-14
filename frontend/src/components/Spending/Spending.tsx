@@ -93,21 +93,21 @@ const Spending: React.FC = () => {
 
    return (
     <div className={style.spendings}>
-      <div className={style.household_name}>
+      <div className={style.householdName}>
         <h2>
           <Link to={`/${Number(urlParams.householdId)}/edithousehold`}>{household?.name}</Link>
         </h2>
         {width < 1100 ? (
             <p>
               利用予定:
-              <span className={style.amount_planned}>¥{household?.amountPlanned}</span>
+              <span className={style.amountPlanned}>¥{household?.amountPlanned}</span>
             </p>
           ) : '' }
       </div>
       <div className={style.monthbox}>
         <h3 className={style.month}>
           {format(targetDate, 'M月')}:
-          <span className={balance >= 0 ? style.balance_blue : style.balance_red }>
+          <span className={balance >= 0 ? style.balanceBlue : style.balanceRed }>
             ¥{balance}
           </span>
         </h3>
@@ -120,7 +120,7 @@ const Spending: React.FC = () => {
           利用合計: <span className={style.totalnumber}>-{currentTotalAmount}</span>
         </p>
       </div>
-      <div className={style.household_main}>
+      <div className={style.householdMain}>
         <Calendar
           targetDate={targetDate}
           setTargetDate={setTargetDate}
@@ -130,12 +130,12 @@ const Spending: React.FC = () => {
         />
         { width < 1100 ? (
           <div className={style.button}>
-            <div className={style.amount_save}>
+            <div className={style.amountSave}>
               <Link to={`/${urlParams.householdId}/spendings/addspending`}>
                 使った金額を記録する
               </Link>
             </div>
-            <div className={style.household_delete} onClick={handleDeleteHousehold}>
+            <div className={style.householdDelete} onClick={handleDeleteHousehold}>
               家計簿を削除
             </div>
           </div>
@@ -148,11 +148,11 @@ const Spending: React.FC = () => {
         />
       </div>
       {width >= 1100 ? (
-        <div className={style.button_pc}>
-          <div className={style.amount_save}>
+        <div className={style.buttonPc}>
+          <div className={style.amountSave}>
             <Link to={`/${urlParams.householdId}/spendings/addspending`}>使った金額を記録する</Link>
           </div>
-          <div className={style.household_delete} onClick={handleDeleteHousehold}>
+          <div className={style.householdDelete} onClick={handleDeleteHousehold}>
             家計簿を削除
           </div>
         </div>

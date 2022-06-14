@@ -69,35 +69,33 @@ const App: React.FC = () => {
   return (
     <div className={style.body}>
       <Router>
-        <React.StrictMode>
-          <AuthContext.Provider
-            value={{
-              loading,
-              setLoading,
-              isSignedIn,
-              setIsSignedIn,
-              currentUser,
-              setCurrentUser,
-            }}
-          >
-            <Header />
-            <Switch>
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/loading" component={Loading} />
-                <Private>
-                  <Switch>
-                    <Route exact path="/" component={HouseHold} />
-                    <Route exact path="/addhousehold" component={AddHousehold} />
-                    <Route exact path="/:householdId/edithousehold" component={EditHousehold} />
-                    <Route exact path="/:householdId/spendings" component={Spending} />
-                    <Route exact path="/:householdId/spendings/addspending" component={AddSpending} />
-                    <Route exact path="/:householdId/spendings/:spendingId" component={EditSpending} />
-                  </Switch>
-                </Private>
-            </Switch>
-          </AuthContext.Provider>
-        </React.StrictMode>
+        <AuthContext.Provider
+          value={{
+            loading,
+            setLoading,
+            isSignedIn,
+            setIsSignedIn,
+            currentUser,
+            setCurrentUser,
+          }}
+        >
+          <Header />
+          <Switch>
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/loading" component={Loading} />
+              <Private>
+                <Switch>
+                  <Route exact path="/" component={HouseHold} />
+                  <Route exact path="/addhousehold" component={AddHousehold} />
+                  <Route exact path="/:householdId/edithousehold" component={EditHousehold} />
+                  <Route exact path="/:householdId/spendings" component={Spending} />
+                  <Route exact path="/:householdId/spendings/addspending" component={AddSpending} />
+                  <Route exact path="/:householdId/spendings/:spendingId" component={EditSpending} />
+                </Switch>
+              </Private>
+          </Switch>
+        </AuthContext.Provider>
       </Router>
     </div>
   );

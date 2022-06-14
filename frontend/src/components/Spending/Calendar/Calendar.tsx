@@ -24,20 +24,20 @@ const Calendar: React.FC<Props> = (props) => {
 
   return (
     <div className={style.calendar}>
-      <div className={style.select_month}>
+      <div className={style.selectMonth}>
         <div className={style.selectbutton_month} onClick={() => setTargetDate(current => subMonths(current, 1))}>
           &lsaquo; 前の月
         </div>
         <div className={style.selectbutton_month} onClick={() => setTargetDate(new Date())}>
           今月
         </div>
-        <div className={style.selectbutton_month} onClick={() => setTargetDate(current => addMonths(current, 1))}>
+        <div className={style.selectbuttonMonth} onClick={() => setTargetDate(current => addMonths(current, 1))}>
           次の月 &rsaquo;
         </div>
       </div>
-      <table className={style.calendar_body}>
+      <table className={style.calendarBody}>
         <thead>
-          <tr className={style.calendar_day}>
+          <tr className={style.calendarDay}>
             <th>日</th>
             <th>月</th>
             <th>火</th>
@@ -47,13 +47,13 @@ const Calendar: React.FC<Props> = (props) => {
             <th>土</th>
           </tr>
         </thead>
-        <tbody className={style.calendar_main}>
+        <tbody className={style.calendarMain}>
           {
             calendar.map((weekRow, rowNum) => (
-              <tr className={style.calendar_week} key={rowNum}>
+              <tr className={style.calendarWeek} key={rowNum}>
                 {
                   weekRow.map((date) => (
-                    <td key={getDay(date)} className={style.calendar_date}>
+                    <td key={getDay(date)} className={style.calendarDate}>
                       <div
                         className={`
                           ${style.date}
@@ -64,7 +64,7 @@ const Calendar: React.FC<Props> = (props) => {
                       }>
                         {getDate(date)}
                       </div>
-                      <div className={style.date_amount}>
+                      <div className={style.dateAmount}>
                         ¥
                         {
                           spendings

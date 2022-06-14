@@ -21,18 +21,18 @@ const SpendingList: React.FC<Props> = (props) => {
   const { calendar, spendings, urlParams } = props;
 
   return (
-    <div className={style.spending_list}>
+    <div className={style.spendingList}>
       {
         calendar.map((weekRow, rowNum) => (
           <div key={rowNum}>
             {
               weekRow.map((date) => (
                 <div
-                  className={style.spending_box}
+                  className={style.spendingBox}
                   key={getDay(date)}
                   id="overFlowScrollArea"
                 >
-                  <div className={style.spneding_date}>
+                  <div className={style.spnedingDate}>
                     <span>{format(date, 'M月')}{getDate(date)}日</span>
                   </div>
                   <div className={style.spending}>
@@ -50,9 +50,9 @@ const SpendingList: React.FC<Props> = (props) => {
                             key={spending.id}
                             to={`/${Number(urlParams.householdId)}/spendings/${spending.id}`}
                           >
-                            <ul  className={style.spending_content}>
+                            <ul  className={style.spendingContent}>
                               <li className={style.spending_memo}>{spending.memo}</li>
-                              <li className={style.spending_amountUsed}>¥{spending.amountUsed}</li>
+                              <li className={style.spendingAmountUsed}>¥{spending.amountUsed}</li>
                             </ul>
                           </Link>
                         ))

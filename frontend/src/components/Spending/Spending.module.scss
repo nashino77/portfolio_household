@@ -6,7 +6,7 @@
     width: 1328px;
     margin: 0 auto;
   }
-  .household_name {
+  .householdName {
     display: flex;
     justify-content: center;
     margin-top: 16px;
@@ -52,10 +52,10 @@
           line-height: 40px;
         }
       }
-      .balance_red {
+      .balanceRed {
         color: $amount_red_large;
       }
-      .balance_blue {
+      .balanceBlue {
         color: $amount_blue_large;
       }
     }
@@ -71,7 +71,7 @@
       }
     }
   }
-  .amount_planned {
+  .amountPlanned {
     color: $amount_blue;
   }
   .totalamount {
@@ -87,7 +87,7 @@
       color: $amount_red;
     }
   }
-  .household_main {
+  .householdMain {
     @media screen and (min-width: $mb) {
       display: flex;
       margin-top: 24px;
@@ -96,7 +96,7 @@
   .button {
     margin: 24px auto 0;
     width: 240px;
-    .amount_save {
+    .amountSave {
       width: 240px;
       height: 48px;
       background-color: #FFD124;
@@ -110,7 +110,7 @@
         opacity: 0.7;
       }
     }
-    .household_delete {
+    .householdDelete {
       width: 96px;
       height: 24px;
       background-color: #fff;
@@ -129,11 +129,11 @@
       }
     }
   }
-  .button_pc {
+  .buttonPc {
     display: flex;
     width: 1008px;
     margin: 56px auto 16px;
-    .amount_save {
+    .amountSave {
       width: 480px;
       height: 80px;
       background-color: #FFD124;
@@ -148,7 +148,7 @@
         opacity: 0.7;
       }
     }
-    .household_delete {
+    .householdDelete {
       width: 480px;
       height: 80px;
       background-color: #fff;

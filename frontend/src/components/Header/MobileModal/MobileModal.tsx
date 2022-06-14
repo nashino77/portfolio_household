@@ -53,7 +53,7 @@ const MobileModal: React.FC<Props> = (props) => {
         </div>
       </div>
       <div
-        className={`${style.modalback} ${ modalOpen ? style.modalback_open : '' }`}
+        className={`${style.modalback} ${ modalOpen ? style.modalbackOpen : '' }`}
         onClick={handleModal}
       >
       </div>

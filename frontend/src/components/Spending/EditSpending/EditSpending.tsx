@@ -146,14 +146,14 @@ const EditSpending: React.FC = () => {
             >
               保存
             </button>
-            <div className={style.button_cancels}>
+            <div className={style.buttonCancels}>
               <button
-                className={style.button_delete}
+                className={style.buttonDelete}
                 onClick={handleDeleteSpending}
               >
                 履歴を削除
               </button>
-              <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.button_cancel}>キャンセル</Link>
+              <Link to={`/${Number(urlParams.householdId)}/spendings`} className={style.buttonCancel}>キャンセル</Link>
             </div>
           </div>
         </form>

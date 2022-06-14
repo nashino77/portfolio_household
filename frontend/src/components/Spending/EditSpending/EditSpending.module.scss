@@ -125,7 +125,7 @@
         margin-right: 32px;
       }
     }
-    .button_cancels {
+    .buttonCancels {
       display: flex;
       justify-content: space-between;
       width: 246px;
@@ -133,7 +133,7 @@
       @media screen and (min-width: $mb) {
         display: block;
       }
-      .button_delete {
+      .buttonDelete {
         width: 96px;
         height: 24px;
         background-color: #fff;
@@ -156,7 +156,7 @@
           line-height: 48px;
         }
       }
-      .button_cancel {
+      .buttonCancel {
         width: 96px;
         height: 24px;
         background-color: #fff;

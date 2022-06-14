@@ -1,6 +1,6 @@
 @import '../../../Variables/variables';
 
-.spending_list {
+.spendingList {
   width: 100%;
   max-height: 156px;
   overflow-y: scroll;
@@ -15,12 +15,12 @@
     max-height: 560px;
     background-color: #00AFC1;
   }
-  .spending_box {
+  .spendingBox {
     margin-bottom: 16px;
     @media screen and (min-width: $mb) {
       margin-bottom: 18px;
     }
-    .spneding_date {
+    .spnedingDate {
       background-color: #0093AB;
       height: 24px;
       font-size: 16px;
@@ -41,7 +41,7 @@
       @media screen and (min-width: $mb) {
         margin-top: 16px;
       }
-      .spending_content {
+      .spendingContent {
         width: 180px;
         height: 15px;
         border-bottom: 1px solid;
@@ -66,7 +66,7 @@
           padding-left: 6px;
           padding-right: 6px;
         }
-        .spending_amountUsed {
+        .spendingAmountUsed {
           color: $amount_red;
         }
       }

@@ -78,8 +78,8 @@ const HouseHold: React.FC = () => {
     <div className={style.household}>
       <h2>{currentUser?.name}</h2>
       <div className={style.month}>
-        <h3>{format(targetDate, 'M月')}:  <span className={balance >= 0 ? style.balance_amount_blue : style.balance_amount_red }>¥{balance}</span></h3>
-        <h4 className={style.amount_total}>利用額: <span>-{allSpendingTotal}</span></h4>
+        <h3>{format(targetDate, 'M月')}:  <span className={balance >= 0 ? style.balanceAmountBlue : style.balanceAmountRed }>¥{balance}</span></h3>
+        <h4 className={style.amountTotal}>利用額: <span>-{allSpendingTotal}</span></h4>
       </div>
       <div className={style.monthMove}>
         <span onClick={() => setTargetDate(current => subMonths(current, 1))}>
