@@ -74,6 +74,7 @@ const Spending: React.FC = () => {
     if(!sure) return;
     try {
       if(!currentUser) return;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await deleteHousehold(currentUser.id, Number(urlParams.householdId));
       history.push('/');
     } catch (err: any) {

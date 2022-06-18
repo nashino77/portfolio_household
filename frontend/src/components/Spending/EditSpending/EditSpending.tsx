@@ -41,7 +41,7 @@ const EditSpending: React.FC = () => {
       const res = await updateSpending(
         currentUser.id,
         Number(urlParams.householdId),
-        Number(urlParams.spendingId), 
+        Number(urlParams.spendingId),
         params
       );
       if (res?.status === 200) {
@@ -73,6 +73,7 @@ const EditSpending: React.FC = () => {
     const sure = window.confirm('削除してよろしいですか?')
     if (!sure) return;
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await deleteSpending(
         currentUser.id,
         Number(urlParams.householdId),

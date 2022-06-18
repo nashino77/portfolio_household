@@ -1,4 +1,4 @@
-const DEFAULT_URL = process.env.REACT_APP_DEFAULT_URL;
+const DEFAULT_URL = "http://localhost:3000/api/v1";
 export const testUrl = `${DEFAULT_URL}/test`;
 export const AUTH = `${DEFAULT_URL}/auth`;
 export const signInUser = `${AUTH}/sessions`;

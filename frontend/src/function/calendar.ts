@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useContext } from 'react';
 // date-fns
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
 import endOfWeek from 'date-fns/endOfWeek';
