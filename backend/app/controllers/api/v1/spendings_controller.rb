@@ -1,7 +1,6 @@
 class Api::V1::SpendingsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_household_index, only: %i[index index_total create]
-  before_action :set_household, only: %i[show update destroy]
+  before_action :set_household, only: %i[index index_total create show update destroy]
   before_action :set_spending, only: %i[show update destroy]
   # 利用履歴の一覧取得
   def index
@@ -57,12 +56,7 @@ class Api::V1::SpendingsController < ApplicationController
   def spending_params
     params.require(:spending).permit(:amount_used, :memo, :used_at)
   end
-  # 一覧取得、合計取得、新規作成処理時の家計簿情報取得
-  #set_householdと同じ記述だが同じにするとエラーがでるため確認中
-  def set_household_index
-    @household = current_api_v1_user.households.find(params[:household_id])
-  end
-  # 詳細表示、更新、削除時の家計簿情報取得
+  # 家計簿情報取得
   def set_household
     @household = current_api_v1_user.households.find(params[:household_id])
   end
